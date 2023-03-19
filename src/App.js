@@ -1,16 +1,17 @@
-import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
-import Home from './pages/Home'
-import Contact from './pages/Contact'
-import About from './pages/About'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { routes } from "./app/routes";
+import NotFoundPage from "./pages/NotFoundPage";
+
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/home' component={Home} />
-        <Route exact path='/contact' component={Contact} />
-        <Route exact path='/about' component={About} />
-      </Switch>
+      <Routes>
+        {routes.map(({ path, component: Component }) =>
+          <Route key={path} path={path} element={<Component />} />
+        )}
+        <Route path='*' element={<NotFoundPage />} />
+      </Routes>
+
     </BrowserRouter>
   );
 }
