@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Button } from '../components/Global'
 import AuthLayout from '../HOCs/AuthLayout';
 import { loginAction } from '../redux/actions/Auth/actions';
 const Login = () => {
-    const [userLogin, setUserLogin] = useState({ taiKhoan: "", matKhau: "" });
+    const [userLogin, setUserLogin] = useState({ email: "", passWord: "" });
+    const [errorLogin, setErrorLogin] = useState({ email: "", passWord: "" });
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const ref = useRef();
     const handleChange = (e) => {
         const { value, name } = e.target;
         setUserLogin({
@@ -14,12 +17,43 @@ const Login = () => {
             [name]: value
         })
     }
+    const handleBlur = e => {
+        const { value, name } = e.target;
+        setErrorLogin({ ...errorLogin, [name]: validation(name, value) })
+    }
+    const validation = (name, value) => {
+        switch (name) {
+            case "email": {
+                if (!value.trim()) return "Email can not be empty";
+                if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(value)) return "Email is not valid"
+                return ""
+            }
+            case "passWord": {
+                if (!value.trim()) return "Password can not be empty";
+                if (!/[0-9A-Za-z]{5,10}/g.test(value)) return "Password must be a number between 6-10 characters"
+                return "";
+            }
+            default: return ""
+        }
+    }
     const hanleSubmit = e => {
         e.preventDefault();
-        dispatch(loginAction({ name: 'huy', age: 12 }))
+        console.log(userLogin)
+        const validationErrors = {};
+        for (let key in userLogin) {
+            const error = validation(key, userLogin[key]);
+            if (error) validationErrors[key] = error;
+        }
+        if (Object.keys(validationErrors).length > 0) {
+            setErrorLogin({ ...errorLogin, ...validationErrors });
+            return
+        }
+        const res = dispatch(loginAction(userLogin, navigate));
+        console.log('res', res)
     }
-    const data = { name: 'huy', age: 12 }
-    const { taskList } = useSelector(state => state.reducer)
+    useEffect(() => {
+        ref.current.focus()
+    }, [])
     return (
         <AuthLayout>
             <div className='bg-gray-100 h-screen pt-6 md:bg-hero-pattern bg-cover bg-center relative w-screen'>
@@ -34,27 +68,31 @@ const Login = () => {
                     <form className="" onSubmit={hanleSubmit}>
                         <div className="space-y-4">
                             <div>
-                                <input type="text" name="email" id="email" placeholder="Enter your account" className="w-full px-3 py-2 border rounded-md  " />
+                                <input
+                                    ref={ref}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    type="email" name="email" id="email" placeholder="Enter your email" className="w-full px-3 py-2 border rounded-md" />
+                                {errorLogin.email && <span className='text-red-600 text-xs' >{errorLogin.email}</span>}
                             </div>
                             <div>
-                                <input type="password" name="matKhau" id="password" placeholder="Enter your password" className="w-full px-3 py-2 border rounded-md" />
+                                <input
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    type="password" name="passWord" id="password" placeholder="Enter your password" className="w-full px-3 py-2 border rounded-md" />
+                                {errorLogin.passWord && <span className='text-red-600 text-xs' >{errorLogin.passWord}</span>}
                             </div>
                         </div>
                         <div className="mt-7">
                             <div>
-                                {/* <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-blue-500 text-white">Sign in</button> */}
                                 <Button
-
                                     type='submit'
                                     myClass='py-2 px-5 w-full'
                                     text='Login'
                                 />
-                                {taskList && <div>{taskList.slice(0, 5).map(item => <div key={item.taiKhoan} >
-                                    {item.taiKhoan}
-                                </div>)}</div>}
                             </div>
-                            <p className="px-6 text-sm text-center mt-2.5">Chưa có tài khoản ?
-                                <NavLink to="/signup" className="hover:underline font-semibold text-blue-500"> Đăng ký</NavLink>.
+                            <p className="px-6 text-sm text-center mt-2.5">You don't have account ?
+                                <NavLink to="/signup" className="hover:underline font-semibold text-blue-600"> Sign up</NavLink>.
                             </p>
                         </div>
                     </form>

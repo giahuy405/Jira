@@ -1,8 +1,17 @@
-import * as actionTypes from '../../constants/Auth/AuthConstant'
+import * as actionTypes from '../../constants/constants'
 
-export const loginAction = (payload) => {
+export const loginAction = (payload,navigate) => {
     return {
         type: actionTypes.LOGIN_API,
-        payload
+        payload,
+        navigate
+    }
+}
+
+export const signUpAction = (payload,navigate) => {
+    return {
+        type: actionTypes.SIGN_UP_API,
+        payload,
+        navigate
     }
 }

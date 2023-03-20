@@ -1,8 +1,8 @@
 import { produce } from 'immer'
-import * as actionTypes from '../constants/Home/HomeConstant'
+import * as actionTypes from '../constants/constants'
 
 const initalState = {
-    taskList: null,
+    infoUser: null,
     isLoading: false,
 }
 
@@ -10,8 +10,8 @@ export const reducer = (state = initalState, { type, payload }) => {
     return produce(state, draft => {
         {
             switch (type) {
-                case 'HAHA': {
-                    draft.taskList = payload
+                case actionTypes.LOGIN_INFO: {
+                    draft.infoUser = payload
                     break
                 }
                 case actionTypes.DISPLAY_LOADING: {
