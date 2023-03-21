@@ -14,7 +14,7 @@ export function* loginSaga() {
             })
             yield delay(500)
             // call api below
-            const res = yield authService.login(payload);
+            const res = yield call(() => authService.login(payload));
             console.log(res.data.content)
             yield put({
                 type: actionTypes.LOGIN_INFO,
@@ -68,9 +68,6 @@ export function* loginSaga() {
             })
         }
     });
-}
-
-export function* signUpSaga() {
     yield takeLatest(actionTypes.SIGN_UP_API, function* signUp({ type, payload, navigate }) {
         try {
             yield put({
@@ -86,7 +83,7 @@ export function* signUpSaga() {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 100000,
+                timer: 2600,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -97,7 +94,6 @@ export function* signUpSaga() {
                 icon: 'success',
                 title: 'Account have been created'
             })
-            yield delay(500)
             navigate('/login');
         }
         catch (err) {
@@ -127,5 +123,7 @@ export function* signUpSaga() {
                 title: `${content}`
             })
         }
-    })
+    });
 }
+
+

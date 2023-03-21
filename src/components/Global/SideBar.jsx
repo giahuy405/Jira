@@ -65,7 +65,7 @@ const SideBar = () => {
                 </div>
             </div>
             {isVisible &&
-                <div ref={wrapperRef} className='font-light fixed bottom-16 left-52 max-w-[280px] text-black text-sm bg-white rounded p-6 shadow-xl border border-color'>
+                <div ref={wrapperRef} className='font-light fixed z-50 bottom-16 left-52 max-w-[280px] text-black text-sm bg-white rounded p-6 shadow-xl border border-color'>
                     <img className='w-[140px] mx-auto mb-4' src="https://jira.ivorreic.com/feedback-6db192ab3ed372d1de19e207a9c46fd6.png" alt="1" />
                     <p>This simplified Jira clone is built with React on the front-end.</p>
                     <br />

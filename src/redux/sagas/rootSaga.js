@@ -9,7 +9,7 @@ export function* rootSaga() {
 
         // call api
         AuthSaga.loginSaga(),
-        AuthSaga.signUpSaga(),
+      
         
 
     ])

@@ -37,7 +37,7 @@ code {
   height: 100vh;
   width: 65px;
   transition: .1s;
-
+  z-index: 999;
 }
 
 .sideBarLogo {
@@ -82,4 +82,8 @@ code {
 .sideBar:hover .sideBar-title {
   visibility: visible;
   opacity: 1;
+}
+/* TINY */
+.tox-statusbar__branding{
+  display: none;
 }

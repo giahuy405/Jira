@@ -4,6 +4,7 @@ import * as actionTypes from '../constants/constants'
 const initalState = {
     infoUser: null,
     isLoading: false,
+    activeMenu: true,
 }
 
 export const reducer = (state = initalState, { type, payload }) => {
@@ -20,6 +21,10 @@ export const reducer = (state = initalState, { type, payload }) => {
                 }
                 case actionTypes.HIDE_LOADING: {
                     draft.isLoading = false
+                    break
+                }
+                case actionTypes.SET_ACTIVE_MENU: {
+                    draft.activeMenu = payload
                     break
                 }
                 default:
