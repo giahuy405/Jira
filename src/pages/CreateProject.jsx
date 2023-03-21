@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createProjectAction, projectCategoryAction } from '../redux/actions/Home/actions';
 import { createProjectSchema } from '../schema/createProjectSchema';
 import { LoadingOutlined } from '@ant-design/icons';
-const Settings = () => {
+const CreateProject = () => {
     const [userLogin, setUserLogin] = useState({ email: "", passWord: "" });
     const [errorLogin, setErrorLogin] = useState({ email: "", passWord: "" });
     const editorRef = useRef(null);
@@ -136,4 +136,4 @@ const Settings = () => {
     )
 }
 
-export default Settings
+export default CreateProject

@@ -1,4 +1,4 @@
-import { BarsOutlined, CloseOutlined, CreditCardOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
+import { BarsOutlined, CloseOutlined, CreditCardOutlined, PlusSquareOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -13,11 +13,18 @@ const links = [
                 path: 'project/board',
                 icon: <CreditCardOutlined />,
             },
+
             {
-                name: 'Project settings',
-                path: 'project/settings',
+                name: 'Create Project',
+                path: 'project/create-project',
+                icon: <PlusSquareOutlined />
+            },
+            {
+                name: 'Project Manament',
+                path: 'project/management',
                 icon: <SettingOutlined />,
             },
+
         ],
     },
     {
