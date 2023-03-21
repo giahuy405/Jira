@@ -27,6 +27,10 @@ export const reducer = (state = initalState, { type, payload }) => {
                     draft.activeMenu = payload
                     break
                 }
+                case actionTypes.PROJECT_CATEGORY: {
+                    draft.projectCategory = payload
+                    break
+                }
                 default:
                     break
             }

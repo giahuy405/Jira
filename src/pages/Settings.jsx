@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { CustomInput, Button } from '../components/Global'
 import BreadCrumd from '../components/Global/BreadCrumd'
 import ProjectLayout from '../HOCs/ProjectLayout'
@@ -6,11 +6,14 @@ import { Form, Formik } from 'formik';
 import { NavLink } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import CustomSelect from '../components/Global/CustomSelect';
+import { useDispatch, useSelector } from 'react-redux';
+import { projectCategoryAction } from '../redux/actions/Home/actions';
+import { createProjectSchema } from '../schema/createProjectSchema';
 const Settings = () => {
     const [userLogin, setUserLogin] = useState({ email: "", passWord: "" });
     const [errorLogin, setErrorLogin] = useState({ email: "", passWord: "" });
     const editorRef = useRef(null);
-
+    const dispatch = useDispatch();
     const onSubmit = async (values, actions) => {
         console.log(values)
         console.log(actions)
@@ -19,7 +22,14 @@ const Settings = () => {
             console.log(editorRef.current.getContent());
         }
     }
-
+    useEffect(() => {
+        dispatch(projectCategoryAction);
+    }, [])
+    const { projectCategory } = useSelector(state => state.reducer);
+    const handleChangeEditor = (content, editor) => {
+        console.log(content)
+        console.log(editor)
+    }
     return (
         <ProjectLayout>
             <BreadCrumd> Projects / Singularity 7.0 / Project Details</BreadCrumd>
@@ -27,35 +37,41 @@ const Settings = () => {
                 <h3 className='text-2xl font-medium text-[#172A4D]'>Project Details</h3>
                 <Formik
                     initialValues={{
-                        name: "",
-                        passWord: "",
-                        confirmPassword: "",
-                        email: "",
-                        phoneNumber: "",
+                        projectName: "",
+                        description: "",
+                        categoryId: "",
+                        alias: "",
                     }}
-                    // validationSchema={signUpSchema}
+                    validationSchema={createProjectSchema}
                     onSubmit={onSubmit}
                 >
                     {({ isSubmitting }) => (
-                        <Form >
-                            <div className='mt-3 mb-3'>
+                        <Form style={{ lineHeight: '8px' }}>
+                            <div className='my-2'>
                                 <CustomInput
                                     label='Name'
-                                    name='name'
+                                    name='projectName'
                                     type='text'
                                     id='name'
                                 />
                             </div>
-                            <div className='mb-3'>
+                            <div className='my-2'>
+                                <CustomInput
+                                    label='URL website'
+                                    name='alias'
+                                    type='text'
+                                    id='name'
+                                />
+                            </div>
+                            <div className='mb-2'>
                                 <CustomSelect
                                     label='Project Category'
                                     name='category'
                                     id='category'
                                 >
-                                    <option value="">Category</option>
-                                    <option value="GP01">Software</option>
-                                    <option value="GP02">Web</option>
-                                    <option value="GP03">App</option>
+                                    {projectCategory?.map(item =>
+                                        <option key={item.id} value={item.projectCategoryName}>{item.projectCategoryName}</option>
+                                    )}
                                 </CustomSelect>
                             </div>
                             <div>
@@ -80,14 +96,15 @@ const Settings = () => {
                                             'removeformat | help',
                                         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
                                     }}
+                                    onEditorChange={handleChangeEditor}
                                 />
                             </div>
 
-                            <div className="mt-6">
+                            <div className="mt-4">
                                 <div>
                                     <Button
                                         type='submit'
-                                        myClass='py-1.5 px-4 '
+                                        myClass='py-2 px-4 leading-4'
                                         text='Save changes'
                                     />
                                 </div>

@@ -6,12 +6,9 @@ import Swal from 'sweetalert2'
 import * as actionTypes from '../../constants/constants'
 
 
-export function* loginSaga() {
+export function* authSaga() {
     yield takeLatest(actionTypes.LOGIN_API, function* login({ type, payload, navigate }) {
         try {
-            yield put({
-                type: actionTypes.DISPLAY_LOADING
-            })
             yield delay(500)
             // call api below
             const res = yield call(() => authService.login(payload));
@@ -19,9 +16,6 @@ export function* loginSaga() {
             yield put({
                 type: actionTypes.LOGIN_INFO,
                 payload: res.data.content
-            })
-            yield put({
-                type: actionTypes.HIDE_LOADING
             })
             const Toast = Swal.mixin({
                 toast: true,
@@ -70,15 +64,7 @@ export function* loginSaga() {
     });
     yield takeLatest(actionTypes.SIGN_UP_API, function* signUp({ type, payload, navigate }) {
         try {
-            yield put({
-                type: actionTypes.DISPLAY_LOADING
-            })
-            yield delay(500)
-            // call api below
             const res = yield authService.signUp(payload);
-            yield put({
-                type: actionTypes.HIDE_LOADING
-            })
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',

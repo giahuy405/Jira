@@ -1,3 +1,4 @@
+import { LoadingOutlined } from '@ant-design/icons';
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -7,6 +8,7 @@ import { loginAction } from '../redux/actions/Auth/actions';
 const Login = () => {
     const [userLogin, setUserLogin] = useState({ email: "", passWord: "" });
     const [errorLogin, setErrorLogin] = useState({ email: "", passWord: "" });
+    const [isSubmiting, setIsSubmitting] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const ref = useRef();
@@ -36,7 +38,7 @@ const Login = () => {
             default: return ""
         }
     }
-    const hanleSubmit = e => {
+    const hanleSubmit = async e => {
         e.preventDefault();
         console.log(userLogin)
         const validationErrors = {};
@@ -48,8 +50,10 @@ const Login = () => {
             setErrorLogin({ ...errorLogin, ...validationErrors });
             return
         }
+        setIsSubmitting(true);
+        await new Promise((resolve, reject) => setTimeout(resolve, 1500));
         const res = dispatch(loginAction(userLogin, navigate));
-        console.log('res', res)
+        setIsSubmitting(false);
     }
     useEffect(() => {
         ref.current.focus()
@@ -85,11 +89,21 @@ const Login = () => {
                         </div>
                         <div className="mt-7">
                             <div>
-                                <Button
-                                    type='submit'
-                                    myClass='py-2 px-5 w-full'
-                                    text='Login'
-                                />
+                                {isSubmiting ?
+                                    <Button
+                                        type='button'
+                                        disabled={true}
+                                        myClass='py-2 px-5 w-full flex items-center justify-center gap-2 cursor-not-allowed opacity-70'
+                                        text={`Loading...`}
+                                        icon={<LoadingOutlined />}
+                                    />
+                                    :
+                                    <Button
+                                        type='submit'
+                                        myClass='py-2 px-5 w-full'
+                                        text='Login'
+                                    />
+                                }
                             </div>
                             <p className="px-6 text-sm text-center mt-2.5">You don't have account ?
                                 <NavLink to="/signup" className="hover:underline font-semibold text-blue-600"> Sign up</NavLink>.

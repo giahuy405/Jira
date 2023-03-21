@@ -6,7 +6,8 @@ import AuthLayout from '../HOCs/AuthLayout';
 import { signUpAction } from '../redux/actions/Auth/actions';
 import { Form, Formik } from 'formik';
 import { signUpSchema } from '../schema/signUpSchema';
-import {CustomInput} from '../components/Global'
+import { CustomInput } from '../components/Global'
+import { LoadingOutlined } from '@ant-design/icons';
 
 const Login = () => {
   const [userLogin, setUserLogin] = useState({ email: "", passWord: "" });
@@ -14,12 +15,13 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onSubmit = async (values, actions) => {
+    await new Promise((resolve, reject) => setTimeout(resolve, 1500));
     console.log(values)
     console.log(actions)
     actions.resetForm();
 
     const res = await dispatch(signUpAction(values, navigate));
-    
+
   }
 
 
@@ -90,14 +92,24 @@ const Login = () => {
                 </div>
                 <div className="mt-7">
                   <div>
-                    <Button
-                      type='submit'
-                      myClass='py-2 px-5 w-full'
-                      text='Sign up'
-                    />
+                    {!isSubmitting ?
+                      <Button
+                        type='submit'
+                        myClass='py-2 px-5 w-full'
+                        text='Sign up'
+                      />
+                      :
+                      <Button
+                        type='button'
+                        disabled={true}
+                        myClass='py-2 px-5 w-full flex items-center justify-center gap-2 cursor-not-allowed opacity-70'
+                        text={`Loading...`}
+                        icon={<LoadingOutlined />}
+                      />
+                    }
                   </div>
                   <p className="px-6 text-sm text-center mt-2.5">Have an account ?
-                    <NavLink to="/login" className="hover:underline font-semibold text-blue-600"> Login</NavLink>.
+                    <NavLink to="/login" className="hover:underline font-semibold text-blue-600 "> Login</NavLink>.
                   </p>
                 </div>
               </Form>
