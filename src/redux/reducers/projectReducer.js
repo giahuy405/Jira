@@ -7,7 +7,6 @@ const initalState = {
 
 export const projectReducer = (state = initalState, { type, payload }) => {
     return produce(state, draft => {
-        {
             switch (type) {
                 case actionTypes.PROJECT_CATEGORY: {
                     draft.projectCategory = payload
@@ -16,6 +15,6 @@ export const projectReducer = (state = initalState, { type, payload }) => {
                 default:
                     break
             }
-        }
+        
     })
 }

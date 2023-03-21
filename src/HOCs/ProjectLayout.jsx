@@ -1,15 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { MenuBar, SideBar } from '../components/Global'
 
 const ProjectLayout = (props) => {
+    const { activeMenu } = useSelector(state => state.reducer);
+    let myClass = '';
+    if (activeMenu) myClass = 'pl-[320px]'
+    else myClass = 'pl-[130px]'
     return (
         <div>
             <SideBar />
-            <div className='flex'>
-                <div className='hidden md:block'>
-                    <MenuBar />
-                </div>
-                <div className='px-6 pt-5 ml-[65px] md:ml-0 w-full'>
+            <div className=''>
+                <MenuBar />
+                <div className={`w-full p-5 ${myClass}`}>
                     {props.children}
                 </div>
             </div>

@@ -32,8 +32,9 @@ const Settings = () => {
     }
     return (
         <ProjectLayout>
-            <BreadCrumd> Projects / Singularity 7.0 / Project Details</BreadCrumd>
+
             <div className='max-w-[600px] mx-auto mt-3 '>
+                <BreadCrumd> Projects / Singularity 7.0 / Project Details</BreadCrumd>
                 <h3 className='text-2xl font-medium text-[#172A4D]'>Project Details</h3>
                 <Formik
                     initialValues={{
@@ -47,15 +48,28 @@ const Settings = () => {
                 >
                     {({ isSubmitting }) => (
                         <Form style={{ lineHeight: '8px' }}>
-                            <div className='my-2'>
-                                <CustomInput
-                                    label='Name'
-                                    name='projectName'
-                                    type='text'
-                                    id='name'
-                                />
+                            <div className='grid grid-cols-2 gap-4 mt-4'>
+                                <div className='col-span-1'>
+                                    <CustomInput
+                                        label='Name'
+                                        name='projectName'
+                                        type='text'
+                                        id='name'
+                                    />
+                                </div>
+                                <div className='col-span-1'>
+                                    <CustomSelect
+                                        label='Project Category'
+                                        name='category'
+                                        id='category'
+                                    >
+                                        {projectCategory?.map(item =>
+                                            <option key={item.id} value={item.projectCategoryName}>{item.projectCategoryName}</option>
+                                        )}
+                                    </CustomSelect>
+                                </div>
                             </div>
-                            <div className='my-2'>
+                            <div className='my-3'>
                                 <CustomInput
                                     label='URL website'
                                     name='alias'
@@ -63,17 +77,7 @@ const Settings = () => {
                                     id='name'
                                 />
                             </div>
-                            <div className='mb-2'>
-                                <CustomSelect
-                                    label='Project Category'
-                                    name='category'
-                                    id='category'
-                                >
-                                    {projectCategory?.map(item =>
-                                        <option key={item.id} value={item.projectCategoryName}>{item.projectCategoryName}</option>
-                                    )}
-                                </CustomSelect>
-                            </div>
+
                             <div>
                                 <label className='cursor-pointer text-sm font-extralight' htmlFor="description">Description</label>
                                 <Editor
@@ -100,7 +104,7 @@ const Settings = () => {
                                 />
                             </div>
 
-                            <div className="mt-4">
+                            <div className="mt-6">
                                 <div>
                                     <Button
                                         type='submit'

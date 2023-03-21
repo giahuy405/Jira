@@ -66,7 +66,7 @@ const MenuBar = () => {
     return (
         <>
             {activeMenu &&
-                <div className='ml-[65px] p-5 bg-[#F4F5F7] h-screen overflow-auto md:overflow-hidden md:hover:overflow-auto w-[230px] border-r border-color hidden md:block '>
+                <div className='fixed left-[65px] p-5 bg-[#F4F5F7] h-screen overflow-auto md:overflow-hidden md:hover:overflow-auto w-[230px] border-r border-color hidden md:block '>
                     <div className='fixed -top-2 left-[250px]'>
 
                         <button

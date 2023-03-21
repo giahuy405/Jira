@@ -9,31 +9,29 @@ const initalState = {
 
 export const reducer = (state = initalState, { type, payload }) => {
     return produce(state, draft => {
-        {
-            switch (type) {
-                case actionTypes.LOGIN_INFO: {
-                    draft.infoUser = payload
-                    break
-                }
-                case actionTypes.DISPLAY_LOADING: {
-                    draft.isLoading = true
-                    break
-                }
-                case actionTypes.HIDE_LOADING: {
-                    draft.isLoading = false
-                    break
-                }
-                case actionTypes.SET_ACTIVE_MENU: {
-                    draft.activeMenu = payload
-                    break
-                }
-                case actionTypes.PROJECT_CATEGORY: {
-                    draft.projectCategory = payload
-                    break
-                }
-                default:
-                    break
+        switch (type) {
+            case actionTypes.LOGIN_INFO: {
+                draft.infoUser = payload
+                break
             }
+            case actionTypes.DISPLAY_LOADING: {
+                draft.isLoading = true
+                break
+            }
+            case actionTypes.HIDE_LOADING: {
+                draft.isLoading = false
+                break
+            }
+            case actionTypes.SET_ACTIVE_MENU: {
+                draft.activeMenu = payload
+                break
+            }
+            case actionTypes.PROJECT_CATEGORY: {
+                draft.projectCategory = payload
+                break
+            }
+            default:
+                break
         }
     })
 }
