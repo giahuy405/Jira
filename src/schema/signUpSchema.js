@@ -19,8 +19,7 @@ export const signUpSchema = yup.object().shape({
     confirmPassword: yup
         .string()
         .required('Please confirm your password')
-        .oneOf([yup.ref('passWord'), null], `Password doesn't match`)
-    ,
+        .oneOf([yup.ref('passWord'), null], `Password doesn't match`),
     email: yup
         .string()
         .matches(emailRegex, { message: "Email is not valid" })

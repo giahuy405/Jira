@@ -2,25 +2,27 @@ import React, { useState, useRef, useEffect } from 'react'
 import { CustomInput, Button } from '../components/Global'
 import BreadCrumd from '../components/Global/BreadCrumd'
 import ProjectLayout from '../HOCs/ProjectLayout'
-import { Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { NavLink } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import CustomSelect from '../components/Global/CustomSelect';
 import { useDispatch, useSelector } from 'react-redux';
-import { projectCategoryAction } from '../redux/actions/Home/actions';
+import { createProjectAction, projectCategoryAction } from '../redux/actions/Home/actions';
 import { createProjectSchema } from '../schema/createProjectSchema';
+import { LoadingOutlined } from '@ant-design/icons';
 const Settings = () => {
     const [userLogin, setUserLogin] = useState({ email: "", passWord: "" });
     const [errorLogin, setErrorLogin] = useState({ email: "", passWord: "" });
     const editorRef = useRef(null);
     const dispatch = useDispatch();
     const onSubmit = async (values, actions) => {
-        console.log(values)
-        console.log(actions)
-        actions.resetForm();
+        console.log('values', values)
+        await new Promise((resolve, reject) => setTimeout(resolve, 1500))
         if (editorRef.current) {
             console.log(editorRef.current.getContent());
         }
+        await dispatch(createProjectAction(values));
+        actions.resetForm();
     }
     useEffect(() => {
         dispatch(projectCategoryAction);
@@ -28,26 +30,24 @@ const Settings = () => {
     const { projectCategory } = useSelector(state => state.reducer);
     const handleChangeEditor = (content, editor) => {
         console.log(content)
-        console.log(editor)
     }
     return (
         <ProjectLayout>
-
-            <div className='max-w-[600px] mx-auto mt-3 '>
+            <div className='max-w-[600px] mx-auto mt-3 mb-20'>
                 <BreadCrumd> Projects / Singularity 7.0 / Project Details</BreadCrumd>
                 <h3 className='text-2xl font-medium text-[#172A4D]'>Project Details</h3>
                 <Formik
                     initialValues={{
                         projectName: "",
-                        description: "",
-                        categoryId: "",
+                        description: '<p>Enter your content here</p>',
+                        categoryId: "1",
                         alias: "",
                     }}
                     validationSchema={createProjectSchema}
                     onSubmit={onSubmit}
                 >
-                    {({ isSubmitting }) => (
-                        <Form style={{ lineHeight: '8px' }}>
+                    {({ isSubmitting, setFieldValue, errors, touched }) => (
+                        <Form style={{ lineHeight: '16px' }}>
                             <div className='grid grid-cols-2 gap-4 mt-4'>
                                 <div className='col-span-1'>
                                     <CustomInput
@@ -60,11 +60,11 @@ const Settings = () => {
                                 <div className='col-span-1'>
                                     <CustomSelect
                                         label='Project Category'
-                                        name='category'
+                                        name='categoryId'
                                         id='category'
                                     >
                                         {projectCategory?.map(item =>
-                                            <option key={item.id} value={item.projectCategoryName}>{item.projectCategoryName}</option>
+                                            <option key={item.id} value={item.id}>{item.projectCategoryName}</option>
                                         )}
                                     </CustomSelect>
                                 </div>
@@ -100,17 +100,32 @@ const Settings = () => {
                                             'removeformat | help',
                                         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
                                     }}
-                                    onEditorChange={handleChangeEditor}
+                                    // onChange={e=>console.log(e.target.value)}
+                                    onEditorChange={content => setFieldValue('description', content)}
                                 />
+                                {errors.description && touched.description && (
+                                    <div className="text-red-500 text-xs">{errors.description}</div>
+                                )}
                             </div>
 
                             <div className="mt-6">
                                 <div>
-                                    <Button
-                                        type='submit'
-                                        myClass='py-2 px-4 leading-4'
-                                        text='Save changes'
-                                    />
+                                    {isSubmitting ?
+                                        <Button
+                                            type='submit'
+                                            disabled={true}
+                                            myClass='py-2.5 px-5 flex items-center justify-center gap-2 cursor-not-allowed opacity-70'
+                                            text={`Loading...`}
+                                            icon={<LoadingOutlined />}
+                                        />
+                                        :
+                                        <Button
+                                            type='submit'
+                                            myClass='py-2.5 px-4 leading-4'
+                                            text='Save changes'
+                                        />
+                                    }
+
                                 </div>
                             </div>
                         </Form>

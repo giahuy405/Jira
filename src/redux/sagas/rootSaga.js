@@ -7,7 +7,8 @@ export function* rootSaga() {
     yield all([
         
         AuthSaga.authSaga(),
-        ProjectSaga.projectCategorySaga()
+        ProjectSaga.projectCategorySaga(),
+        ProjectSaga.createProjectSaga()
         
 
     ])

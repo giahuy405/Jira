@@ -20,7 +20,47 @@ export function* projectCategorySaga() {
             console.log(err.response)
         }
     });
-
 }
 
 
+export function* createProjectSaga() {
+    yield takeLatest(actionTypes.CREATE_PROJECT_API, function* createProject({ type, payload }) {
+        try {
+            const res = yield call(() => projectService.createProject(payload));
+            console.log(res.data.content)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2600,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Successfully created !'
+            })
+        } catch (err) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2600,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: `${err.response.data.content}`
+            })
+            console.log(err.response)
+        }
+    });
+
+}

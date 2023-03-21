@@ -10,6 +10,14 @@ export const projectService = {
             TokenCybersoft: TOKEN,
         },
     }),
+    createProject: (data) => axios({
+        url: `${DOMAIN}/Project/createProject`,
+        method: 'POST',
+        headers: {
+            TokenCybersoft: TOKEN,
+        },
+        data
+    }),
 }
 
 

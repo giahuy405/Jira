@@ -5,3 +5,9 @@ export const closeActiveMenuAction = { type: actionTypes.SET_ACTIVE_MENU, payloa
 
 /* API */
 export const projectCategoryAction = { type: actionTypes.PROJECT_CATEGORY_API }
+export const createProjectAction = (payload) => {
+    return {
+        type: actionTypes.CREATE_PROJECT_API,
+        payload
+    }
+}
