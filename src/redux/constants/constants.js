@@ -3,9 +3,22 @@ export const HIDE_LOADING = 'HIDE_LOADING';
 export const LOGIN_INFO = 'LOGIN_INFO'
 export const SET_ACTIVE_MENU = 'SET_ACTIVE_MENU'
 export const PROJECT_CATEGORY = 'PROJECT_CATEGORY'
+export const ALL_PROJECT = 'ALL_PROJECT'
+export const USER_TOKEN = 'USER_TOKEN'
+export const USER_INFO = 'USER_INFO'
+export const OPEN_MODAL_EDIT = 'OPEN_MODAL_EDIT'
+export const CLOSE_MODAL_EDIT = 'CLOSE_MODAL_EDIT'
+export const PROJECT_DETAIL_INFO = 'PROJECT_DETAIL_INFO'
+
+
+
 
 // ---------------------------------- //
 export const LOGIN_API = 'LOGIN_API';
 export const SIGN_UP_API = 'SIGN_UP_API'
 export const PROJECT_CATEGORY_API = 'PROJECT_CATEGORY_API'
-export const CREATE_PROJECT_API ='CREATE_PROJECT_API'
+export const CREATE_PROJECT_API = 'CREATE_PROJECT_API'
+export const GET_ALL_PROJECT_API = 'GET_ALL_PROJECT_API'
+export const GET_PROJECT_DETAIL_API = 'GET_PROJECT_DETAIL_API'
+export const UPDATE_PROJECT_API = 'UPDATE_PROJECT_API'
+

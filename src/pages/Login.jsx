@@ -53,10 +53,12 @@ const Login = () => {
         setIsSubmitting(true);
         await new Promise((resolve, reject) => setTimeout(resolve, 1500));
         const res = dispatch(loginAction(userLogin, navigate));
-        setIsSubmitting(false);
     }
     useEffect(() => {
-        ref.current.focus()
+        ref.current.focus();
+        return () => {
+            setIsSubmitting(false);
+        }
     }, [])
     return (
         <AuthLayout>

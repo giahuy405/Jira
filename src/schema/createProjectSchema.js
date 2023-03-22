@@ -7,9 +7,8 @@ const regexURL = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
 export const createProjectSchema = yup.object().shape({
     projectName: yup
         .string()
-        .min(4, 'Username must contain at least 5 letters')
-        .matches(usernameRegex, { message: "Must contain 4-6 characters/digits and start with the letter" })
-        .required('Please enter your username'),
+        .min(4, 'Project name must contain at least 5 letters')
+        .required('Please enter your project name'),
     description: yup
         .string()
         .min(13, 'At least 6 characters')

@@ -8,8 +8,11 @@ export function* rootSaga() {
         
         AuthSaga.authSaga(),
         ProjectSaga.projectCategorySaga(),
-        ProjectSaga.createProjectSaga()
-        
+        ProjectSaga.createProjectSaga(),
+        ProjectSaga.getAllProjectSaga(),
+        ProjectSaga.getProjectDetailSaga(),
+        ProjectSaga.updateProjectSaga(),
+
 
     ])
 

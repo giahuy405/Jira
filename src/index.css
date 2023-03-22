@@ -42,7 +42,7 @@ code {
 
 .sideBarLogo {
   position: relative;
-  padding: 35px 16px;
+  padding: 35px 19px;
 }
 
 .sideBar-link {
@@ -59,7 +59,7 @@ code {
 
 .sideBar-linkInside {
   position: absolute;
-  left: 14px;
+  left: 17px;
   top: 6px;
 }
 
@@ -83,7 +83,26 @@ code {
   visibility: visible;
   opacity: 1;
 }
+
 /* TINY */
-.tox-statusbar__branding{
+.tox-statusbar__branding {
   display: none;
+}
+
+/* Skelekton table */
+.myTable :where(.css-dev-only-do-not-override-mxhywb).ant-skeleton .ant-skeleton-content .ant-skeleton-title {
+  width: 100% !important;
+}
+
+.myTable :where(.css-dev-only-do-not-override-mxhywb).ant-skeleton .ant-skeleton-content .ant-skeleton-paragraph>li:last-child:not(:first-child):not(:nth-child(2)) {
+  width: 100% !important;
+}
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close-x {
+  line-height: 12px;
+}
+:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close{
+  border-radius: 50%;
+  width: 27px;
+  height: 27px;
 }

@@ -5,18 +5,24 @@ import Swal from 'sweetalert2'
 
 import * as actionTypes from '../../constants/constants'
 
-
+/**
+ * authentication for login and sign up page
+ * creator : Huy - 20/3/2023
+ */
 export function* authSaga() {
     yield takeLatest(actionTypes.LOGIN_API, function* login({ type, payload, navigate }) {
         try {
             yield delay(500)
             // call api below
             const res = yield call(() => authService.login(payload));
-            console.log(res.data.content)
+            console.log('login', res.data.content)
             yield put({
                 type: actionTypes.LOGIN_INFO,
                 payload: res.data.content
             })
+            localStorage.setItem(actionTypes.USER_TOKEN, res.data.content.accessToken);
+            localStorage.setItem(actionTypes.USER_INFO, JSON.stringify(res.data.content));
+
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
