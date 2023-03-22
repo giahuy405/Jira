@@ -7,9 +7,9 @@ import * as actionTypes from '../../constants/constants'
 
 
 export function* authSaga() {
+    //-------------------LOGIN ACCOUNT-------------
     yield takeLatest(actionTypes.LOGIN_API, function* login({ type, payload, navigate }) {
         try {
-            yield delay(500)
             // call api below
             const res = yield call(() => authService.login(payload));
             console.log(res.data.content)
@@ -17,6 +17,7 @@ export function* authSaga() {
                 type: actionTypes.LOGIN_INFO,
                 payload: res.data.content
             })
+      
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -32,12 +33,20 @@ export function* authSaga() {
                 icon: 'success',
                 title: 'Login success !'
             })
+            yield put({
+                type: actionTypes.HIDE_LOADING
+            });
+            yield delay(500)
             navigate('/project')
+            yield put({
+                type: actionTypes.DISPLAY_LOADING
+            });
+            console.log("tai");
         } catch (err) {
             console.log(err);
             yield put({
                 type: actionTypes.HIDE_LOADING
-            })
+            });
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
