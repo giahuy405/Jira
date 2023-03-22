@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import { MenuBar, SideBar } from '../components/Global'
-
 const ProjectLayout = (props) => {
     const { activeMenu } = useSelector(state => state.reducer);
     let myClass = '';

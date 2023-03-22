@@ -5,19 +5,21 @@ import Swal from 'sweetalert2'
 
 import * as actionTypes from '../../constants/constants'
 
-
+/**
+ * authentication for login and sign up page
+ * creator : Huy - 20/3/2023
+ */
 export function* authSaga() {
     //-------------------LOGIN ACCOUNT-------------
     yield takeLatest(actionTypes.LOGIN_API, function* login({ type, payload, navigate }) {
         try {
             // call api below
             const res = yield call(() => authService.login(payload));
-            console.log(res.data.content)
             yield put({
                 type: actionTypes.LOGIN_INFO,
                 payload: res.data.content
             })
-      
+            localStorage.setItem(actionTypes.USER_TOKEN, res.data.content.accessToken);
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -34,19 +36,19 @@ export function* authSaga() {
                 title: 'Login success !'
             })
             yield put({
-                type: actionTypes.HIDE_LOADING
-            });
-            yield delay(500)
-            navigate('/project')
-            yield put({
                 type: actionTypes.DISPLAY_LOADING
             });
-            console.log("tai");
-        } catch (err) {
-            console.log(err);
+            yield delay(500)
+            yield navigate("/project")
             yield put({
                 type: actionTypes.HIDE_LOADING
             });
+          
+        } catch (err) {
+            console.log(err);
+            // yield put({
+            //     type: actionTypes.HIDE_LOADING
+            // });
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',

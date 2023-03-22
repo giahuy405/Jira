@@ -2,10 +2,12 @@ import axios from 'axios'
 import { call, delay, fork, put, take, takeEvery, takeLatest } from 'redux-saga/effects'
 import { projectService } from '../../../services/ProjectService'
 import Swal from 'sweetalert2'
-
 import * as actionTypes from '../../constants/constants'
 
-
+/**
+ * fetch Project Category for CreateProject page
+ * creator : Huy - 21/3/2023
+ */
 export function* projectCategorySaga() {
     yield takeLatest(actionTypes.PROJECT_CATEGORY_API, function* projectCategory({ type, payload }) {
         try {
@@ -22,9 +24,12 @@ export function* projectCategorySaga() {
     });
 }
 
-
+/**
+ * create project for CreateProject page
+ * creator : Huy - 21/3/2023
+ */
 export function* createProjectSaga() {
-    yield takeLatest(actionTypes.CREATE_PROJECT_API, function* createProject({ type, payload }) {
+    yield takeLatest(actionTypes.CREATE_PROJECT_API, function* createProject({ type, payload, navigate }) {
         try {
             const res = yield call(() => projectService.createProject(payload));
             console.log(res.data.content)
@@ -42,7 +47,8 @@ export function* createProjectSaga() {
             Toast.fire({
                 icon: 'success',
                 title: 'Successfully created !'
-            })
+            });
+            navigate('/project/management')
         } catch (err) {
             const Toast = Swal.mixin({
                 toast: true,
@@ -63,4 +69,57 @@ export function* createProjectSaga() {
         }
     });
 
+}
+
+/**
+ * get All project for Project Management page
+ * creator : Huy - 22/3/2023
+ */
+export function* getAllProjectSaga() {
+    yield takeLatest(actionTypes.GET_ALL_PROJECT_API, function* getAllProject({ type, payload }) {
+        try {
+            yield delay(800)
+            const res = yield call(() => projectService.getAllProject())
+            console.log(res.data.content)
+            yield put({
+                type: actionTypes.ALL_PROJECT,
+                payload: res.data.content
+            })
+        } catch (err) {
+            console.log(err.response)
+        }
+    });
+}
+
+/**
+ * get project detail for Modal Edit Project
+ * creator : Huy - 22/3/2023
+ */
+export function* getProjectDetailSaga() {
+    yield takeLatest(actionTypes.GET_PROJECT_DETAIL_API, function* projectDetail({ type, id }) {
+        try {
+            const res = yield call(() => projectService.getProjectDetail(id));
+            yield put({
+                type: actionTypes.PROJECT_DETAIL_INFO,
+                payload: res.data.content
+            })
+        } catch (err) {
+            console.log(err.response)
+        }
+    });
+}
+
+/**
+ * update project - modal edit page
+ * creator : Huy - 22/3/2023
+ */
+export function* updateProjectSaga() {
+    yield takeLatest(actionTypes.UPDATE_PROJECT_API, function* updateProject({ type, id, payload }) {
+        try {
+            const res = yield call(() => projectService.updateProject(payload, id));
+            console.log(res.data.content)
+        } catch (err) {
+            console.log(err.response)
+        }
+    });
 }

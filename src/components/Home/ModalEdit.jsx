@@ -1,52 +1,61 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { CustomInput, Button } from '../components/Global'
-import BreadCrumd from '../components/Global/BreadCrumd'
-import ProjectLayout from '../HOCs/ProjectLayout'
-import { Field, Form, Formik } from 'formik';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { Editor } from '@tinymce/tinymce-react';
-import CustomSelect from '../components/Global/CustomSelect';
-import { useDispatch, useSelector } from 'react-redux';
-import { createProjectAction, projectCategoryAction } from '../redux/actions/Home/actions';
-import { createProjectSchema } from '../schema/createProjectSchema';
+import { Modal } from 'antd'
+import { Formik, Form } from 'formik'
+import React, { useRef, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { OpenModalEditAction, CloseModaEditlAction, projectCategoryAction, updateProjectAction } from '../../redux/actions/Home/actions'
+import { CustomInput, CustomSelect, Button } from '../Global'
 import { LoadingOutlined } from '@ant-design/icons';
-const CreateProject = () => {
+import { Editor } from '@tinymce/tinymce-react';
+import { createProjectSchema } from '../../schema/createProjectSchema'
+const ModalEdit = (props) => {
+    const { modalOpen } = useSelector(state => state.reducer)
+    const dispatch = useDispatch()
     const editorRef = useRef(null);
-    const dispatch = useDispatch();
     const navigate = useNavigate()
     const onSubmit = async (values, actions) => {
-        console.log('values', values)
-        await new Promise((resolve, reject) => setTimeout(resolve, 1500))
+        console.log(values)
+        await new Promise((resolve, reject) => setTimeout(resolve, 1000))
         if (editorRef.current) {
             console.log(editorRef.current.getContent());
         }
-        await dispatch(createProjectAction(values,navigate));
-        actions.resetForm();
+
+        await dispatch(updateProjectAction(values));
+        // actions.resetForm();
     }
     useEffect(() => {
         dispatch(projectCategoryAction);
     }, [])
+
     const { projectCategory } = useSelector(state => state.reducer);
-    const handleChangeEditor = (content, editor) => {
-        console.log(content)
-    }
+    const { projectDetailInfo } = useSelector(state => state.projectReducer);
+
     return (
-        <ProjectLayout>
-            <div className='max-w-[600px] mx-auto mt-3 mb-20'>
-                <BreadCrumd> Projects / Singularity 7.0 / Project Details</BreadCrumd>
-                <h3 className='text-2xl font-medium text-[#172A4D]'>Project Details</h3>
+        <div>
+            <Modal
+                centered
+                open={modalOpen}
+                onOk={() => dispatch(OpenModalEditAction)}
+                onCancel={() => dispatch(CloseModaEditlAction)}
+                width={600}
+                footer={[]}
+            >
+                <h3 className='text-center text-xl font-semibold mb-6'>Edit Project</h3>
                 <Formik
                     initialValues={{
-                        projectName: "",
-                        description: '<p>Enter your content here</p>',
-                        categoryId: "1",
-                        alias: "",
+                        id:projectDetailInfo?.id,
+                        creator:projectDetailInfo?.creator,
+                        projectName: projectDetailInfo?.projectName,
+                        description: projectDetailInfo?.description,
+                        categoryId: projectDetailInfo?.projectCategory.id,
+                        alias: projectDetailInfo?.alias,
                     }}
+                    enableReinitialize={true}
                     validationSchema={createProjectSchema}
                     onSubmit={onSubmit}
                 >
-                    {({ isSubmitting, setFieldValue, errors, touched }) => (
-                        <Form style={{ lineHeight: '16px' }}>
+                    {({ isSubmitting, setFieldValue, errors, touched, values }) => (
+                        <Form style={{ lineHeight: '16px' }} >
                             <div className='grid grid-cols-2 gap-4 mt-4'>
                                 <div className='col-span-1'>
                                     <CustomInput
@@ -83,7 +92,7 @@ const CreateProject = () => {
                                     name='description'
                                     apiKey='an4j8gh14omc9ehdjjqq7byek89ohgr1tyjhurzeqb2k3s3p'
                                     onInit={(evt, editor) => editorRef.current = editor}
-                                    initialValue="<p>Enter your content here</p>"
+                                    value={values.description}
                                     init={{
                                         height: 200,
                                         menubar: false,
@@ -105,12 +114,18 @@ const CreateProject = () => {
                                     <div className="text-red-500 text-xs">{errors.description}</div>
                                 )}
                             </div>
-
                             <div className="mt-6">
-                                <div>
+                                <div className='flex justify-end'>
+                                    <button
+                                        type='button'
+                                        className='py-1 mr-3 rounded text-gray-400 px-5 bg-white border border-gray-400 hover:text-blue-600 hover:border-blue-600'
+                                        key="cancel"
+                                        onClick={() => dispatch(CloseModaEditlAction)}>
+                                        Cancel
+                                    </button>
                                     {isSubmitting ?
                                         <Button
-                                            type='submit'
+                                            type='button'
                                             disabled={true}
                                             myClass='py-2.5 px-5 flex items-center justify-center gap-2 cursor-not-allowed opacity-70'
                                             text={`Loading...`}
@@ -120,18 +135,19 @@ const CreateProject = () => {
                                         <Button
                                             type='submit'
                                             myClass='py-2.5 px-4 leading-4'
-                                            text='Create project'
+                                            text='Save changes'
                                         />
                                     }
-
                                 </div>
                             </div>
                         </Form>
                     )}
                 </Formik>
-            </div>
-        </ProjectLayout>
+
+
+            </Modal>
+        </div>
     )
 }
 
-export default CreateProject
+export default ModalEdit

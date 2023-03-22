@@ -18,7 +18,7 @@ const Login = () => {
         },
         validationSchema: signUpSchema,
        onSubmit: (values)=>{
-        dispatch(loginAction(values))
+        dispatch(loginAction(values,Navigate))
         
        }
     })
@@ -158,7 +158,7 @@ const Login = () => {
         </div>
         <div className="absolute inset-0 bg-black bg-opacity-80 "></div>
       </div>
-      {/* <LoadingPage/> */}
+      <LoadingPage/>
     </AuthLayout>
   );
 };
