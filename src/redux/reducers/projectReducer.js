@@ -5,6 +5,7 @@ const initalState = {
     projectCategory: null,
     allProject: null,
     projectDetailInfo: null,
+    userProject:null
 }
 
 export const projectReducer = (state = initalState, { type, payload }) => {
@@ -20,6 +21,10 @@ export const projectReducer = (state = initalState, { type, payload }) => {
             }
             case actionTypes.PROJECT_DETAIL_INFO: {
                 draft.projectDetailInfo = payload
+                break
+            }
+            case actionTypes.USER_PROJECT: {
+                draft.userProject = payload
                 break
             }
             default:

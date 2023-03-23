@@ -13,10 +13,11 @@ export const projectService = {
         },
     }),
     createProject: (data) => axios({
-        url: `${DOMAIN}/Project/createProject`,
+        url: `${DOMAIN}/Project/createProjectAuthorize`,
         method: 'POST',
         headers: {
             TokenCybersoft: TOKEN,
+            Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)
         },
         data
     }),
@@ -48,6 +49,46 @@ export const projectService = {
         },
         params: {
             projectId: payload.id
+        },
+        data: payload
+    }),
+    deleteProject: (id) => axios({
+        url: `${DOMAIN}/Project/deleteProject`,
+        method: 'DELETE',
+        headers: {
+            TokenCybersoft: TOKEN,
+            Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)
+        },
+        params: {
+            projectId: id
+        },
+    }),
+    getUserProject: (keyword) => axios({
+        url: `${DOMAIN}/Users/getUser`,
+        method: 'GET',
+        headers: {
+            TokenCybersoft: TOKEN,
+            Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)
+        },
+        params: {
+            keyword
+        }
+    }),
+    assignUserProject: (payload) => axios({
+        url: `${DOMAIN}/Project/assignUserProject`,
+        method: 'POST',
+        headers: {
+            TokenCybersoft: TOKEN,
+            Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)
+        },
+        data: payload
+    }),
+    removeUserFromPrj: (payload) => axios({
+        url: `${DOMAIN}/Project/removeUserFromProject`,
+        method: 'POST',
+        headers: {
+            TokenCybersoft: TOKEN,
+            Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)
         },
         data: payload
     }),

@@ -22,6 +22,7 @@ const ModalEdit = (props) => {
 
         await dispatch(updateProjectAction(values));
         // actions.resetForm();
+        dispatch(CloseModaEditlAction)
     }
     useEffect(() => {
         dispatch(projectCategoryAction);
@@ -75,14 +76,14 @@ const ModalEdit = (props) => {
                                     </CustomSelect>
                                 </div>
                             </div>
-                            {/* <div className='my-3'>
+                            <div className='my-3'>
                                 <CustomInput
                                     label='URL website ( optional )'
                                     name='alias'
                                     type='text'
                                     id='name'
                                 />
-                            </div> */}
+                            </div>
                             <div>
                                 <label className='cursor-pointer text-sm font-extralight' htmlFor="description">Description</label>
                                 <Editor
@@ -141,8 +142,6 @@ const ModalEdit = (props) => {
                         </Form>
                     )}
                 </Formik>
-
-
             </Modal>
         </div>
     )

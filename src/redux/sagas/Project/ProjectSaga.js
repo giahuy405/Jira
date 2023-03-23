@@ -4,6 +4,19 @@ import { projectService } from '../../../services/ProjectService'
 import Swal from 'sweetalert2'
 import * as actionTypes from '../../constants/constants'
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
+
+
 /**
  * fetch Project Category for CreateProject page
  * creator : Huy - 21/3/2023
@@ -33,34 +46,12 @@ export function* createProjectSaga() {
         try {
             const res = yield call(() => projectService.createProject(payload));
             console.log(res.data.content)
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 2600,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
             Toast.fire({
                 icon: 'success',
                 title: 'Successfully created !'
             });
             navigate('/project/management')
         } catch (err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 2600,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
             Toast.fire({
                 icon: 'error',
                 title: `${err.response.data.content}`
@@ -112,15 +103,111 @@ export function* getProjectDetailSaga() {
 /**
  * update project - modal edit page
  * creator : Huy - 22/3/2023
- * error : STATUS CODE 403 - FORBIDDEN
  */
 export function* updateProjectSaga() {
     yield takeLatest(actionTypes.UPDATE_PROJECT_API, function* updateProject({ type, payload }) {
         try {
-            const res = yield call(() => projectService.updateProject(payload));
+            yield call(() => projectService.updateProject(payload));
+            const res = yield call(() => projectService.getAllProject())
+            yield put({
+                type: actionTypes.ALL_PROJECT,
+                payload: res.data.content
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Successfully updated !'
+            });
             console.log(res.data.content)
         } catch (err) {
-            console.log(err.response)
+            Toast.fire({
+                icon: 'error',
+                title: `${err.response.data.content}`
+            })
+        }
+    });
+}
+
+/**
+ * delete project - project management page
+ * creator : Huy - 23/3/2023
+ */
+export function* deleteProjectSaga() {
+    yield takeLatest(actionTypes.DELETE_PROJECT_API, function* deleteProject({ type, id }) {
+        try {
+            const res = yield call(() => projectService.deleteProject(id));
+            console.log(res.data.content)
+            const allProject = yield call(() => projectService.getAllProject())
+            yield put({
+                type: actionTypes.ALL_PROJECT,
+                payload: allProject.data.content
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Successfully deleted !'
+            });
+            console.log(res.data.content)
+        } catch (err) {
+            Toast.fire({
+                icon: 'error',
+                title: `${err.response.data.content}`
+            })
+        }
+    });
+}
+
+/**
+ * get user from searchTerm - project management page
+ * creator : Huy - 24/3/2023
+ */
+export function* getUserProjectSaga() {
+    yield takeLatest(actionTypes.GET_USER_PROJECT_API, function* getUserProject({ type, keyword }) {
+        try {
+            const res = yield call(() => projectService.getUserProject(keyword));
+            // const allProject = yield call(() => projectService.getAllProject())
+            yield put({
+                type: actionTypes.USER_PROJECT,
+                payload: res.data.content
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    });
+}
+
+/**
+ * assign new member - project management page
+ * creator : Huy - 24/3/2023
+ */
+export function* assignUserProjectSaga() {
+    yield takeLatest(actionTypes.ASSIGN_USER_PROJECT_API, function* assignUserProject({ type, payload }) {
+        try {
+            const res = yield call(() => projectService.assignUserProject(payload));
+            const allProject = yield call(() => projectService.getAllProject())
+            yield put({
+                type: actionTypes.ALL_PROJECT,
+                payload: allProject.data.content
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    });
+}
+
+/**
+ * assign new member - project management page
+ * creator : Huy - 24/3/2023
+ */
+export function* removeUserFromProjSaga() {
+    yield takeLatest(actionTypes.REMOVE_USER_FROM_PROJ, function* removeUserFromProj({ type, payload }) {
+        try {
+            const res = yield call(() => projectService.removeUserFromPrj(payload));
+            const allProject = yield call(() => projectService.getAllProject())
+            yield put({
+                type: actionTypes.ALL_PROJECT,
+                payload: allProject.data.content
+            })
+        } catch (err) {
+            console.log(err)
         }
     });
 }

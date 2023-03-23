@@ -106,3 +106,11 @@ code {
   width: 27px;
   height: 27px;
 }
+
+/* Button antd */
+:where(.css-dev-only-do-not-override-mxhywb).ant-btn-primary{
+  background-color: #1677ff!important;
+}
+:where(.css-dev-only-do-not-override-mxhywb).ant-btn-primary:hover{
+  background-color: #0a53ba!important;
+}

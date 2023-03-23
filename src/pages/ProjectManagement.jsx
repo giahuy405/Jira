@@ -1,18 +1,21 @@
-import { Input, Skeleton, Space, Table, Tag } from 'antd'
+import { AutoComplete, Avatar, Input, Skeleton, Space, Table, Tag, Popover } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 import BreadCrumd from '../components/Global/BreadCrumd'
 import ProjectLayout from '../HOCs/ProjectLayout'
 import Highlighter from 'react-highlight-words';
-import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
+import { DeleteFilled, DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button } from 'antd/es/radio';
-import { NavLink } from 'react-router-dom';
+
 import DOMPurify from 'dompurify';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProjectAction, getProjectDetail, OpenModalEditAction } from '../redux/actions/Home/actions';
+import { assignUserProjectAction, deleteProjectAction, getAllProjectAction, getProjectDetail, getUserProjectAction, OpenModalEditAction, removeUserFromProjAction } from '../redux/actions/Home/actions';
 import ModalEdit from '../components/Home/ModalEdit';
+import { message, Popconfirm } from 'antd';
 const ProjectManagement = () => {
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+    const { userProject } = useSelector(state => state.projectReducer);
+    const [searchTerm, setSearchTerm] = useState('');
     const searchInput = useRef(null);
     const dispatch = useDispatch();
     const onChange = () => { }
@@ -206,6 +209,116 @@ const ProjectManagement = () => {
             }
         },
         {
+            title: "Members",
+            dataIndex: 'members',
+            render: (text, ob) => {
+                return <div className='flex items-center gap-0.5'>
+                    {
+                        ob.members?.slice(0, 2).map(item => {
+                            // take the final of full name
+                            const words = item.name.split(' ');
+                            const lastWord = words[words.length - 1];
+                            console.log(ob.members, 'mem')
+                            return <Popover
+                                title='Members'
+                                key={item.userId}
+                                content={() => {
+                                    return <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                        <table class="w-full text-sm text-gray-500  text-center">
+                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-3">
+                                                        Id
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-3">
+                                                        Avatar
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-3">
+                                                        Name
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-3">
+                                                        Action
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {ob.members?.map(item =>
+                                                    <tr class="bg-white border-b  ">
+                                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                            {item.userId}
+                                                        </th>
+                                                        <td class="px-6 py-4">
+                                                            <img width={24} className='rounded block mx-auto' src={item.avatar} alt={item.userId} />
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                            {item.name}
+                                                        </td>
+                                                        <td class="px-6 py-4 ">
+                                                            <Popconfirm
+                                                                title="Delete the task"
+                                                                description="Are you sure to delete this task?"
+                                                                onConfirm={() => {
+                                                                    const payload = {
+                                                                        "projectId": ob.id,
+                                                                        "userId": item.userId
+                                                                    }
+                                                                    dispatch(removeUserFromProjAction(payload))
+                                                                }}
+                                                                // onCancel={cancel}
+                                                                okText="Yes"
+                                                                cancelText="No"
+                                                            >
+                                                                <button
+                                                                    className='text-red-500 hover:text-gray-600 text-lg leading-3 mx-auto block'
+                                                                ><DeleteOutlined /></button>
+                                                            </Popconfirm>
+                                                        </td>
+                                                    </tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }}
+                            >
+                                <Avatar className='bg-blue-600' size="default" >{lastWord}</Avatar>
+                            </Popover>
+                        }
+                        )
+                    }
+                    <div>{ob?.members.length > 2 && '...'}</div>
+                    {ob.members &&
+                        <Popover
+                            trigger="click"
+                            content={() => {
+                                return <AutoComplete
+                                    placeholder='Enter name'
+                                    style={{ width: '100%' }}
+                                    options={userProject?.map(item => {
+                                        return { label: item.name, value: item.userId.toString() }
+                                    })}
+                                    value={searchTerm}
+                                    onChange={(term) => setSearchTerm(term)}
+                                    onSearch={keyword => {
+                                        dispatch(getUserProjectAction(keyword));
+                                    }}
+                                    onSelect={(value, option) => {
+                                        setSearchTerm(option.label);
+                                        const payload = {
+                                            projectId: ob.id,
+                                            userId: option?.value
+                                        }
+                                        dispatch(assignUserProjectAction(payload));
+                                    }}
+                                />
+                            }}
+                            title="Add new member">
+                            <button className='w-6 h-6 rounded bg-gray-300'>+</button>
+                        </Popover>}
+                </div>
+            }
+        },
+        {
             title: "Creator",
             dataIndex: 'creator',
             // render: (text, { creator }) => <div key={creator.id}>
@@ -217,22 +330,36 @@ const ProjectManagement = () => {
             title: "Action",
             dataIndex: 'id',
             render: (text, obj) => <div className='flex gap-3 text-lg leading-3 ' key={text}>
-                <button
-                    onClick={async () => {
-                        await dispatch(OpenModalEditAction);
-                        await dispatch(getProjectDetail(obj.id))
-                    }}
-                    to='/' className='text-blue-600 hover:text-blue-700'><EditOutlined /></button>
-                <button
-                    className='text-red-500 hover:text-red-700'><DeleteOutlined /></button>
+                <Popover content="Edit project">
+                    <button
+                        onClick={async () => {
+                            await dispatch(OpenModalEditAction);
+                            await dispatch(getProjectDetail(obj.id))
+                        }}
+                        to='/' className='text-blue-600 hover:text-blue-700'><EditOutlined /></button>
+                </Popover>
+
+                <Popover content="Delete project">
+                    <Popconfirm
+                        title="Delete the task"
+                        description="Are you sure to delete this task?"
+                        onConfirm={async () => await dispatch(deleteProjectAction(obj.id))}
+                        // onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <button className='text-red-500 hover:text-red-700'><DeleteOutlined /></button>
+                    </Popconfirm>
+                </Popover>
             </div>
         },
     ];
     useEffect(() => {
         dispatch(getAllProjectAction)
     }, []);
+
     const { allProject } = useSelector(state => state.projectReducer);
-   
+
     const data = allProject
     return (
         <ProjectLayout>
