@@ -108,7 +108,7 @@ const Login = () => {
               </svg>
             </div>
             <h1 className="mb-0 mt-5 text-lg font-semibold">
-              Đăng nhập để tiếp tục
+            Enter your account to continue
             </h1>
             <p className="text-sm "></p>
           </div>
@@ -119,7 +119,8 @@ const Login = () => {
                   name="email"
                   id="email"
                   onChange={formik.handleChange}
-                  placeholder="Nhập Email của bạn"
+                  onBlur={formik.handleBlur}
+                  placeholder="Enter your Email"
                   className="w-full px-3 py-2 border rounded-md font-semibold text-base"
                 />
                 {formik.touched.email && formik.errors.email && <span className="text-sm font-normal text-red-500">{formik.errors.email}</span>}
@@ -127,8 +128,9 @@ const Login = () => {
                   type="password"
                   name="passWord"
                   id="password"
+                  onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  placeholder="Nhập mật khẩu của bạn"
+                  placeholder="Enter your Password"
                   className="w-full px-3 py-2 border rounded-md font-semibold text-base"
                 />
                   {formik.touched.passWord && formik.errors.passWord && <span className="text-sm font-normal text-red-500">{formik.errors.passWord}</span>}
@@ -139,17 +141,17 @@ const Login = () => {
                 <Button
                  type="submit"
                   myClass="py-2 px-5 w-full"
-                  text="Đăng nhập"
+                  text="Log In"
                 />
               </div>
               <p className="px-6 text-sm text-center mt-2.5">
-                Bạn chưa có tài khoản?
+              Do not have an account ?
                 <NavLink
                   to="/signup"
                   className="hover:underline font-semibold text-blue-600"
                 >
                   {" "}
-                  Đăng kí
+                  Signt Up
                 </NavLink>
                 .
               </p>

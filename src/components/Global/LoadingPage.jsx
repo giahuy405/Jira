@@ -5,7 +5,7 @@ const Loading = () => {
   const isLoading = useSelector(state=>state.reducer.isLoading)
   return (
     <div>
-      {isLoading ?  <div className='fixed inset-0 bg-white bg-opacity-90' style={{zIndex:999}}>
+      {isLoading ?  <div className='fixed inset-0 bg-white bg-opacity-60' style={{zIndex:999}}>
       <div aria-label="Loading..." role="status" className="flex items-center h-screen justify-center">
         <svg className="h-10 w-10 animate-spin stroke-blue-500" viewBox="0 0 256 256">
           <line x1={128} y1={32} x2={128} y2={64} strokeLinecap="round" strokeLinejoin="round" strokeWidth={24} />
@@ -24,6 +24,7 @@ const Loading = () => {
       </div>
 
     </div>:""}
+ 
     </div>
   
   )
