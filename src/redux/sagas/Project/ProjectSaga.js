@@ -112,11 +112,12 @@ export function* getProjectDetailSaga() {
 /**
  * update project - modal edit page
  * creator : Huy - 22/3/2023
+ * error : STATUS CODE 403 - FORBIDDEN
  */
 export function* updateProjectSaga() {
-    yield takeLatest(actionTypes.UPDATE_PROJECT_API, function* updateProject({ type, id, payload }) {
+    yield takeLatest(actionTypes.UPDATE_PROJECT_API, function* updateProject({ type, payload }) {
         try {
-            const res = yield call(() => projectService.updateProject(payload, id));
+            const res = yield call(() => projectService.updateProject(payload));
             console.log(res.data.content)
         } catch (err) {
             console.log(err.response)

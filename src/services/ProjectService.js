@@ -39,9 +39,9 @@ export const projectService = {
             id
         }
     }),
-    updateProject: (payload, id) => axios({
-        url: `${DOMAIN}/Project/getProjectDetail`,
-        method: 'GET',
+    updateProject: (payload) => axios({
+        url: `${DOMAIN}/Project/updateProject`,
+        method: 'PUT',
         headers: {
             TokenCybersoft: TOKEN,
             Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)

@@ -44,11 +44,9 @@ const ModalEdit = (props) => {
                 <Formik
                     initialValues={{
                         id:projectDetailInfo?.id,
-                        creator:projectDetailInfo?.creator,
                         projectName: projectDetailInfo?.projectName,
                         description: projectDetailInfo?.description,
                         categoryId: projectDetailInfo?.projectCategory.id,
-                        alias: projectDetailInfo?.alias,
                     }}
                     enableReinitialize={true}
                     validationSchema={createProjectSchema}
@@ -77,14 +75,14 @@ const ModalEdit = (props) => {
                                     </CustomSelect>
                                 </div>
                             </div>
-                            <div className='my-3'>
+                            {/* <div className='my-3'>
                                 <CustomInput
                                     label='URL website ( optional )'
                                     name='alias'
                                     type='text'
                                     id='name'
                                 />
-                            </div>
+                            </div> */}
                             <div>
                                 <label className='cursor-pointer text-sm font-extralight' htmlFor="description">Description</label>
                                 <Editor
