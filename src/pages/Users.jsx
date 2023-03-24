@@ -1,14 +1,238 @@
-import React from 'react'
-import ProjectLayout from '../HOCs/ProjectLayout'
-
+import React, { useEffect,useState,useRef } from "react";
+import ProjectLayout from "../HOCs/ProjectLayout";
+import { Input, Table,Skeleton,Tooltip,Space,Button } from "antd";
+import { SearchOutlined,EditOutlined,DeleteOutlined, } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser, getInfoUserEdit, getUserListAction, openModalCreateUser, openModalUserEdit, searchUser } from "../redux/actions/Manager/action";
+import Highlighter from 'react-highlight-words';
+import ModalEditUser from '../components/Manager/ModalEditUser'
+import Alerts from "../components/Manager/Alert";
+import Swal from "sweetalert2";
+import ModalCeateUser from "../components/Manager/ModalCeateUser";
 const Users = () => {
-  return (
-    <ProjectLayout>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi placeat, laudantium nihil consequuntur dolor eos error debitis velit incidunt impedit cumque corrupti excepturi consectetur maiores! Beatae vel error quia officiis laborum nemo. Dignissimos perspiciatis architecto reprehenderit aliquid voluptates in aperiam. Modi quos molestiae expedita. Quidem quam tempora in commodi perferendis quaerat numquam! Praesentium, aperiam impedit omnis ipsam maxime illo, voluptatem reprehenderit qui cum assumenda necessitatibus veritatis debitis mollitia! Iste ex accusantium velit quibusdam beatae, delectus nesciunt fugiat reiciendis voluptatem dolorem cum vitae quia sapiente expedita exercitationem quam quos earum itaque cumque voluptatum distinctio ipsum magnam! Beatae delectus magnam qui ea veritatis deleniti autem sed et similique perspiciatis illum, optio alias architecto? Obcaecati minus ab repudiandae quidem, animi eligendi qui velit fugiat cumque deleniti, nostrum quam ipsa soluta unde, in tempora? Odit ab modi nisi fugiat ducimus vel totam est laboriosam quo quis dicta itaque illo, quia sit facere? Expedita qui necessitatibus et, exercitationem aliquam odio quasi repellendus quod illo laborum porro veritatis temporibus. Est error unde dolore repellendus corrupti similique aut officiis, quia cumque laborum incidunt at ab perspiciatis eveniet magnam eligendi id facere nihil tempora dignissimos deleniti doloremque cupiditate minima quos. Magnam nostrum, minus dolores, earum saepe alias rem a eius eligendi quis quod expedita, architecto porro doloribus! Temporibus ducimus harum et a nihil, molestiae odit! Nulla quasi odit nostrum facere minima nisi at quod dolore voluptas quidem fugiat ut dolor consequuntur, illum eum ullam officia obcaecati alias ratione veritatis! Consequuntur cupiditate ullam non dolor veritatis error aliquid recusandae dolore expedita, blanditiis illo voluptate, illum odio voluptatem laborum quibusdam aut asperiores laudantium voluptates quaerat! Incidunt, eos voluptatibus reiciendis atque praesentium nesciunt. Sequi ratione, quibusdam labore est tenetur reiciendis minus recusandae qui consequatur itaque! Commodi atque itaque officiis quas dicta architecto, doloremque voluptatum perferendis. Voluptates necessitatibus voluptatem officiis aliquid! Perspiciatis consequuntur veniam vero sunt cum fugit recusandae eos dolorem tempore provident incidunt ullam aliquam qui quam, similique harum quae voluptates quos magnam doloribus nesciunt, nisi quo. Quae aliquid alias quis, veritatis, magni aspernatur velit error quibusdam sed quisquam illum eum ipsa fuga tenetur totam nihil culpa iste id molestiae eveniet porro aperiam, fugiat recusandae. Amet voluptatem, ratione saepe harum, veniam quisquam molestias alias fuga accusantium natus fugiat quo culpa aspernatur unde, temporibus iste ullam ad? Ullam voluptates a asperiores hic maiores quos quidem. Numquam assumenda autem accusamus velit, odio nemo atque, veritatis molestiae ratione est magni laboriosam doloremque. Officiis, sapiente molestias ducimus aut optio quas facere hic inventore modi molestiae voluptatem tenetur labore ipsa laudantium quos alias dolore cum accusantium doloribus beatae vitae. Porro corrupti dolorum consequuntur placeat fugit enim quos ea similique consectetur commodi nemo ab culpa animi eius doloribus facere, deleniti odit doloremque quisquam veritatis! Repudiandae possimus est amet sed doloremque? Ex fuga ducimus alias iusto dolores earum at? Minus quaerat praesentium eveniet quo dicta ipsum aliquam incidunt. Laboriosam aspernatur velit expedita pariatur nostrum delectus molestiae eligendi facere ipsa odio, perferendis quo dolorem quidem officia! Amet impedit laborum adipisci quasi eaque voluptatibus, qui praesentium laboriosam sit accusantium fugiat officiis est? Quibusdam nobis tenetur accusamus non sequi dolorem optio doloremque inventore ipsam adipisci, debitis dicta nostrum repellendus cumque sint perspiciatis, iusto ad? Nisi odio sint quia amet quae dicta? Quidem repellat, possimus iusto, nulla iste delectus consequatur, minus quod eos labore officiis hic magnam! Reprehenderit at, incidunt labore iste repellendus esse officia quo dignissimos quasi vero sint quis possimus corporis suscipit et ipsam voluptate temporibus doloribus, beatae id amet? Illum inventore saepe laboriosam, ipsa porro nisi! Velit, aliquam assumenda sed, corporis veniam accusamus, fuga repellat dolorem quae esse quos. Eius inventore, explicabo ducimus commodi perspiciatis quis doloremque debitis labore quas expedita omnis, deserunt, cumque esse sapiente a veniam sequi? Eos quia omnis eveniet beatae non magnam corporis repellendus, velit voluptas tempore quisquam dignissimos eaque in vel possimus? Commodi, consequatur voluptate, accusantium ad quisquam dolorem sed recusandae maiores deserunt porro culpa? Libero esse nihil incidunt illo qui dicta, animi perferendis in dolorem error reprehenderit cumque blanditiis quae iusto praesentium nobis. Illo modi deleniti enim maiores iusto voluptates esse voluptate earum reprehenderit autem. Quidem animi, suscipit laudantium molestiae veniam est ratione consequatur, dolorum aliquid cum placeat tempore natus pariatur ex! Maiores fugiat recusandae provident sed dolores dicta officiis laudantium. Deserunt porro repellendus quae numquam fuga, tempore praesentium. Saepe temporibus voluptate vel minus animi quo autem ducimus, et ullam modi iste nemo officia repudiandae sapiente ea nesciunt error earum accusamus quasi libero aperiam esse laudantium perferendis consectetur. Rerum, est, labore vitae ipsum illum soluta facilis laudantium maiores veritatis incidunt eius. Sapiente soluta est, praesentium quod facere nostrum omnis aliquam? Optio ab exercitationem atque enim. Veritatis fuga illo cupiditate excepturi, veniam nihil dolore. Aut voluptatem, at inventore ratione alias, ipsam ex culpa dignissimos id ea corrupti dicta saepe autem officiis tenetur magnam temporibus iusto debitis unde earum error. Cum saepe odio aliquid excepturi eos necessitatibus neque odit ea ad vel iste, ab distinctio enim ex pariatur velit veritatis debitis optio. Quaerat repudiandae iusto iste minus vero repellendus in quae, veniam eum doloribus eius voluptates nulla ad, nam saepe inventore sunt suscipit est vel non nihil! Non, dignissimos voluptate exercitationem saepe, ea, commodi temporibus voluptas quisquam quidem odio officiis? Omnis asperiores enim praesentium reprehenderit amet aliquam temporibus consectetur aut quam, cumque architecto ullam. Assumenda nam facilis maiores inventore laboriosam sit eius autem soluta eos sed corrupti, provident enim et libero quis quas magni nesciunt at eligendi repellat, illo in esse alias nisi. Velit praesentium ullam nulla quia deleniti fugit voluptate reprehenderit ab labore sequi odio soluta aperiam, libero repudiandae, autem optio, dolorem nobis odit! Optio quam ullam quod aperiam fuga veniam rem laudantium alias perspiciatis, eum cumque praesentium sed eos placeat vitae? Quis reiciendis incidunt, voluptas corporis earum repudiandae soluta eius cumque! Doloremque delectus laborum facere mollitia illum ea neque ipsum cum adipisci reprehenderit in dolor, saepe blanditiis dolores deleniti ipsam, quam dignissimos. Facere commodi consectetur sit doloribus quos qui reiciendis, praesentium ratione vitae assumenda aspernatur a odit inventore beatae quod dicta illum iste possimus voluptatibus esse ipsa, ipsam id magni. Voluptatem, suscipit necessitatibus?
-      </div>
-    </ProjectLayout>
-  )
+  
+  //--------------- USE HOOK---------------------
+  const dispatch = useDispatch()
+  const listUser = useSelector(state=>state.userReducer.listUser)
+  useEffect(()=>{
+    dispatch(getUserListAction())
+  
+  },[]);
+  //-----------------ONCLICK EDIT----------
+  const  handleEditUser =(id)=>{
+   dispatch(openModalUserEdit);
+   dispatch(getInfoUserEdit(id));
+  }
+//------------------ONCLICK DELETE----------
+const handleDelete =(id)=>{
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+     dispatch(deleteUser(id))
+     
+    }
+  })
 }
+//------------ONCLICK CREATE USER-------------
+const handleCreate=()=>{
+  dispatch(openModalCreateUser)
+}
+//------------SEARCH USER------------
+const handleSearchUser = (value)=>{
+  const key = value.target.value
+  key?dispatch(searchUser(key)) : dispatch(getUserListAction())
+}
+//------------------SETTING SEARCH------------------
+  const columns = [
+    {
+      title: "Avatar",
+      dataIndex: "avatar",
+      key: "avatar",
+      width:100,
+      align:"center"
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      ...getColumnSearchProps('name'),
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      ...getColumnSearchProps('email'),
+    },
+    {
+      title: "Phone Number",
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
+      ...getColumnSearchProps('Phone Number'),
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      width: 150,
+      align:"center"
+    },
+  ];
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+  function getColumnSearchProps(dataIndex) {
+    return ({
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+        <div
+          style={{
+            padding: 8,
+          }}
+          onKeyDown={(e) => e.stopPropagation()}
+        >
+          <Input
+            ref={searchInput}
+            placeholder={`Search ${dataIndex}`}
+            value={selectedKeys[0]}
+            onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+            onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            style={{
+              marginBottom: 8,
+              display: 'block',
+            }} />
+          <Space>
+            <Button
+              className="flex justify-center items-center  "
+              onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+              icon={<SearchOutlined className="pt-1"/>}
+              size="small"
+              style={{
+                width: 90,
+              }}
+            >
+              Search
+            </Button>
+            <Button
+              onClick={() => clearFilters && handleReset(clearFilters)}
+              size="small"
+              style={{
+                width: 90,
+              }}
+            >
+              Reset
+            </Button>
+            <Button
+              type="link"
+              size="small"
+              onClick={() => {
+                close();
+              } }
+            >
+              close
+            </Button>
+          </Space>
+        </div>
+      ),
+      filterIcon: (filtered) => (
+        <SearchOutlined
+          style={{
+            color: filtered ? '#1890ff' : undefined,
+          }} />
+      ),
+      onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+      onFilterDropdownOpenChange: (visible) => {
+        if (visible) {
+          setTimeout(() => searchInput.current?.select(), 100);
+        }
+      },
+      render: (text) => searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''} />
+      ) : (
+        text
+      ),
+    });
+  }
+  return (
+    <div>
+       <ProjectLayout>
+      <div>
+    
+        <Alerts/>
+       
+     
+        <button className="bg-blue-500 text-white font-medium px-3 py-1 rounded-md hover:bg-blue-700" onClick={()=>{handleCreate()}}>
+          Create User
+        </button>
+        <Input
+        onChange={handleSearchUser}
+          addonAfter={<SearchOutlined />}
+          className="my-5"
+          placeholder="Search"
+        />
+      </div>
+      
+      {/* <Skeleton/> */}
+      <Table columns={columns} dataSource={
+        listUser?.map((items)=>({
+          key: items.userId,
+          avatar: <div className ="flex items-center justify-center" ><img src={items.avatar} alt="#"
+          className="w-10"
+          style={{borderRadius:"50%"}}
+          /></div>  ,
+          name: items.name,
+          email:items.email,
+          phoneNumber:items.phoneNumber,
+          action: <div className="flex justify-center">
+          <Tooltip title="Edit" color="green">
+            <button className="text-green-500 text-xl mr-5" onClick={()=>{handleEditUser(items.userId)}}><EditOutlined /></button>
+          </Tooltip>
+          <Tooltip  title="Delete" color="red">
+          <button className="text-red-500 text-xl" onClick={()=>{handleDelete(items.userId)}}><DeleteOutlined /></button>
+          </Tooltip>
+          </div>
+        }))} 
+        scroll={{ y: 490 }}
+        // pagination={false}
+        locale={{
+          emptyText: !listUser ? <div>
+              <Skeleton />
+              <Skeleton className='my-3' />
+              <Skeleton />
+          </div> : ''
+      }}
+        />
+      {/* //------------------MODAL------------------------- */}
+      <ModalCeateUser/>
+      <ModalEditUser />
+    </ProjectLayout>
+  
+    </div>
+  
+    
+  );
+};
 
-export default Users
+export default Users;
