@@ -22,6 +22,7 @@ const ModalEdit = (props) => {
 
         await dispatch(updateProjectAction(values));
         // actions.resetForm();
+        dispatch(CloseModaEditlAction)
     }
     useEffect(() => {
         dispatch(projectCategoryAction);
@@ -44,11 +45,9 @@ const ModalEdit = (props) => {
                 <Formik
                     initialValues={{
                         id:projectDetailInfo?.id,
-                        creator:projectDetailInfo?.creator,
                         projectName: projectDetailInfo?.projectName,
                         description: projectDetailInfo?.description,
                         categoryId: projectDetailInfo?.projectCategory.id,
-                        alias: projectDetailInfo?.alias,
                     }}
                     enableReinitialize={true}
                     validationSchema={createProjectSchema}
@@ -143,8 +142,6 @@ const ModalEdit = (props) => {
                         </Form>
                     )}
                 </Formik>
-
-
             </Modal>
         </div>
     )

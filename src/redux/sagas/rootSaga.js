@@ -14,8 +14,10 @@ export function* rootSaga() {
         ProjectSaga.getProjectDetailSaga(),
         ProjectSaga.updateProjectSaga(),
         ManagerSaga.managerSaga(),
-        
-
+        ProjectSaga.deleteProjectSaga(),
+        ProjectSaga.getUserProjectSaga(),
+        ProjectSaga.assignUserProjectSaga(),
+        ProjectSaga.removeUserFromProjSaga(),
 
     ])
 
