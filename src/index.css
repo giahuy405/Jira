@@ -273,3 +273,9 @@ code {
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-btn-default{
   color: white;
 }
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-filter-trigger{
+  color: white;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-column-sorter{
+  color: gray;
+}
