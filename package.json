@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
+    "@ckeditor/ckeditor5-build-classic": "^36.0.1",
+    "@ckeditor/ckeditor5-react": "^5.1.0",
     "@syncfusion/ej2-react-popups": "^19.4.52",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

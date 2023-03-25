@@ -3,9 +3,16 @@ import { call, delay, fork, put, take, takeEvery, takeLatest, all } from 'redux-
 
 import * as AuthSaga from './Auth/AuthSaga'
 import * as ProjectSaga from './Project/ProjectSaga'
+import * as TaskSaga from './Task/TaskSaga'
+import * as PrioritySaga from './Priority/PrioritySaga'
+import * as UsersSaga from './Users/UsersSaga'
+import * as StatusSaga from './Status/StatusSaga'
+
 export function* rootSaga() {
-    yield all([  
+    yield all([
+
         AuthSaga.authSaga(),
+
         ProjectSaga.projectCategorySaga(),
         ProjectSaga.createProjectSaga(),
         ProjectSaga.getAllProjectSaga(),
@@ -15,7 +22,16 @@ export function* rootSaga() {
         ProjectSaga.getUserProjectSaga(),
         ProjectSaga.assignUserProjectSaga(),
         ProjectSaga.removeUserFromProjSaga(),
+        ProjectSaga.getAllProjectKeywordSaga(),
 
+        TaskSaga.getAllTaskTypeSaga(),
+
+        PrioritySaga.getAllPriority(),
+
+        UsersSaga.getAllUsersSaga(),
+        UsersSaga.getUserByIdSaga(),
+
+        StatusSaga.getAllStatusSaga()
     ])
 
 }

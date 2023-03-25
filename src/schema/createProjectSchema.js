@@ -9,10 +9,13 @@ export const createProjectSchema = yup.object().shape({
         .string()
         .min(4, 'Project name must contain at least 5 letters')
         .required('Please enter your project name'),
-    description: yup
-        .string()
-        .min(13, 'At least 6 characters')
-        .required('Please enter description'),
+    description: yup.mixed().test('len', 'Description must be at least 6 characters', val => {
+        if (val) {
+            // remove html from content
+            return val.replace(/<[^>]*>?/gm, '').trim().length >= 6;
+        }
+        return false;
+    }).required('Description is required'),
     alias: yup
         .string()
         .matches(regexURL, { message: "URL is not valid" })

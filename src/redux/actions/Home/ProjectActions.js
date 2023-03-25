@@ -5,6 +5,8 @@ export const closeActiveMenuAction = { type: actionTypes.SET_ACTIVE_MENU, payloa
 export const OpenModalEditAction = { type: actionTypes.OPEN_MODAL_EDIT }
 export const CloseModaEditlAction = { type: actionTypes.CLOSE_MODAL_EDIT }
 export const getUserProject = { type: actionTypes.USER_PROJECT }
+export const OpenModalTaskAction = { type: actionTypes.OPEN_MODAL_TASK }
+export const CloseModalTaskAction = { type: actionTypes.CLOSE_MODAL_TASK }
 
 
 /* API */
@@ -14,7 +16,14 @@ export const createProjectAction = (payload, navigate) => ({
     payload,
     navigate
 })
-export const getAllProjectAction = { type: actionTypes.GET_ALL_PROJECT_API }
+export const getAllProjectAction = keyword => ({
+    type: actionTypes.GET_ALL_PROJECT_API,
+    keyword
+})
+export const getAllProjKeywordAction = keyword => ({
+    type: actionTypes.GET_ALL_PROJ_KEYWORD,
+    keyword
+})
 export const getProjectDetail = (id) => ({
     type: actionTypes.GET_PROJECT_DETAIL_API,
     id

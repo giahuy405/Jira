@@ -67,11 +67,29 @@ export function* createProjectSaga() {
  * creator : Huy - 22/3/2023
  */
 export function* getAllProjectSaga() {
-    yield takeLatest(actionTypes.GET_ALL_PROJECT_API, function* getAllProject({ type, payload }) {
+    yield takeLatest(actionTypes.GET_ALL_PROJ_KEYWORD, function* getAllProject({ type, keyword }) {
         try {
-            yield delay(800)
-            const res = yield call(() => projectService.getAllProject())
-            console.log(res.data.content)
+            yield delay(500)
+            const res = yield call(() => projectService.getAllProject(keyword))
+            yield put({
+                type: actionTypes.ALL_PROJECT_KEYWORD,
+                payload: res.data.content
+            })
+        } catch (err) {
+            console.log(err.response)
+        }
+    });
+}
+
+/**
+ * get All project for modal create task
+ * creator : Huy - 24/3/2023
+ */
+export function* getAllProjectKeywordSaga() {
+    yield takeLatest(actionTypes.GET_ALL_PROJECT_API, function* getAllProject({ type, keyword }) {
+        try {
+            yield delay(500)
+            const res = yield call(() => projectService.getAllProject(keyword))
             yield put({
                 type: actionTypes.ALL_PROJECT,
                 payload: res.data.content
@@ -90,6 +108,7 @@ export function* getProjectDetailSaga() {
     yield takeLatest(actionTypes.GET_PROJECT_DETAIL_API, function* projectDetail({ type, id }) {
         try {
             const res = yield call(() => projectService.getProjectDetail(id));
+            console.log(res.data.content)
             yield put({
                 type: actionTypes.PROJECT_DETAIL_INFO,
                 payload: res.data.content
@@ -187,14 +206,22 @@ export function* assignUserProjectSaga() {
                 type: actionTypes.ALL_PROJECT,
                 payload: allProject.data.content
             })
+            Toast.fire({
+                icon: 'success',
+                title: 'Successfully created !'
+            });
         } catch (err) {
+            Toast.fire({
+                icon: 'error',
+                title: `${err.response.data.content}`
+            })
             console.log(err)
         }
     });
 }
 
 /**
- * assign new member - project management page
+ * remove member - project management page
  * creator : Huy - 24/3/2023
  */
 export function* removeUserFromProjSaga() {
@@ -206,7 +233,15 @@ export function* removeUserFromProjSaga() {
                 type: actionTypes.ALL_PROJECT,
                 payload: allProject.data.content
             })
+            Toast.fire({
+                icon: 'success',
+                title: 'Successfully deleted !'
+            });
         } catch (err) {
+            Toast.fire({
+                icon: 'error',
+                title: `${err.response.data.content}`
+            })
             console.log(err)
         }
     });

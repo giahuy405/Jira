@@ -28,6 +28,4 @@ export const signUpSchema = yup.object().shape({
         .string()
         .matches(phoneRegex, { message: "Phone number is not valid" })
         .required('Please enter your phone number'),
-
-
 })

@@ -3,20 +3,23 @@ import React, { useEffect, useRef, useState } from 'react'
 import BreadCrumd from '../components/Global/BreadCrumd'
 import ProjectLayout from '../HOCs/ProjectLayout'
 import Highlighter from 'react-highlight-words';
-import { DeleteFilled, DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
+import { DeleteFilled, DeleteOutlined, EditOutlined, FileSearchOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button } from 'antd/es/radio';
 
 import DOMPurify from 'dompurify';
 import { useDispatch, useSelector } from 'react-redux';
-import { assignUserProjectAction, deleteProjectAction, getAllProjectAction, getProjectDetail, getUserProjectAction, OpenModalEditAction, removeUserFromProjAction } from '../redux/actions/Home/actions';
+import { assignUserProjectAction, deleteProjectAction, getAllProjectAction, getProjectDetail, getUserProjectAction, OpenModalEditAction, removeUserFromProjAction } from '../redux/actions/Home/ProjectActions';
 import ModalEdit from '../components/Home/ModalEdit';
 import { message, Popconfirm } from 'antd';
+import { useNavigate } from 'react-router-dom';
 const ProjectManagement = () => {
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const { userProject } = useSelector(state => state.projectReducer);
     const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate()
     const searchInput = useRef(null);
+    const searchRef = useRef(null)
     const dispatch = useDispatch();
     const onChange = () => { }
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -181,6 +184,7 @@ const ProjectManagement = () => {
             title: "Id",
             dataIndex: 'id',
             sorter: (a, b) => a.id - b.id,
+            width: '80px',
             ...getColumnSearchProps('id'),
         },
         {
@@ -189,7 +193,7 @@ const ProjectManagement = () => {
             ...getColumnSearchProps('projectName'),
         },
         {
-            title: "Category name",
+            title: "Category",
             dataIndex: 'categoryName',
             ...getColumnSearchProps('categoryName'),
         },
@@ -214,11 +218,10 @@ const ProjectManagement = () => {
             render: (text, ob) => {
                 return <div className='flex items-center gap-0.5'>
                     {
-                        ob.members?.slice(0, 2).map(item => {
+                        ob.members?.slice(0, 3).map(item => {
                             // take the final of full name
                             const words = item.name.split(' ');
                             const lastWord = words[words.length - 1];
-                            console.log(ob.members, 'mem')
                             return <Popover
                                 title='Members'
                                 key={item.userId}
@@ -244,7 +247,7 @@ const ProjectManagement = () => {
                                             </thead>
                                             <tbody>
                                                 {ob.members?.map(item =>
-                                                    <tr class="bg-white border-b  ">
+                                                    <tr class="bg-white border-b  " key={item.userId}>
                                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                                             {item.userId}
                                                         </th>
@@ -286,7 +289,7 @@ const ProjectManagement = () => {
                         }
                         )
                     }
-                    <div>{ob?.members.length > 2 && '...'}</div>
+                    <div>{ob?.members.length > 3 && '...'}</div>
                     {ob.members &&
                         <Popover
                             trigger="click"
@@ -300,7 +303,11 @@ const ProjectManagement = () => {
                                     value={searchTerm}
                                     onChange={(term) => setSearchTerm(term)}
                                     onSearch={keyword => {
-                                        dispatch(getUserProjectAction(keyword));
+                                        // debounce search
+                                        if (searchRef.current) clearTimeout(searchRef.current)
+                                        searchRef.current = setTimeout(() => {
+                                            dispatch(getUserProjectAction(keyword));
+                                        }, 300);
                                     }}
                                     onSelect={(value, option) => {
                                         setSearchTerm(option.label);
@@ -336,9 +343,8 @@ const ProjectManagement = () => {
                             await dispatch(OpenModalEditAction);
                             await dispatch(getProjectDetail(obj.id))
                         }}
-                        to='/' className='text-blue-600 hover:text-blue-700'><EditOutlined /></button>
+                        to='/' className='text-blue-600 hover:text-gray-500'><EditOutlined /></button>
                 </Popover>
-
                 <Popover content="Delete project">
                     <Popconfirm
                         title="Delete the task"
@@ -348,14 +354,21 @@ const ProjectManagement = () => {
                         okText="Yes"
                         cancelText="No"
                     >
-                        <button className='text-red-500 hover:text-red-700'><DeleteOutlined /></button>
+                        <button className='text-red-500 hover:text-gray-500'><DeleteOutlined /></button>
                     </Popconfirm>
+                </Popover>
+                <Popover content="View detail">
+                    <button
+                        onClick={() => {
+                            navigate(`/project/detail/${obj.id}`)
+                        }}
+                        className='text-lime-500 hover:text-gray-500'><FileSearchOutlined /></button>
                 </Popover>
             </div>
         },
     ];
     useEffect(() => {
-        dispatch(getAllProjectAction)
+        dispatch(getAllProjectAction())
     }, []);
 
     const { allProject } = useSelector(state => state.projectReducer);

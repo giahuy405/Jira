@@ -1,10 +1,13 @@
 import { GithubOutlined } from '@ant-design/icons';
 import React, { useState, useRef, useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { OpenModalTaskAction } from '../../redux/actions/Home/ProjectActions';
 import Button from './Button'
 
 
 const SideBar = () => {
     const wrapperRef = useRef(null);
+    const dispatch = useDispatch()
     useOutsideAlerter(wrapperRef);
     const [isVisible, setIsVisible] = useState(false);
     function useOutsideAlerter(ref) {
@@ -38,7 +41,8 @@ const SideBar = () => {
                         SEARCH ISSUE
                     </div>
                 </div>
-                <div className='sideBar-link'>
+                <div className='sideBar-link'
+                    onClick={() => dispatch(OpenModalTaskAction)}>
                     <div className="sideBar-linkInside ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokewidth="{1.5}" stroke="currentColor" className='text-white' style={{ width: '30px' }}>
                             <path strokelinecap="round" strokelinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

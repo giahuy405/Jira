@@ -4,8 +4,9 @@ import * as actionTypes from '../constants/constants'
 const initalState = {
     projectCategory: null,
     allProject: null,
+    allProjectKeyword: null,
     projectDetailInfo: null,
-    userProject:null
+    userProject:null,
 }
 
 export const projectReducer = (state = initalState, { type, payload }) => {
@@ -17,6 +18,10 @@ export const projectReducer = (state = initalState, { type, payload }) => {
             }
             case actionTypes.ALL_PROJECT: {
                 draft.allProject = payload
+                break
+            }
+            case actionTypes.ALL_PROJECT_KEYWORD: {
+                draft.allProjectKeyword = payload
                 break
             }
             case actionTypes.PROJECT_DETAIL_INFO: {

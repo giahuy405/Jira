@@ -5,13 +5,15 @@ const initalState = {
     infoUser: null,
     isLoading: false,
     activeMenu: true,
-    modalOpen: false,
+    modalEditOpen: false,
+    modalTaskOpen: false,
+
 }
 
 export const reducer = (state = initalState, { type, payload }) => {
     return produce(state, draft => {
         switch (type) {
-        case actionTypes.LOGIN_INFO: {
+            case actionTypes.LOGIN_INFO: {
                 draft.infoUser = payload
                 break
             }
@@ -32,11 +34,19 @@ export const reducer = (state = initalState, { type, payload }) => {
                 break
             }
             case actionTypes.OPEN_MODAL_EDIT: {
-                draft.modalOpen = true
+                draft.modalEditOpen = true
                 break
             }
             case actionTypes.CLOSE_MODAL_EDIT: {
-                draft.modalOpen = false
+                draft.modalEditOpen = false
+                break
+            }
+            case actionTypes.OPEN_MODAL_TASK: {
+                draft.modalTaskOpen = true
+                break
+            }
+            case actionTypes.CLOSE_MODAL_TASK: {
+                draft.modalTaskOpen = false
                 break
             }
             default:

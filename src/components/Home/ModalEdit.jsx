@@ -3,13 +3,13 @@ import { Formik, Form } from 'formik'
 import React, { useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { OpenModalEditAction, CloseModaEditlAction, projectCategoryAction, updateProjectAction } from '../../redux/actions/Home/actions'
+import { OpenModalEditAction, CloseModaEditlAction, projectCategoryAction, updateProjectAction } from '../../redux/actions/Home/ProjectActions'
 import { CustomInput, CustomSelect, Button } from '../Global'
 import { LoadingOutlined } from '@ant-design/icons';
 import { Editor } from '@tinymce/tinymce-react';
 import { createProjectSchema } from '../../schema/createProjectSchema'
 const ModalEdit = (props) => {
-    const { modalOpen } = useSelector(state => state.reducer)
+    const { modalEditOpen } = useSelector(state => state.reducer)
     const dispatch = useDispatch()
     const editorRef = useRef(null);
     const navigate = useNavigate()
@@ -35,7 +35,7 @@ const ModalEdit = (props) => {
         <div>
             <Modal
                 centered
-                open={modalOpen}
+                open={modalEditOpen}
                 onOk={() => dispatch(OpenModalEditAction)}
                 onCancel={() => dispatch(CloseModaEditlAction)}
                 width={600}
@@ -96,7 +96,7 @@ const ModalEdit = (props) => {
                                         height: 200,
                                         menubar: false,
                                         plugins: [
-                                            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                                            'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
                                             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
                                             'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
                                         ],

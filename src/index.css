@@ -101,16 +101,112 @@ code {
 :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close-x {
   line-height: 12px;
 }
-:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close{
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close {
   border-radius: 50%;
   width: 27px;
   height: 27px;
 }
 
 /* Button antd */
-:where(.css-dev-only-do-not-override-mxhywb).ant-btn-primary{
-  background-color: #1677ff!important;
+:where(.css-dev-only-do-not-override-mxhywb).ant-btn-primary {
+  background-color: #1677ff !important;
 }
-:where(.css-dev-only-do-not-override-mxhywb).ant-btn-primary:hover{
-  background-color: #0a53ba!important;
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-btn-primary:hover {
+  background-color: #0a53ba !important;
+}
+
+/* image members project detail */
+.coverImgMember {
+  display: inline-flex;
+  margin-left: -2px;
+  border-radius: 50%;
+  transition: transform 0.1s ease 0s;
+  cursor: pointer;
+  user-select: none;
+}
+
+.coverImgMember:hover {
+  transform: translateY(-5px);
+}
+
+.imgMember {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(235, 236, 240);
+}
+
+.borderForImg {
+  box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px;
+}
+
+.shadowKanban {
+  padding: 10px;
+  border-radius: 3px;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 2px 0px;
+  transition: background 0.1s ease 0s;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Ck EDITOR */
+.ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable,
+.ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners {
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+}
+
+/* select antd */
+:where(.css-dev-only-do-not-override-mxhywb).ant-select-multiple .ant-select-selection-item-remove {
+  line-height: 18px;
+}
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-select .ant-select-clear {
+  top: 43%;
+}
+
+/* slider antd */
+:where(.css-dev-only-do-not-override-mxhywb).ant-slider .ant-slider-track {
+  background-color: #0b5dd1;
+}
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-slider .ant-slider-rail {
+  background-color: rgb(200, 200, 200);
+}
+
+.timeTrackingSlider:where(.css-dev-only-do-not-override-mxhywb).ant-slider.ant-slider-disabled {
+  cursor: pointer;
+}
+
+.timeTrackingSlider:where(.css-dev-only-do-not-override-mxhywb).ant-slider.ant-slider-disabled .ant-slider-track {
+  background-color: #0b5dd1 !important;
+}
+
+.timeTrackingSlider:where(.css-dev-only-do-not-override-mxhywb).ant-slider.ant-slider-disabled .ant-slider-handle::after {
+  display: none;
+}
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-slider .ant-slider-handle {
+  display: none;
+}
+
+/* Modal create Task */
+.modalCreateTask:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content{
+  padding: 20px 50px!important;
+}
+:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content{
+  padding: 20px 30px;
 }

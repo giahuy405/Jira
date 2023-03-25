@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Button, LoadingPage } from "../components/Global";
 import AuthLayout from "../HOCs/AuthLayout";
 import { loginAction } from "../redux/actions/Auth/actions";
-import { signUpSchema } from "../schema/SignInSchema";
+import { signInSchema } from "../schema/SignInSchema";
 import {Input} from "antd"
 const Login = () => {
     const Navigate = useNavigate();
@@ -16,7 +16,7 @@ const Login = () => {
             email: '',
             passWord: ''
         },
-        validationSchema: signUpSchema,
+        validationSchema: signInSchema,
        onSubmit: (values)=>{
         dispatch(loginAction(values,Navigate))
         
@@ -151,7 +151,7 @@ const Login = () => {
                   className="hover:underline font-semibold text-blue-600"
                 >
                   {" "}
-                  Signt Up
+                  Sign Up
                 </NavLink>
                 .
               </p>

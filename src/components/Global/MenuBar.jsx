@@ -2,7 +2,7 @@ import { BarsOutlined, CloseOutlined, CreditCardOutlined, PlusSquareOutlined, Se
 import React, { useEffect, useState, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { closeActiveMenuAction, setActiveMenuAction } from '../../redux/actions/Home/actions'
+import { closeActiveMenuAction, setActiveMenuAction } from '../../redux/actions/Home/ProjectActions'
 import * as actionTypes from '../../redux/constants/constants'
 const links = [
     {

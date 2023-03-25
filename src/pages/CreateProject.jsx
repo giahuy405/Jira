@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import CustomSelect from '../components/Global/CustomSelect';
 import { useDispatch, useSelector } from 'react-redux';
-import { createProjectAction, projectCategoryAction } from '../redux/actions/Home/actions';
+import { createProjectAction, projectCategoryAction } from '../redux/actions/Home/ProjectActions';
 import { createProjectSchema } from '../schema/createProjectSchema';
 import { LoadingOutlined } from '@ant-design/icons';
 const CreateProject = () => {
@@ -34,7 +34,7 @@ const CreateProject = () => {
         <ProjectLayout>
             <div className='max-w-[600px] mx-auto mt-3 mb-20'>
                 <BreadCrumd> Projects / Singularity 7.0 / Project Details</BreadCrumd>
-                <h3 className='text-2xl font-medium text-[#172A4D]'>Project Details</h3>
+                <h3 className='text-2xl font-medium text-[#172A4D]'>Create new project</h3>
                 <Formik
                     initialValues={{
                         projectName: "",
@@ -112,15 +112,15 @@ const CreateProject = () => {
                                         <Button
                                             type='submit'
                                             disabled={true}
-                                            myClass='py-2.5 px-5 flex items-center justify-center gap-2 cursor-not-allowed opacity-70'
+                                            myClass='py-2.5 px-3 flex items-center justify-center gap-2 cursor-not-allowed opacity-70'
                                             text={`Loading...`}
                                             icon={<LoadingOutlined />}
                                         />
                                         :
                                         <Button
                                             type='submit'
-                                            myClass='py-2.5 px-4 leading-4'
-                                            text='Create project'
+                                            myClass='py-2.5 px-6 leading-4'
+                                            text='Create '
                                         />
                                     }
 

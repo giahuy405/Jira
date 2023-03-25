@@ -21,13 +21,15 @@ export const projectService = {
         },
         data
     }),
-    getAllProject: () => axios({
+    getAllProject: (keyword) => axios({
         url: `${DOMAIN}/Project/getAllProject`,
         method: 'GET',
         headers: {
             TokenCybersoft: TOKEN,
-
         },
+        params: {
+            keyword
+        }
     }),
     getProjectDetail: (id) => axios({
         url: `${DOMAIN}/Project/getProjectDetail`,
@@ -85,6 +87,15 @@ export const projectService = {
     }),
     removeUserFromPrj: (payload) => axios({
         url: `${DOMAIN}/Project/removeUserFromProject`,
+        method: 'POST',
+        headers: {
+            TokenCybersoft: TOKEN,
+            Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)
+        },
+        data: payload
+    }),
+    createTaskProj: (payload) => axios({
+        url: `${DOMAIN}/Project/createTask`,
         method: 'POST',
         headers: {
             TokenCybersoft: TOKEN,
