@@ -207,6 +207,10 @@ const ProjectManagement = () => {
                     sanitizedText,
                     "text/html"
                 ).documentElement.textContent;
+                // const element = document.createElement('div');
+                // element.innerHTML = '<h1>Hello, World!</h1>'; => Another way not using libary
+                // const htmlString = element.outerHTML; 
+                // console.log(htmlString); // "<div><h1>Hello, World!</h1></div>"
                 return <div id={ob.id} style={{ fontSize: '10px', lineHeight: '12px' }}>
                     {plainText.length > 60 ? plainText.slice(0, 60) + '...' : plainText}
                 </div>;
@@ -228,7 +232,7 @@ const ProjectManagement = () => {
                                 content={() => {
                                     return <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                                         <table class="w-full text-sm text-gray-500  text-center">
-                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-secondary-dark dark:text-white">
                                                 <tr>
                                                     <th scope="col" class="px-6 py-3">
                                                         Id
@@ -247,8 +251,8 @@ const ProjectManagement = () => {
                                             </thead>
                                             <tbody>
                                                 {ob.members?.map(item =>
-                                                    <tr class="bg-white border-b  " key={item.userId}>
-                                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    <tr class="bg-white border-b  dark:bg-gray-800 dark:text-gray-300" key={item.userId}>
+                                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-300">
                                                             {item.userId}
                                                         </th>
                                                         <td class="px-6 py-4">
@@ -384,7 +388,7 @@ const ProjectManagement = () => {
                         pageSize: 10,
                     }}
                     locale={{
-                        emptyText: !allProject ? <div>
+                        emptyText: !allProject ? <div className='dark:bg-third-dark'>
                             <Skeleton />
                             <Skeleton className='my-3' />
                             <Skeleton />
@@ -392,6 +396,7 @@ const ProjectManagement = () => {
                     }}
                 />
             </div>
+
             <ModalEdit />
         </ProjectLayout>
     )

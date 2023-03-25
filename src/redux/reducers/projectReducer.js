@@ -6,7 +6,8 @@ const initalState = {
     allProject: null,
     allProjectKeyword: null,
     projectDetailInfo: null,
-    userProject:null,
+    userProject: null,
+    taskDetail: null
 }
 
 export const projectReducer = (state = initalState, { type, payload }) => {
@@ -30,6 +31,10 @@ export const projectReducer = (state = initalState, { type, payload }) => {
             }
             case actionTypes.USER_PROJECT: {
                 draft.userProject = payload
+                break
+            }
+            case actionTypes.TASK_DETAIL: {
+                draft.taskDetail = payload
                 break
             }
             default:

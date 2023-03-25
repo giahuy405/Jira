@@ -2,8 +2,8 @@ import { Input, InputNumber, Modal, Select, Slider } from 'antd'
 import { Formik, Form } from 'formik'
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { OpenModalTaskAction, CloseModalTaskAction, getAllProjKeywordAction, createTaskAction } from '../../redux/actions/Home/ProjectActions'
+import { useNavigate, useParams } from 'react-router-dom'
+import { OpenModalTaskAction, CloseModalTaskAction, getAllProjKeywordAction, createTaskAction, getProjectDetail } from '../../redux/actions/Home/ProjectActions'
 import { Button } from '../Global'
 import { ClockCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -53,7 +53,7 @@ const ModalCreateTask = (props) => {
         fetchData();
     }, [])
     const optionSelect = usersByIdProj?.map(item => ({ label: item.name, value: item.userId, key: item.userId }));
-
+    const { id } = useParams()
     const onSubmit = async (values, actions) => {
         console.log(values, 'fomrik')
         await new Promise((resolve, reject) => setTimeout(resolve, 1000))
@@ -61,8 +61,11 @@ const ModalCreateTask = (props) => {
             console.log(editorRef.current.getContent());
         }
         await dispatch(createTaskAction(values));
-        // actions.resetForm();
-        // dispatch(CloseModalTaskAction)
+        console.log(id, 'iddd')
+        dispatch(getProjectDetail(id))
+        actions.resetForm();
+        dispatch(CloseModalTaskAction);
+
     }
     return (
         <div >

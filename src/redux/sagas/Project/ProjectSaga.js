@@ -69,7 +69,7 @@ export function* createProjectSaga() {
 export function* getAllProjectSaga() {
     yield takeLatest(actionTypes.GET_ALL_PROJ_KEYWORD, function* getAllProject({ type, keyword }) {
         try {
-            yield delay(500)
+            yield delay(700)
             const res = yield call(() => projectService.getAllProject(keyword))
             yield put({
                 type: actionTypes.ALL_PROJECT_KEYWORD,
@@ -88,7 +88,7 @@ export function* getAllProjectSaga() {
 export function* getAllProjectKeywordSaga() {
     yield takeLatest(actionTypes.GET_ALL_PROJECT_API, function* getAllProject({ type, keyword }) {
         try {
-            yield delay(500)
+            yield delay(700)
             const res = yield call(() => projectService.getAllProject(keyword))
             yield put({
                 type: actionTypes.ALL_PROJECT,
@@ -202,6 +202,7 @@ export function* assignUserProjectSaga() {
         try {
             const res = yield call(() => projectService.assignUserProject(payload));
             const allProject = yield call(() => projectService.getAllProject())
+
             yield put({
                 type: actionTypes.ALL_PROJECT,
                 payload: allProject.data.content
@@ -269,6 +270,25 @@ export function* createTaskSaga() {
                 icon: 'error',
                 title: `${err.response.data.content}`
             })
+            console.log(err)
+        }
+    });
+}
+
+
+/**
+ * task detail for edit modal - modal edit task
+ * creator : Huy - 26/3/2023
+ */
+export function* getTaskDetail() {
+    yield takeLatest(actionTypes.GET_TASK_DETAIL_API, function* taskDetail({ type, payload }) {
+        try {
+            const res = yield call(() => projectService.getTaskDetail(payload));
+            yield put({
+                type: actionTypes.TASK_DETAIL,
+                payload: res.data.content
+            })
+        } catch (err) {
             console.log(err)
         }
     });

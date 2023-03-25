@@ -9,12 +9,6 @@ const links = [
         title: 'Project',
         links: [
             {
-                name: 'Kanban board',
-                path: 'project/board',
-                icon: <CreditCardOutlined />,
-            },
-
-            {
                 name: 'Create Project',
                 path: 'project/create-project',
                 icon: <PlusSquareOutlined />
@@ -36,7 +30,7 @@ const links = [
                 icon: <UserOutlined />
             },
             {
-                name: 'color-picker',
+                name: 'Testing',
                 path: 'color-picker',
                 icon: <CreditCardOutlined />,
             },
@@ -46,12 +40,12 @@ const links = [
         title: 'Charts',
         links: [
             {
-                name: 'line',
+                name: 'Testing',
                 path: 'line',
                 icon: <CreditCardOutlined />,
             },
             {
-                name: 'area',
+                name: 'Testing',
                 path: 'area',
                 icon: <CreditCardOutlined />,
             },

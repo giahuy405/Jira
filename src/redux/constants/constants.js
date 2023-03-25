@@ -27,6 +27,9 @@ export const ALL_PRIORITY = 'ALL_PRIORITY'
 export const ALL_USERS = 'ALL_USERS';
 export const ALL_STATUS = 'ALL_STATUS';
 export const USERS_BY_ID_PROJ = 'USERS_BY_ID_PROJ';
+export const OPEN_MODAL_EDIT_TASK = 'OPEN_MODAL_EDIT_TASK';
+export const CLOSE_MODAL_EDIT_TASK = 'CLOSE_MODAL_EDIT_TASK';
+export const TASK_DETAIL = 'TASK_DETAIL';
 
 
  
@@ -62,4 +65,6 @@ export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_USERS_BY_ID_PROJECT = 'GET_USERS_BY_ID_PROJECT';
 
 export const GET_ALL_STATUS = 'GET_ALL_STATUS';
+export const GET_TASK_DETAIL_API = 'GET_TASK_DETAIL_API';
+ 
 

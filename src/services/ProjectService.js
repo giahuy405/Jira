@@ -103,6 +103,17 @@ export const projectService = {
         },
         data: payload
     }),
+    getTaskDetail: (payload) => axios({
+        url: `${DOMAIN}/Project/getTaskDetail`,
+        method: 'GET',
+        headers: {
+            TokenCybersoft: TOKEN,
+            Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)
+        },
+        params: {
+            taskId: payload
+        }
+    }),
 }
 
 

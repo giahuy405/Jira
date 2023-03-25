@@ -5,7 +5,7 @@ const ButtonDarkMode = () => {
         localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark"
     );
     const element = document.documentElement;
-    const darkQuery = window.matchMedia("(prefers-color-schema: dark)")
+    const darkQuery = window.matchMedia("(prefers-color-scheme: dark)")
     function onWindowMath() {
         if (localStorage.theme === 'dark' || (!("theme" in localStorage) && darkQuery.matches)) {
             element.classList.add('dark')
@@ -14,6 +14,7 @@ const ButtonDarkMode = () => {
         }
     }
     onWindowMath();
+
     useEffect(() => {
         switch (theme) {
             case "dark":
@@ -45,7 +46,7 @@ const ButtonDarkMode = () => {
             {theme === 'dark' ?
                 <button
                     onClick={() => {
-                        setTheme('white')
+                        setTheme('light')
                     }}
                     className='hover:bg-gray-200 hover:text-black duration-200 p-2.5 rounded-full text-white'
                 >
