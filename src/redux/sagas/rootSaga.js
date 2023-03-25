@@ -25,6 +25,7 @@ export function* rootSaga() {
         ProjectSaga.assignUserProjectSaga(),
         ProjectSaga.removeUserFromProjSaga(),
         ProjectSaga.getAllProjectKeywordSaga(),
+        ProjectSaga.createTaskSaga(),
 
         TaskSaga.getAllTaskTypeSaga(),
 

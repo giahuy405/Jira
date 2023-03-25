@@ -10,4 +10,5 @@ export const createTaskSchema = yup.object().shape({
     }).required('Description is required'),
     listUserAsign: yup
         .array().min(1, 'At least assign 1 member'),
+    taskName: yup.string().required('Please enter task name')
 })

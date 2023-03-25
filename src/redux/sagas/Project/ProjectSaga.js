@@ -246,3 +246,30 @@ export function* removeUserFromProjSaga() {
         }
     });
 }
+
+/**
+ * create task - modal create task
+ * creator : Huy - 25/3/2023
+ */
+export function* createTaskSaga() {
+    yield takeLatest(actionTypes.CREATE_TASK_API, function* createTask({ type, payload }) {
+        try {
+            const res = yield call(() => projectService.createTaskProj(payload));
+            const allProject = yield call(() => projectService.getAllProject())
+            yield put({
+                type: actionTypes.ALL_PROJECT,
+                payload: allProject.data.content
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Successfully created !'
+            });
+        } catch (err) {
+            Toast.fire({
+                icon: 'error',
+                title: `${err.response.data.content}`
+            })
+            console.log(err)
+        }
+    });
+}

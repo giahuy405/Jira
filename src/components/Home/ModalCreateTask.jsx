@@ -1,13 +1,11 @@
-import { AutoComplete, InputNumber, Modal, Select, Slider } from 'antd'
+import { Input, InputNumber, Modal, Select, Slider } from 'antd'
 import { Formik, Form } from 'formik'
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { OpenModalTaskAction, CloseModalTaskAction, getAllProjKeywordAction } from '../../redux/actions/Home/ProjectActions'
-import { CustomInput, CustomSelect, Button } from '../Global'
-import { BugOutlined, ClockCircleOutlined, FileAddOutlined, LoadingOutlined } from '@ant-design/icons';
-import { Editor } from '@tinymce/tinymce-react';
-import { createProjectSchema } from '../../schema/createProjectSchema'
+import { OpenModalTaskAction, CloseModalTaskAction, getAllProjKeywordAction, createTaskAction } from '../../redux/actions/Home/ProjectActions'
+import { Button } from '../Global'
+import { ClockCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { getTaskTypeAction } from '../../redux/actions/Home/TaskAction'
@@ -62,7 +60,7 @@ const ModalCreateTask = (props) => {
         if (editorRef.current) {
             console.log(editorRef.current.getContent());
         }
-        // await dispatch(updateProjectAction(values));
+        await dispatch(createTaskAction(values));
         // actions.resetForm();
         // dispatch(CloseModalTaskAction)
     }
@@ -95,7 +93,7 @@ const ModalCreateTask = (props) => {
                         validationSchema={createTaskSchema}
                         onSubmit={onSubmit}
                     >
-                        {({ isSubmitting, setFieldValue, errors, touched, values }) => (
+                        {({ isSubmitting, setFieldValue, errors, touched, values, handleBlur, handleChange }) => (
                             <Form style={{ lineHeight: '16px' }} >
                                 <div className='grid grid-cols-2 gap-4 mt-4'>
                                     <div className='col-span-2 flex gap-3 '>
@@ -131,25 +129,16 @@ const ModalCreateTask = (props) => {
                                             </Select>
                                         </div>
                                         <div className='w-1/2'>
-                                            <label htmlFor="" className='cursor-pointer text-sm text-gray-400'>Status</label>
-                                            <Select
-                                                className='uppercase'
-                                                defaultValue={allStatus[0]?.statusId}
-                                                style={{
-                                                    width: '100%',
+                                            <label htmlFor="" className='cursor-pointer text-sm text-gray-400'>Task Name</label>
+                                            <Input placeholder="Enter task name"
+                                                name='taskName'
+                                                onChange={(e) => {
+                                                    setFieldValue('taskName', e.target.value)
                                                 }}
-                                                onChange={value => setFieldValue('statusId', value)}
-                                            >
-                                                {allStatus?.map(item =>
-                                                    <Option
-                                                        value={item.statusId}
-                                                        key={item.statusId}
-                                                        className='uppercase flex items-center'
-                                                    >
-                                                        {item.statusName}
-                                                    </Option>
-                                                )}
-                                            </Select>
+                                                onBlur={handleBlur}
+                                            />
+                                            {touched.taskName && errors.taskName &&
+                                                <span className='text-xs text-red-500'>{errors.taskName}</span>}
                                         </div>
                                     </div>
                                     <div className='col-span-2 flex gap-3 '>
@@ -251,7 +240,6 @@ const ModalCreateTask = (props) => {
                                     <label className='cursor-pointer text-sm font-extralight' htmlFor="description">Description</label>
                                     <CKEditor
                                         editor={ClassicEditor}
-
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
                                             setFieldValue('description', data)
@@ -261,6 +249,7 @@ const ModalCreateTask = (props) => {
                                             console.log(data, 'data')
                                             setFieldValue('description', data)
                                         }}
+
                                     />
                                     {errors.description && touched.description && (
                                         <div className="text-red-500 text-xs">{errors.description}</div>)}

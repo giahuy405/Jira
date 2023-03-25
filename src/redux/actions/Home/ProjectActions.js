@@ -11,6 +11,10 @@ export const CloseModalTaskAction = { type: actionTypes.CLOSE_MODAL_TASK }
 
 /* API */
 export const projectCategoryAction = { type: actionTypes.PROJECT_CATEGORY_API }
+export const createTaskAction = payload => ({
+    type: actionTypes.CREATE_TASK_API,
+    payload
+})
 export const createProjectAction = (payload, navigate) => ({
     type: actionTypes.CREATE_PROJECT_API,
     payload,
