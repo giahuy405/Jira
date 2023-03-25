@@ -3,6 +3,13 @@ import { call, delay, fork, put, take, takeEvery, takeLatest, all } from 'redux-
 
 import * as AuthSaga from './Auth/AuthSaga'
 import * as ProjectSaga from './Project/ProjectSaga'
+import * as TaskSaga from './Task/TaskSaga'
+import * as PrioritySaga from './Priority/PrioritySaga'
+import * as UsersSaga from './Users/UsersSaga'
+import * as StatusSaga from './Status/StatusSaga'
+import * as ManagerSaga from './Manager/managerSaga'
+
+
 export function* rootSaga() {
     yield all([  
         AuthSaga.authSaga(),
