@@ -43,12 +43,20 @@ export function* getUserByIdSaga() {
     yield takeLatest(actionTypes.GET_USERS_BY_ID_PROJECT, function* userById({ type, idProject }) {
         try {
             const res = yield call(() => usersService.getUserByIdProj(idProject));
-            
+            console.log(res.data.content)
+
             yield put({
                 type: actionTypes.USERS_BY_ID_PROJ,
                 payload: res.data.content
             })
         } catch (err) {
+            Toast.fire({
+                timer: 3000,
+                icon: 'error',
+                text: `${err.response.data.content} 
+                Please choose another
+                `
+            });
             console.log(err.response)
         }
     });

@@ -22,7 +22,6 @@ export const SAVE_INFO_USER='SAVE_INFO_USER'
 export const CLOSE_MODAL_CREATE_USER='CLOSE_MODAL_CREATE_USER'
 export const OPEN_MODAL_CREATE_USER=' OPEN_MODAL_CREATE_USER'
 export const USER_PROJECT = 'USER_PROJECT'
-<<<<<<< HEAD
 export const ALL_TASK_TYPE = 'ALL_TASK_TYPE'
 export const ALL_PRIORITY = 'ALL_PRIORITY'
 export const ALL_USERS = 'ALL_USERS';
@@ -30,14 +29,12 @@ export const ALL_STATUS = 'ALL_STATUS';
 export const USERS_BY_ID_PROJ = 'USERS_BY_ID_PROJ';
 
 
-// ---------------------------------- //
-=======
-
+ 
 
 // ----------------API------------------ //
 export const OPEN_EDIT_USER = 'OPEN_EDIT_USER'
 export const CLOSE_EDIT_USER = 'CLOSE_EDIT_USER'
->>>>>>> 10c99c16da8952ba2110b21f673382ea41b94ce7
+ 
 export const LOGIN_API = 'LOGIN_API';
 export const SIGN_UP_API = 'SIGN_UP_API'
 

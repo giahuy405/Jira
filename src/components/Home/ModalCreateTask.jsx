@@ -23,7 +23,7 @@ const ModalCreateTask = (props) => {
     const { allProjectKeyword } = useSelector(state => state.projectReducer);
     const { taskType } = useSelector(state => state.taskReducer);
     const { allPriority } = useSelector(state => state.priorityReducer);
-    const { allUsers, usersByIdProj } = useSelector(state => state.userReducer);
+    const { usersByIdProj } = useSelector(state => state.userReducer);
     const { allStatus } = useSelector(state => state.statusReducer);
     const [openModalTime, setOpenModalTime] = useState(false);
     const [timeTracking, setTimeTracking] = useState({
@@ -66,7 +66,6 @@ const ModalCreateTask = (props) => {
         // actions.resetForm();
         // dispatch(CloseModalTaskAction)
     }
-    console.log(usersByIdProj,'usersByIdProj')
     return (
         <div >
             {allProjectKeyword &&
@@ -99,7 +98,6 @@ const ModalCreateTask = (props) => {
                         {({ isSubmitting, setFieldValue, errors, touched, values }) => (
                             <Form style={{ lineHeight: '16px' }} >
                                 <div className='grid grid-cols-2 gap-4 mt-4'>
-
                                     <div className='col-span-2 flex gap-3 '>
                                         <div className='w-1/2'>
                                             <label htmlFor="" className='cursor-pointer text-sm text-gray-400'>Project</label>
@@ -110,8 +108,15 @@ const ModalCreateTask = (props) => {
                                                     width: '100%',
                                                 }}
                                                 onChange={value => {
-                                                    dispatch(getUsersByIdProjAction(value))
-                                                    setFieldValue('projectId', value)
+                                                    // check if user change other project 
+                                                    // => clear members of old project
+                                                    if (values.listUserAsign.length > 0) {
+                                                        setFieldValue('listUserAsign', []);
+                                                        dispatch(getUsersByIdProjAction())
+                                                    } else {
+                                                        dispatch(getUsersByIdProjAction(value))
+                                                        setFieldValue('projectId', value);
+                                                    }
                                                 }}
                                             >
                                                 {allProjectKeyword?.map(item =>
@@ -195,6 +200,7 @@ const ModalCreateTask = (props) => {
                                             onSelect={value => {
                                                 setFieldValue('listUserAsign', [...values.listUserAsign, value])
                                             }}
+                                            value={values.listUserAsign}
                                             placeholder="Enter member's name"
                                             onChange={(value) => {
                                                 setFieldValue('listUserAsign', value)

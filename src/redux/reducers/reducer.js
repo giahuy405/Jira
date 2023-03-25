@@ -5,11 +5,8 @@ const initalState = {
     infoUser: null,
     isLoading: false,
     activeMenu: true,
-<<<<<<< HEAD
     modalEditOpen: false,
     modalTaskOpen: false,
-
-=======
     modalOpen: false,
     modalUser:false,
     modalAlert: {
@@ -18,7 +15,7 @@ const initalState = {
     },
     modalCreateUser:false
    
->>>>>>> 10c99c16da8952ba2110b21f673382ea41b94ce7
+ 
 }
 
 export const reducer = (state = initalState, { type, payload }) => {
