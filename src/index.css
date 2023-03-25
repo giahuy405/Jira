@@ -204,9 +204,72 @@ code {
 }
 
 /* Modal create Task */
-.modalCreateTask:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content{
-  padding: 20px 50px!important;
+.modalCreateTask:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content {
+  padding: 20px 50px !important;
 }
-:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content{
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content {
   padding: 20px 30px;
+
+}
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content {
+  background-color: #29314b;
+  color: white;
+}
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close {
+  color: white;
+}
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close:hover {
+  background-color: gray;
+}
+
+/* TABLE */
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table {
+  background-color: #393E46;
+  color: white;
+  border-color: #0b5dd1;
+}
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper td.ant-table-column-sort {
+  background-color: #29314b;
+}
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-row:hover>td,
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr>td.ant-table-cell-row-hover {
+  background: #505050;
+}
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-column-sorter-up.active,
+:where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-column-sorter-down.active {
+  color: white;
+}
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-thead>tr>th,
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-thead>tr>td {
+  background-color: #101010;
+  color: white;
+}
+/* TOOLTIP */
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popover .ant-popover-inner{
+  background-color: #505050;
+  color: white!important;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-item-active a{
+  background: #393E46;
+  border-radius: 4px;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popconfirm .ant-popconfirm-inner-content{
+  color: white!important;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popconfirm .ant-popconfirm-message{
+  color: white;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popconfirm .ant-popconfirm-description{
+  color: white;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-btn-default{
+  color: white;
 }

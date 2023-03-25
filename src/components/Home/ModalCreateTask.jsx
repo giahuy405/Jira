@@ -204,7 +204,7 @@ const ModalCreateTask = (props) => {
                                     <div className="col-span-2 flex gap-2">
                                         <div className='w-1/2'>
                                             <label htmlFor="" className='cursor-pointer text-sm text-gray-400'>Time tracking</label>
-                                            <div className='hover:bg-gray-200 px-1 rounded cursor-pointer duration-200' onClick={() => setOpenModalTime(true)}>
+                                            <div className='hover:bg-gray-200 dark:hover:bg-secondary-dark px-1 rounded cursor-pointer duration-200' onClick={() => setOpenModalTime(true)}>
                                                 <div className='flex items-center gap-1 w-full'>
                                                     <ClockCircleOutlined />
                                                     <div className='w-full px-2 my-1'>
@@ -236,8 +236,8 @@ const ModalCreateTask = (props) => {
                                     </div>
                                 </div>
 
-                                <div className='mt-3'>
-                                    <label className='cursor-pointer text-sm font-extralight' htmlFor="description">Description</label>
+                                <div className='mt-3 dark:text-black'>
+                                    <label className='cursor-pointer text-sm  text-gray-400' htmlFor="description">Description</label>
                                     <CKEditor
                                         editor={ClassicEditor}
                                         onChange={(event, editor) => {
@@ -258,7 +258,7 @@ const ModalCreateTask = (props) => {
                                     <div className='flex justify-end'>
                                         <button
                                             type='button'
-                                            className='py-1 mr-3 rounded text-gray-400 px-5 bg-white border border-gray-400 hover:text-blue-600 hover:border-blue-600'
+                                            className='py-1 mr-3 rounded text-gray-400 px-5 bg-white border border-gray-400 hover:text-blue-600 hover:border-blue-600 dark:bg-four-dark'
                                             key="cancel"
                                             onClick={() => dispatch(CloseModalTaskAction)}>
                                             Cancel
@@ -287,8 +287,9 @@ const ModalCreateTask = (props) => {
                                     onCancel={() => setOpenModalTime(false)}
                                     width={410}
                                     footer={[]}
-                                    title='Time tracking'
+
                                 >
+                                    <h3 className='text-xl'>Time tracking</h3>
                                     <div className='flex items-center gap-4  mt-3 mb-4 timeTrackingModal'>
                                         <ClockCircleOutlined className='text-xl' />
                                         <div className='w-full'>

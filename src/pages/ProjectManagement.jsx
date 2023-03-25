@@ -320,7 +320,7 @@ const ProjectManagement = () => {
                                 />
                             }}
                             title="Add new member">
-                            <button className='w-6 h-6 rounded bg-gray-300'>+</button>
+                            <button className='w-6 h-6 rounded bg-gray-300 dark:text-black'>+</button>
                         </Popover>}
                 </div>
             }
@@ -377,7 +377,7 @@ const ProjectManagement = () => {
     return (
         <ProjectLayout>
             <BreadCrumd> Projects / Singularity 7.0 / Project Management</BreadCrumd>
-            <div className='myTable mt-3'>
+            <div className='myTable pt-3 h-screen'>
                 <Table columns={columns} dataSource={data} onChange={onChange}
                     scroll={{ y: 415 }}
                     pagination={{

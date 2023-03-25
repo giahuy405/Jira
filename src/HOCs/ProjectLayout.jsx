@@ -11,13 +11,13 @@ const ProjectLayout = (props) => {
         <div>
             <SideBar />
             <ModalCreateTask />
-            <div className=''>
+            <div className='dark:bg-third-dark'>
                 <MenuBar />
                 <div className={`w-full p-5 ${myClass}`}>
                     {props.children}
                 </div>
             </div>
-           
+
         </div>
     )
 }

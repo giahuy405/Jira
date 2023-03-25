@@ -3,6 +3,7 @@ import { routes } from "./app/routes";
 import NotFoundPage from "./pages/NotFoundPage";
 import { LoadingPage } from "./components/Global";
 import { useSelector } from "react-redux";
+import ButtonDarkMode from "./components/Global/ButtonDarkMode";
 
 function App() {
   const { isLoading } = useSelector(state => state.reducer)
@@ -17,6 +18,7 @@ function App() {
         )}
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
+      <ButtonDarkMode/>
     </BrowserRouter>
   );
 }
