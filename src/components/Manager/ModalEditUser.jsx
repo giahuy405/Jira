@@ -36,7 +36,7 @@ const modalEditUser = () => {
   };
   return (
     <div>
-      <Modal open={open} onCancel={handleCancel} okType="default" >
+      <Modal open={open}  footer={null} >
         <div className="flex justify-center">
           <h2 className="text-3xl font-semibold text-blue-900">Edit</h2>
           <h2 className="text-3xl font-semibold text-orange-600">User</h2>
@@ -91,13 +91,12 @@ const modalEditUser = () => {
               { formit.errors.passWord && formit.touched.passWord && <span className="text-red-500">{formit.errors.passWord}</span>}
             </div>
             <div>
+
+            <button type="button" onClick={handleCancel} className="bg-red-700 py-1 px-3 mr-3 rounded-md text-white hover:bg-red-500"
+              
+              >Close</button>
               <button type="submit" className="bg-sky-700 py-1 px-3 rounded-md text-white hover:bg-sky-500"
-              style={{
-                position: "relative",
-                transform: "translateY(43px)",
-                zIndex:10,
-                marginLeft:426
-              }}
+              
               >Save</button>
             </div>
           </div>
