@@ -10,7 +10,17 @@ import {
 import { managerService } from "../../../services/ManagerService";
 import * as actionTypes from "../../constants/constants";
 import Swal from "sweetalert2";
-
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 export function* managerSaga() {
   //----------LIST USER----------------
   yield takeLatest(
@@ -110,7 +120,12 @@ export function* managerSaga() {
             type: actionTypes.GET_LIST_USER_API,
           });
     }catch(err){
+      Toast.fire({
+        icon: 'error',
+        title: `The user who created the project cannot be deleted`
+    })
         console.log(err);
+        
     }
   })
   // --------------CREATE USER-------------------------
