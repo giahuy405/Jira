@@ -4,6 +4,8 @@ import * as actionTypes from '../constants/constants'
 const initalState = {
     taskType: null,
     openModalEditTask: false,
+ 
+    
 }
 
 export const taskReducer = (state = initalState, { type, payload }) => {
@@ -21,6 +23,7 @@ export const taskReducer = (state = initalState, { type, payload }) => {
                 draft.openModalEditTask = false
                 break
             }
+          
             default:
                 break
         }

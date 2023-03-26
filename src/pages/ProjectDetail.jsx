@@ -7,8 +7,9 @@ import BreadCrumd from '../components/Global/BreadCrumd'
 import ProjectLayout from '../HOCs/ProjectLayout'
 import { getProjectDetail, getTaskDetailAction } from '../redux/actions/Home/ProjectActions'
 import { ModalCreateTask } from '../components/Home'
-import { openModalEditTaskAction } from '../redux/actions/Home/TaskAction'
+import {  openModalEditTaskAction } from '../redux/actions/Home/TaskAction'
 import ModalEditTask from '../components/Home/ModalEditTask'
+import { getUsersByIdProjAction } from '../redux/actions/Home/UsersAction'
 const ProjectDetail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const ProjectDetail = () => {
     const { projectDetailInfo } = useSelector(state => state.projectReducer);
     useEffect(() => {
         dispatch(getProjectDetail(id))
+        dispatch(getUsersByIdProjAction(id))
     }, [])
 
     const renderPriority = (value) => {
@@ -40,6 +42,7 @@ const ProjectDetail = () => {
         }
         return color
     }
+    console.log(projectDetailInfo,'pro')
     return (
         <ProjectLayout>
             <BreadCrumd> Projects / Singularity 7.0 / Project Detail</BreadCrumd>
@@ -65,11 +68,11 @@ const ProjectDetail = () => {
                             <h3 className='py-3 pl-1.5 text-xs text-gray-500'>{item.statusName}</h3>
                             {/* TASK LIST */}
                             {item.lstTaskDeTail?.map(taskDetail =>
-                                <div className='bg-white shadowKanban dark:text-white dark:bg-secondary-dark my-1.5'
+                                <div
+                                key={taskDetail.taskId}
+                                className='bg-white shadowKanban dark:text-white dark:bg-secondary-dark my-1.5 hover:bg-gray-200 dark:hover:bg-third-dark'
                                     onClick={() => {
                                         dispatch(openModalEditTaskAction)
-                                        //  taskDetail.taskId
-                                        console.log(taskDetail.taskId)
                                         dispatch(getTaskDetailAction(taskDetail.taskId))
                                     }}
                                 >
@@ -101,7 +104,7 @@ const ProjectDetail = () => {
                     )}
                 </div>
             </div>
-            <ModalEditTask />
+            <ModalEditTask projectDetailInfo={projectDetailInfo} />
         </ProjectLayout>
     )
 }

@@ -30,7 +30,8 @@ h4 {
   font-size: 18px;
   line-height: 1.2;
 }
-p{
+
+p {
   line-height: 1.2;
 }
 
@@ -323,4 +324,27 @@ p{
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder:hover>td,
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder {
   background-color: #2D2D2D;
+}
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popover .ant-popover-title {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+:where(.css-dev-only-do-not-override-mxhywb).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.assignMEM .assignMEMicon {
+  display: none;
+}
+
+.assignMEMicon {
+  left: -0.075px;
+  border-radius: 4px;
+}
+
+.assignMEM:hover .assignMEMicon {
+  display: block;
 }

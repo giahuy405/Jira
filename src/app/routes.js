@@ -2,7 +2,7 @@ import { Home, Contact, About, Login, Signup, Board, Settings, Users, ProjectMan
 
 export const routes = [
     { path: '/', component: Home },
-    { path: '/project', component: Board },
+    { path: '/project', component: ProjectManagement },
     { path: '/contact', component: Contact },
     { path: '/about', component: About },
     { path: '/login', component: Login },

@@ -29,13 +29,15 @@ export function* rootSaga() {
         ProjectSaga.getTaskDetail(),
 
         TaskSaga.getAllTaskTypeSaga(),
+        TaskSaga.editTaskDetailSga(),
+        
 
         PrioritySaga.getAllPriority(),
 
         UsersSaga.getAllUsersSaga(),
         UsersSaga.getUserByIdSaga(),
 
-        StatusSaga.getAllStatusSaga()
+        StatusSaga.getAllStatusSaga(),
     ])
 
 }

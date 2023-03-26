@@ -30,7 +30,7 @@ const links = [
                 icon: <UserOutlined />
             },
             {
-                name: 'Testing',
+                name: 'Testing1',
                 path: 'color-picker',
                 icon: <CreditCardOutlined />,
             },
@@ -40,12 +40,12 @@ const links = [
         title: 'Charts',
         links: [
             {
-                name: 'Testing',
+                name: 'Testing2',
                 path: 'line',
                 icon: <CreditCardOutlined />,
             },
             {
-                name: 'Testing',
+                name: 'Testing3',
                 path: 'area',
                 icon: <CreditCardOutlined />,
             },
