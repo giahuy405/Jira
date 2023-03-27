@@ -73,7 +73,7 @@ const MenuBar = () => {
                         <button
                             type="button"
                             onClick={() => dispatch(closeActiveMenuAction)}
-                            className="text-sm rounded-full p-1.5 hover:bg-light-gray mt-4 block text-gray-400 hover:bg-gray-200 dark:hover:bg-third-dark dark:border-none border border-color duration-300"
+                            className="text-lg rounded-full p-1.5 hover:bg-light-gray mt-4 block text-gray-400 hover:bg-gray-200 dark:hover:bg-third-dark dark:border-none border border-color duration-300"
                         >
                             <CloseOutlined className='block' />
                         </button>
@@ -115,9 +115,9 @@ const MenuBar = () => {
                     <button
                         type="button"
                         onClick={() => dispatch(setActiveMenuAction)}
-                        className="text-lg rounded-full p-2 hover:bg-light-gray mt-3 block text-white bg-blue-600 hover:bg-blue-700 absolute left-[78px]  "
+                        className="text-2xl rounded-full p-2 hover:bg-light-gray mt-3 block text-white bg-blue-600 hover:bg-blue-700 absolute left-[80px]  "
                     >
-                        <BarsOutlined className='block' />
+                        <BarsOutlined className='block ' />
                     </button>
                 </div>
             }

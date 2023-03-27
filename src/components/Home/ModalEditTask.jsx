@@ -180,7 +180,7 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                             let value = historyContent;
                                             dispatch(editInfoTaskDetailAction('description', value))
                                         }}
-                                        className='px-5 py-1 border border-blue-600 text-blue-600 hover:drop-shadow-md rounded'>
+                                        className='px-5 py-1  hover:bg-gray-200 rounded text-gray-500 dark:hover:bg-third-dark'>
                                         Cancel</button>
                                     <button
                                         className='px-5 py-1 bg-blue-600 border border-blue-600 ml-2 hover:bg-blue-700 text-white rounded'
@@ -241,10 +241,10 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                             onClick={() => {
                                                 setIsCmt(false)
                                             }}
-                                            className='px-5 py-1 border border-blue-600 text-blue-600 hover:drop-shadow-md rounded  '>
+                                            className='px-5 py-1  hover:bg-gray-200 rounded text-gray-500 dark:hover:bg-third-dark'>
                                             Cancel</button>
                                         <button
-                                            className='px-5 py-1 bg-blue-600 border border-blue-600 ml-2 hover:bg-blue-700 text-white rounded'
+                                            className='px-5 py-1 bg-blue-600  ml-2 hover:bg-blue-700 text-white rounded'
                                             onClick={async () => {
                                                 setDisplayEditor(false)
                                                 let value = contentEditor;

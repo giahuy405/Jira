@@ -63,7 +63,7 @@ const ProjectDetail = () => {
         <ProjectLayout >
             <BreadCrumd> Projects / Singularity 7.0 / Project Detail</BreadCrumd>
             <div className='h-screen'>
-                <h3 className='text-2xl font-medium text-[#172A4D] dark:text-blue-500 mb-3'>Project detail - <span className='text-orange-600'>{projectDetailInfo?.projectName}</span></h3>
+                <h3 className='text-2xl font-medium text-[#172A4D]  dark:text-white mb-3'>Project detail - <span className='text-blue-600'>{projectDetailInfo?.projectName}</span></h3>
                 <div className='flex items-center gap-5'>
                     <Input
                         className='w-[160px]'

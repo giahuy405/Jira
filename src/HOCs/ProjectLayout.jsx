@@ -8,7 +8,7 @@ const ProjectLayout = (props) => {
     if (activeMenu) myClass = 'pl-[320px]'
     else myClass = 'pl-[130px]'
     return (
-        <div>
+        <div className=''>
             <SideBar />
             <ModalCreateTask />
             <div className='dark:bg-third-dark'>
