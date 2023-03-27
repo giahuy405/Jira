@@ -425,10 +425,4 @@ p {
   border: 3px solid var(--primary);
 }
 
-section {
-  margin:
- 0 auto;
-  max-width: 50vw;
-  height: 60vh;
-  overflow-y: scroll;
-}
+ 
