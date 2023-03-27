@@ -8,14 +8,14 @@ const initalState = {
     modalEditOpen: false,
     modalTaskOpen: false,
     modalOpen: false,
-    modalUser:false,
+    modalUser: false,
     modalAlert: {
-        visible:false,
-        contentAlert:""
+        visible: false,
+        contentAlert: ""
     },
-    modalCreateUser:false
-   
- 
+    modalCreateUser: false,
+    testToken: null,
+
 }
 
 export const reducer = (state = initalState, { type, payload }) => {
@@ -80,6 +80,10 @@ export const reducer = (state = initalState, { type, payload }) => {
             }
             case actionTypes.CLOSE_MODAL_CREATE_USER: {
                 draft.modalCreateUser = false
+                break
+            }
+            case actionTypes.TEST_TOKEN: {
+                draft.testToken = payload
                 break
             }
             default:

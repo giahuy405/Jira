@@ -17,21 +17,22 @@ code {
 }
 
 h2 {
-  font-size: 24px;
-  line-height: 1.2;
-}
-
-h3 {
   font-size: 20px;
   line-height: 1.2;
 }
 
-h4 {
+h3 {
   font-size: 18px;
   line-height: 1.2;
 }
 
+h4 {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
 p {
+  font-size: 15px;
   line-height: 1.2;
 }
 
@@ -241,8 +242,9 @@ p {
 }
 
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content {
-  background-color: #29314b;
+  background-color: #1E1E1E;
   color: white;
+  border: 1px solid gray;
 }
 
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close {
@@ -255,7 +257,7 @@ p {
 
 /* TABLE */
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table {
-  background-color: #393E46;
+  background-color: #1E1E1E;
   color: white;
   border-color: #0b5dd1;
 }
@@ -347,4 +349,38 @@ p {
 
 .assignMEM:hover .assignMEMicon {
   display: block;
+}
+
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-dropdown .ant-table-filter-dropdown {
+  background-color: #2D2D2D;
+}
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-radio-button-wrapper {
+  background-color: #2D2D2D;
+  color: white;
+}
+
+/* sweet */
+.dark .swal2-popup.swal2-toast {
+  background: #2D2D2D;
+  color: white;
+  border: 1px solid gray;
+}
+
+.commentDots {
+  display: inline-block;
+  padding: 2px 0px;
+  color: rgb(94, 108, 132);
+  font-size: 14.5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.commentDots::before {
+  position: relative;
+  top: -3px;
+  right: 1px;
+  content: "·";
+  display: inline-block;
 }

@@ -22,7 +22,7 @@ const Home = () => {
             </ul>
           </div>
           <div className='md:w-1/2 pt-10'>
-            <div className='bg-white rounded shadow-lg text-black px-5 py-8 text-center'>
+            <div className='bg-white rounded shadow-lg text-black px-5 py-8 text-center dark:bg-secondary-dark dark:text-white'>
               <h3 className='text-4xl font-semibold '>Get started</h3>
               <p className='mt-1 mb-4'> Free for up to 10 users</p>
               <NavLink to='/signup' className="self-center px-5 py-2 font-semibold rounded border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white duration-200">SIGN UP NOW</NavLink>
@@ -112,22 +112,22 @@ const Home = () => {
         </div>
       </section>
       {/* introduce */}
-      <section className='text-center pt-10 bg-gradient-to-b from-white via-gray-100 to-gray-200 mb-10'>
-        <h3 className='text-4xl font-semibold text-gray-600'>Jira your way</h3>
-        <p className='text-xl text-gray-500 my-6'>Easily customize your workflows by turning on (or off) tons of powerful features with a single click.</p>
+      <section className='text-center pt-10 bg-gradient-to-b from-white via-gray-100 to-gray-200  dark:bg-gradient-to-b dark:from-third-dark dark:via-secondary-dark dark:to-primary-dark'>
+        <h3 className='text-4xl font-semibold text-gray-500 dark:text-white '>Jira your way</h3>
+        <p className='text-xl text-gray-500 py-6 '>Easily customize your workflows by turning on (or off) tons of powerful features with a single click.</p>
         <div className='max-w-[600px] mx-auto ' >
           <img id="84435c58" alt="Screenshot of toggling features" className="component__image" src="https://wac-cdn.atlassian.com/dam/jcr:720d8ce3-ab0c-4eb9-bb9b-515ac674e160/01_Scrnshot_jira-configuration-static.png?cdnVersion=892" loading="auto" />
         </div>
       </section>
-      <section className='shadow-lg'>
+      <section className='shadow-lg dark:bg-secondary-dark pt-10'>
         <div className='text-center max-w-[750px] mx-auto pb-10 '>
           <p className='text-xl text-gray-500 font-semibold'> “We grew to 30 projects with lots of plans and branches under each, which means 50 running builds at the same time. Considering the number of projects, we couldn’t have survived without Atlassian.”</p>
           <span className='text-slate-900 text-xs mt-4'>Scott Carpenter
             Work Program Manager, Fugro Roames</span>
         </div>
       </section>
-      <section>
-        <div className='md:flex justify-between max-w-[900px] my-6 gap-14 items-center mx-auto px-2'>
+      <section className='dark:bg-third-dark dark:text-white'>
+        <div className='md:flex justify-between max-w-[900px] py-6 gap-14 items-center mx-auto px-2'>
           <div className='md:w-1/3'>
             <h3 className='font-bold text-2xl mb-2'>Unfunk your workflow</h3>
             <p>Set up, clean up, and easily manage even the most hectic project workflows.</p>
@@ -136,7 +136,7 @@ const Home = () => {
             <img id="fc934c13" alt="Screenshot of Next-gen board" className="component__image" src="https://wac-cdn.atlassian.com/dam/jcr:999ace66-3f06-4675-916b-c8dfaffc0795/Unfunk-JSW-PSD-2x.png?cdnVersion=892" loading="auto" />
           </div>
         </div>
-        <div className='md:flex justify-between max-w-[900px] my-6 gap-14 items-center mx-auto px-2'>
+        <div className='md:flex justify-between max-w-[900px] py-6 gap-14 items-center mx-auto px-2'>
           <div className='md:w-2/3'>
             <img id="c7a6c6d5" alt="Screenshot of Jira roadmap" className="component__image" src="https://wac-cdn.atlassian.com/dam/jcr:8f84e087-3d18-46a1-9453-ce370c45dbc1/Stay-JSW-PSD-2x.png?cdnVersion=892" loading="auto" />
           </div>
@@ -145,7 +145,7 @@ const Home = () => {
             <p>Set up, clean up, and easily manage even the most hectic project workflows.</p>
           </div>
         </div>
-        <div className='md:flex px-3 justify-between max-w-[900px] my-6 gap-14 items-center mx-auto'>
+        <div className='md:flex px-3 justify-between max-w-[900px] py-6 gap-14 items-center mx-auto'>
           <div className='md:w-1/3'>
             <h3 className='font-bold text-2xl mb-2'>Unfunk your workflow</h3>
             <p>Set up, clean up, and easily manage even the most hectic project workflows.</p>
@@ -155,7 +155,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className='bg-gradient-to-l from-blue-700 via-blue-800 to-gray-900 py-12 mt-12'>
+      <section className='bg-gradient-to-l from-blue-700 via-blue-800 to-gray-900 py-12 pt-12'>
         <div className='max-w-[880px] mx-auto text-center text-white'>
           <h3 className='text-4xl font-semibold'>Concept to launch in record time.</h3>
           <button
@@ -163,16 +163,18 @@ const Home = () => {
           >Get it free</button>
         </div>
       </section>
-      <section className='text-center max-w-[900px] mx-auto py-14'>
-        <h3 className='text-2xl font-semibold'> Trusted by over 100,000 customers world-wide</h3>
-        <div className='flex gap-6 justify-center mt-6 flex-col md:flex-row'>
-          <img id="e3be2884" alt="Square logo" className="component__image" style={{ height: 45 }} src="https://wac-cdn.atlassian.com/dam/jcr:4cba45db-e328-4abd-88ea-bfe276355cb5/Square%20Logo.svg?cdnVersion=892" loading="auto" />
-          <img id="408adcd5" alt="ebay logo" className="component__image" style={{ height: 45 }} src="https://wac-cdn.atlassian.com/dam/jcr:db51d228-2145-498b-ab73-064aa651770d/ebay%20logo.svg?cdnVersion=892" loading="auto" />
-          <img id="254ea3eb" alt="Spotify logo" className="component__image" style={{ height: 45 }} src="https://wac-cdn.atlassian.com/dam/jcr:7db3e103-186c-4413-950d-dea2f2a5755c/Spotify%20logo.svg?cdnVersion=892" loading="auto" />
-          <img id="e3be2884" alt="Square logo" className="component__image" style={{ height: 45 }} src="https://wac-cdn.atlassian.com/dam/jcr:4cba45db-e328-4abd-88ea-bfe276355cb5/Square%20Logo.svg?cdnVersion=892" loading="auto" />
+      <section className='text-center py-14 dark:bg-third-dark dark:text-white'>
+        <div className=' max-w-[900px] mx-auto'>
+          <h3 className='text-2xl font-semibold'> Trusted by over 100,000 customers world-wide</h3>
+          <div className='flex gap-6 justify-center mt-6 flex-col md:flex-row'>
+            <img id="e3be2884" alt="Square logo" className="component__image" style={{ height: 45 }} src="https://wac-cdn.atlassian.com/dam/jcr:4cba45db-e328-4abd-88ea-bfe276355cb5/Square%20Logo.svg?cdnVersion=892" loading="auto" />
+            <img id="408adcd5" alt="ebay logo" className="component__image" style={{ height: 45 }} src="https://wac-cdn.atlassian.com/dam/jcr:db51d228-2145-498b-ab73-064aa651770d/ebay%20logo.svg?cdnVersion=892" loading="auto" />
+            <img id="254ea3eb" alt="Spotify logo" className="component__image" style={{ height: 45 }} src="https://wac-cdn.atlassian.com/dam/jcr:7db3e103-186c-4413-950d-dea2f2a5755c/Spotify%20logo.svg?cdnVersion=892" loading="auto" />
+            <img id="e3be2884" alt="Square logo" className="component__image" style={{ height: 45 }} src="https://wac-cdn.atlassian.com/dam/jcr:4cba45db-e328-4abd-88ea-bfe276355cb5/Square%20Logo.svg?cdnVersion=892" loading="auto" />
+          </div>
         </div>
       </section>
-      <footer className='py-10 bg-gray-200 px-2'>
+      <footer className='py-10 bg-gray-200 px-2 dark:bg-primary-dark dark:text-gray-300'>
         <div className='max-w-[1000px] flex justify-around mx-auto '>
           <div>
             <ul>

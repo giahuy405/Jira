@@ -1,3 +1,4 @@
+import * as actionTypes from '../redux/constants/constants'
 import axios from "axios";
 const DOMAIN = "https://jiranew.cybersoft.edu.vn/api";
 const TOKEN =
@@ -18,4 +19,12 @@ export const authService = {
       },
       data,
     }),
+  testTokenAPI: () => axios({
+    url: `${DOMAIN}/Users/TestToken`,
+    method: 'POST',
+    headers: {
+      TokenCybersoft: TOKEN,
+      Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)
+    },
+  }),
 };

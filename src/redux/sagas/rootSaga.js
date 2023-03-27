@@ -8,10 +8,11 @@ import * as PrioritySaga from './Priority/PrioritySaga'
 import * as UsersSaga from './Users/UsersSaga'
 import * as StatusSaga from './Status/StatusSaga'
 import * as ManagerSaga from './Manager/managerSaga'
+import * as CommentSaga from './Comments/CommentsSaga'
 
 
 export function* rootSaga() {
-    yield all([  
+    yield all([
         AuthSaga.authSaga(),
 
         ProjectSaga.projectCategorySaga(),
@@ -30,7 +31,7 @@ export function* rootSaga() {
 
         TaskSaga.getAllTaskTypeSaga(),
         TaskSaga.editTaskDetailSga(),
-        
+        CommentSaga.getAllCommentSaga(),
 
         PrioritySaga.getAllPriority(),
 

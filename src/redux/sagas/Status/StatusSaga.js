@@ -20,6 +20,17 @@ export function* getAllStatusSaga() {
             console.log(err.response)
         }
     });
+    yield takeLatest(actionTypes.UPDATE_STATUS_DRAG, function* updateStatusDrag({ type, payload }) {
+        try {
+            const res = yield call(() => statusService.updateStatus(payload));
+            yield put({
+                type: actionTypes.GET_PROJECT_DETAIL_API,
+                id: payload.id
+            })
+            console.log(payload.id)
+        } catch (err) {
+            console.log(err.response)
+        }
+    });
 }
 
- 

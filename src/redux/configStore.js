@@ -7,6 +7,7 @@ import { taskReducer } from "./reducers/taskReduce";
 import { priorityReducer } from "./reducers/priorityReducer";
 import { userReducer } from "./reducers/usersReducer";
 import { statusReducer } from "./reducers/statusReducer";
+import { commentReducer } from "./reducers/commentReducer";
 
 
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     priorityReducer,
     userReducer,
     statusReducer,
+    commentReducer
 })
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(middlewareSaga)))

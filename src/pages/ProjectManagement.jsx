@@ -44,7 +44,9 @@ const ProjectManagement = () => {
                     ref={searchInput}
                     placeholder='Enter a search term'
                     value={selectedKeys[0]}
-                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onChange={(e) => {
+                        setSelectedKeys(e.target.value ? [e.target.value] : [])
+                    }}
                     onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
                     style={{
                         marginBottom: 8,

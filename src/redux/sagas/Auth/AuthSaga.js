@@ -7,7 +7,7 @@ import * as actionTypes from '../../constants/constants'
 
 /**
  * authentication for login and sign up page
- * creator : Huy - 20/3/2023
+ * creator : Huy - 20/3/2023 -> TEST_TOKEN_API -> code bên server bị lỗi nên ko check dc token 
  */
 export function* authSaga() {
     //-------------------LOGIN ACCOUNT-------------
@@ -123,6 +123,18 @@ export function* authSaga() {
             })
         }
     });
+    // yield takeLatest(actionTypes.TEST_TOKEN_API, function* signUp({ type, payload, navigate }) {
+    //     try {
+    //         const { data, status } = yield authService.testTokenAPI();
+    //         if (status == 500) {
+    //             alert('2')
+    //         }
+    //     }
+    //     catch (err) {
+    //         console.log(err)
+
+    //     }
+    // });
 }
 
 

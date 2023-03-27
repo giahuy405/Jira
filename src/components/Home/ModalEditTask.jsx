@@ -11,8 +11,8 @@ import { closeModalEditTaskAction, editInfoTaskDetailAction, getStatusID, openMo
 import { getAllProjectAction, getProjectDetail, getTaskDetailAction } from '../../redux/actions/Home/ProjectActions'
 import { getTaskDetail } from '../../redux/sagas/Project/ProjectSaga'
 import { getUsersByIdProjAction } from '../../redux/actions/Home/UsersAction'
-import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 const { Option } = Select;
 
 const ModalEditTask = ({ projectDetailInfo }) => {
@@ -26,6 +26,19 @@ const ModalEditTask = ({ projectDetailInfo }) => {
     const [displayEditor, setDisplayEditor] = useState('');
     const [historyContent, setHistoryContent] = useState('');
     const [contentEditor, setContentEditor] = useState(taskDetail?.description);
+    const [isCmt, setIsCmt] = useState(false);
+    useEffect(() => {
+        function handleKeyDown(event) {
+            if (event.key === 'm') {
+                editorRef.current.focus();
+                setIsCmt(true)
+            }
+        }
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
+    const { allCmt } = useSelector(state => state.commentReducer)
     useEffect(() => {
         dispatch(getAllProjectAction())
         dispatch(getUsersByIdProjAction(id))
@@ -87,9 +100,9 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                 />
             </div>
         </div>
-
     }
-    console.log(projectDetailInfo, 'project')
+    const infoUser = JSON.parse(localStorage.getItem('USER_INFO'));
+
     return (
         <div>
             <Modal
@@ -103,29 +116,44 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                 <h3 className='text-center text-xl font-semibold mb-3'>Edit Task</h3>
                 <div className="flex">
                     <div className='w-2/3 pr-12'>
-                        <p className='text-gray-400 mb-1'>Type</p>
-                        <Select
-                            style={{
-                                width: '90px',
-                            }}
-                            name='typeId'
-                            optionFilterProp='label'
-                            value={taskDetail?.typeId}
-                            onSelect={(value, option) => {
-                                handleChange('typeId', value)
-                            }}
-                            options={[
-                                {
-                                    label: <><FileTextOutlined className='mr-1 text-lime-500' />Task</>, value: 2
-                                },
-                                {
-                                    label: <>   <BugOutlined className='mr-1 text-red-500' />Bug</>, value: 1
-                                },
-                            ]}
-                        >
-                        </Select>
-                        <p className='text-gray-400 mb-1 mt-4'>Description</p>
+                        <div className='flex gap-3'>
+                            <div >
+                                <p className='text-gray-400 mb-1'>Type</p>
+                                <Select
+                                    style={{
+                                        width: '90px',
+                                    }}
+                                    name='typeId'
+                                    optionFilterProp='label'
+                                    value={taskDetail?.typeId}
+                                    onSelect={(value, option) => {
+                                        handleChange('typeId', value)
+                                    }}
+                                    options={[
+                                        {
+                                            label: <><FileTextOutlined className='mr-1 text-lime-500' />Task</>, value: 2
+                                        },
+                                        {
+                                            label: <>   <BugOutlined className='mr-1 text-red-500' />Bug</>, value: 1
+                                        },
+                                    ]}
+                                >
+                                </Select>
+                            </div>
+                            <div className='w-full'>
+                                <p className='text-gray-400 mb-1'>Task name</p>
+                                <Input
+                                    className='w-full'
+                                    name='taskName'
+                                    value={taskDetail?.taskName}
+                                    onChange={(e,) => {
+                                        handleChange('taskName', e.target.value)
+                                    }}
+                                />
+                            </div>
+                        </div>
 
+                        <p className='text-gray-400 mb-1 mt-4'>Description</p>
                         {displayEditor ?
                             <>
                                 <div style={{ color: 'black' }}>
@@ -156,10 +184,14 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                         Cancel</button>
                                     <button
                                         className='px-5 py-1 bg-blue-600 border border-blue-600 ml-2 hover:bg-blue-700 text-white rounded'
-                                        onClick={() => {
+                                        onClick={async () => {
                                             setDisplayEditor(false)
-                                            let value = contentEditor
-                                            dispatch(editInfoTaskDetailAction('description', value))
+                                            let value = contentEditor;
+                                            console.log(contentEditor)
+                                            await dispatch(editInfoTaskDetailAction('description', value))
+                                            await dispatch({
+                                                type: 'HANDLE_CHANGE_TASK_DETAIL'
+                                            })
                                         }}
                                     >Save</button>
                                 </div>
@@ -172,8 +204,87 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                 }}
                                 dangerouslySetInnerHTML={{ __html: `${taskDetail?.description}` }} >
                             </div>
-
                         }
+                        <div>
+                            <h3 className='text-gray-400  text-sm mt-5 mb-2'>Comments</h3>
+                            {/* Add new comments */}
+                            <div className='flex gap-2'>
+                                <div>
+                                    <img width={30} className='rounded-full' src={infoUser?.avatar} alt={infoUser?.id} />
+                                </div>
+                                <div>
+                                    <Editor
+                                        name='comment'
+                                        apiKey='an4j8gh14omc9ehdjjqq7byek89ohgr1tyjhurzeqb2k3s3p'
+                                        onInit={(evt, editor) => editorRef.current = editor}
+                                        // value={values.description}
+
+                                        init={{
+                                            height: 150,
+                                            menubar: false,
+                                            plugins: [
+                                                'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
+                                                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                                                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                                            ],
+                                            toolbar: 'undo redo | blocks | ' +
+                                                'bold italic forecolor | alignleft aligncenter ' +
+                                                'alignright alignjustify | bullist numlist outdent indent | ' +
+                                                'removeformat | help',
+                                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                                        }}
+                                    // onChange={e=>console.log(e.target.value)}
+                                    // onEditorChange={content => setFieldValue('description', content)}
+                                    />
+                                    {isCmt ? <div className='mt-2'>
+                                        <button
+                                            onClick={() => {
+                                                setIsCmt(false)
+                                            }}
+                                            className='px-5 py-1 border border-blue-600 text-blue-600 hover:drop-shadow-md rounded  '>
+                                            Cancel</button>
+                                        <button
+                                            className='px-5 py-1 bg-blue-600 border border-blue-600 ml-2 hover:bg-blue-700 text-white rounded'
+                                            onClick={async () => {
+                                                setDisplayEditor(false)
+                                                let value = contentEditor;
+                                                console.log(contentEditor)
+                                                await dispatch(editInfoTaskDetailAction('description', value))
+                                                await dispatch({
+                                                    type: 'HANDLE_CHANGE_TASK_DETAIL'
+                                                })
+                                            }}
+                                        >Save</button>
+                                    </div> : <p className='mt-1 text-sm  text-gray-400'><span className='font-bold'>Pro tip</span> : press <span className='px-1 bg-gray-200 rounded text-black'>M</span> to comment</p>
+                                    }
+                                </div>
+
+                            </div>
+
+                            {/* All comments */}
+                            <div className='mt-3'>
+                                {allCmt?.map(item =>
+                                    <>
+                                        <div key={item.id} className='flex gap-4 mb-4'>
+                                            <div>
+                                                <img width={30} className='rounded-full' src={item.user.avatar} alt={item.id} />
+                                            </div>
+                                            <div>
+                                                <p className='font-semibold mb-1 text-gray-400'>{item.user.name}</p>
+                                                <div className='text-sm'><div dangerouslySetInnerHTML={{ __html: `${item.contentComment}` }} /></div>
+                                                <div className='text-gray-400 flex gap-2'>
+                                                    <div className='hover:underline'>Edit</div>
+                                                    <div className='commentDots'></div>
+                                                    <div>Delete</div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
                     </div>
                     <div className='w-1/3'>
                         <div>
@@ -184,14 +295,9 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                 }}
                                 name='statusId'
                                 value={taskDetail?.statusId}
-                                onChange={async (value, option) => {
+                                onChange={(value, option) => {
                                     let name = document.querySelector('[name="statusId"]').getAttribute('name')
                                     handleChange(name, value)
-                                    // dispatch({
-                                    //     type:'TASK_DETAIL_ASSIGN_API',
-                                    //     payload:value,
-                                    // })
-                                    // await dispatch(getProjectDetail(id))
                                 }}
                             >
                                 {projectDetailInfo?.lstTask.map(item =>
@@ -211,10 +317,10 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                                 title="Delete the task"
                                                 description="Are you sure to delete this task?"
                                                 onConfirm={async () => {
-                                                
+
                                                     dispatch({
-                                                        type:'HANDLE_DELETE',
-                                                        payload:item.id
+                                                        type: 'HANDLE_DELETE',
+                                                        payload: item.id
                                                     })
                                                 }}
                                                 // onCancel={cancel}
@@ -226,7 +332,6 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                                     <span className='block mx-auto w-2'>X</span>
                                                 </div>
                                             </Popconfirm>
-
                                         </div>)}
                                 </div>
                                 <Popover
