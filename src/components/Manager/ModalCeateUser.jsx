@@ -27,16 +27,16 @@ const ModalCeateUser = () => {
   });
   return (
     <div>
-      <Modal open={open}  footer={null} >
+      <Modal open={open}  footer={null} onCancel={handleCancel}  className="modalCreate">
         <div className="flex justify-center">
-          <h2 className="text-3xl font-semibold text-blue-900">Create</h2>
+          <h2 className="textFirst text-3xl font-semibold text-blue-900">Create</h2>
           <h2 className="text-3xl font-semibold text-orange-600">User</h2>
         </div>
         <div
           className=" bg-slate-800 mt-3"
           style={{ height: 1, width: "100%" }}
         ></div>
-        <form onSubmit={Formik.handleSubmit}>
+        <form onSubmit={Formik.handleSubmit} className="form"  >
           <div className="flex flex-col justify-center items-center">
             <div className="mb-2 mt-5 flex flex-col ">
               <h2 className="text-lg text-slate-600">Name :</h2>

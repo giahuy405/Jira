@@ -1,4 +1,4 @@
-import { AutoComplete, Avatar, Input, Skeleton, Space, Table, Tag, Popover } from 'antd'
+import { AutoComplete, Avatar, Input, Skeleton, Space, Table, Tag, Popover, Tooltip } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 import BreadCrumd from '../components/Global/BreadCrumd'
 import ProjectLayout from '../HOCs/ProjectLayout'
@@ -276,9 +276,12 @@ const ProjectManagement = () => {
                                                                 okText="Yes"
                                                                 cancelText="No"
                                                             >
+                                                                <Tooltip title='Delete' color='red'>
                                                                 <button
-                                                                    className='text-red-500 hover:text-gray-600 text-lg leading-3 mx-auto block'
+                                                                className='text-red-500 hover:text-gray-600 text-lg leading-3 mx-auto block'
                                                                 ><DeleteOutlined /></button>
+                                                                </Tooltip>
+                                                               
                                                             </Popconfirm>
                                                         </td>
                                                     </tr>
@@ -341,15 +344,15 @@ const ProjectManagement = () => {
             title: "Action",
             dataIndex: 'id',
             render: (text, obj) => <div className='flex gap-3 text-lg leading-3 ' key={text}>
-                <Popover content="Edit project">
+                <Tooltip title="Edit project" color="blue">
                     <button
                         onClick={async () => {
                             await dispatch(OpenModalEditAction);
                             await dispatch(getProjectDetail(obj.id))
                         }}
                         to='/' className='text-blue-600 hover:text-gray-500'><EditOutlined /></button>
-                </Popover>
-                <Popover content="Delete project">
+                </Tooltip>
+                <Tooltip title="Delete project" color="red" >
                     <Popconfirm
                         title="Delete the task"
                         description="Are you sure to delete this task?"
@@ -360,14 +363,14 @@ const ProjectManagement = () => {
                     >
                         <button className='text-red-500 hover:text-gray-500'><DeleteOutlined /></button>
                     </Popconfirm>
-                </Popover>
-                <Popover content="View detail">
+                </Tooltip>
+                <Tooltip title="View detail" color='green'>
                     <button
                         onClick={() => {
                             navigate(`/project/detail/${obj.id}`)
                         }}
                         className='text-lime-500 hover:text-gray-500'><FileSearchOutlined /></button>
-                </Popover>
+                </Tooltip>
             </div>
         },
     ];

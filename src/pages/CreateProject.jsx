@@ -46,10 +46,11 @@ const CreateProject = () => {
                     onSubmit={onSubmit}
                 >
                     {({ isSubmitting, setFieldValue, errors, touched }) => (
-                        <Form style={{ lineHeight: '16px' }}>
+                        <Form style={{ lineHeight: '16px' }} className="CreateProject">
                             <div className='grid grid-cols-2 gap-4 mt-4'>
                                 <div className='col-span-1'>
                                     <CustomInput
+                                        placeholder="Project Name"
                                         label='Name'
                                         name='projectName'
                                         type='text'
@@ -70,6 +71,7 @@ const CreateProject = () => {
                             </div>
                             <div className='my-3'>
                                 <CustomInput
+                                     placeholder="URL website"
                                     label='URL website ( optional )'
                                     name='alias'
                                     type='text'
@@ -79,13 +81,14 @@ const CreateProject = () => {
                             <div>
                                 <label className='cursor-pointer text-sm font-extralight' htmlFor="description">Description</label>
                                 <Editor
+                                    className='Description'
                                     id='description'
                                     name='description'
                                     apiKey='an4j8gh14omc9ehdjjqq7byek89ohgr1tyjhurzeqb2k3s3p'
                                     onInit={(evt, editor) => editorRef.current = editor}
                                     initialValue="<p>Enter your content here</p>"
                                     init={{
-                                        height: 200,
+                                        height: 200,    
                                         menubar: false,
                                         plugins: [
                                             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',

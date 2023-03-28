@@ -241,7 +241,7 @@ p{
 
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content {
   background-color: #29314b;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close {
@@ -322,5 +322,83 @@ p{
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder:hover>th,
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder:hover>td,
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder {
-  background-color: #2D2D2D;
+  background-color: #242526;
 }
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-input-group >.ant-input:first-child,
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-input-group .ant-input-group-addon:last-child {
+  background-color: #3a3b3c;
+  color: #e4e6eb;
+  border: transparent;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-input-group >.ant-input:first-child::placeholder{
+  color: #e4e6eb;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-item a,
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-next .ant-pagination-item-link,
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-disabled .ant-pagination-item-link,
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-prev .ant-pagination-item-link{
+  color: white;
+}
+.dark .modalCreate .form h2{
+ color: #e4e6eb;
+
+}
+.dark .modalCreate h2.textFirst {
+color: #1de4ff;
+}
+.dark .modalPr h3.textFirst {
+  color: #1de4ff;
+  }
+.dark .modalEdit .form h2{
+  color: #e4e6eb;
+}
+.dark .modalEdit h2.textFirst {
+  color: #1de4ff;
+  }
+.dark .CreateProject input, .dark .CreateProject select{
+  background-color: #3a3b3c;
+  border: transparent;
+  color:#e4e6eb ;
+}
+.dark .CreateProject .Description,
+.dark .tox:not(.tox-tinymce-inline) .tox-editor-header,
+.dark .tox .tox-toolbar-overlord .tox-toolbar__primary,
+.dark .tox .tox-tbtn--bespoke,
+.dark .tox .tox-menu.tox-collection.tox-collection--list,
+.dark .tox .tox-collection--list .tox-collection__item--enabled,
+.dark .tox.tox-tinymce-aux .tox-toolbar__overflow{
+  background-color: #3a3b3c;
+  color:#e4e6eb ;
+
+ 
+}
+.dark .tox .tox-tbtn svg{
+  fill:#e4e6eb ;
+}
+.dark .tox .tox-edit-area__iframe,
+.dark .tox .tox-statusbar,
+.dark .tox .tox-collection--list .tox-collection__item--active{
+  background-color: #9a9a9a;
+}
+.dark .tox-tinymce{
+  border:  transparent;
+}
+.dark .tox:not([dir=rtl]) .tox-collection--list .tox-collection__item>.tox-collection__item-label:first-child,
+.dark .tox .tox-collection__item-checkmark svg,
+.dark .tox .tox-statusbar__path-item,
+.dark .tox .tox-statusbar__wordcount,
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popover .ant-popover-title
+{
+  color:#e4e6eb ;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-item-active{
+  border-color: transparent;
+  background-color: transparent;
+}
+.dark :where(.css-dev-only-do-not-override-mxhywb) a:hover {
+  background-color: #393E46;
+  border-radius: 4px
+};
+
+ 
+   

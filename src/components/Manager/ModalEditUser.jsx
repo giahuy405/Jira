@@ -36,16 +36,16 @@ const modalEditUser = () => {
   };
   return (
     <div>
-      <Modal open={open}  footer={null} >
+      <Modal open={open}  footer={null} onCancel={handleCancel} className ="modalEdit" >
         <div className="flex justify-center">
-          <h2 className="text-3xl font-semibold text-blue-900">Edit</h2>
+          <h2 className=" textFirst text-3xl font-semibold text-blue-900">Edit</h2>
           <h2 className="text-3xl font-semibold text-orange-600">User</h2>
         </div>
         <div
           className=" bg-slate-800 mt-3"
           style={{ height: 1, width: "100%" }}
         ></div>
-        <form onSubmit={formit.handleSubmit}>
+        <form onSubmit={formit.handleSubmit} className='form'>
           <div className="flex justify-center items-center pt-3">
             <img
               className="w-11 mr-1"

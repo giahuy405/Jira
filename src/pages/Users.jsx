@@ -207,10 +207,10 @@ const handleSearchUser = (value)=>{
           phoneNumber:items.phoneNumber,
           action: <div className="flex justify-center">
           <Tooltip title="Edit" color="green">
-            <button className="text-green-500 text-xl mr-5" onClick={()=>{handleEditUser(items.userId)}}><EditOutlined /></button>
+            <button className="hover:text-gray-500 text-green-500 text-xl mr-5" onClick={()=>{handleEditUser(items.userId)}}><EditOutlined /></button>
           </Tooltip>
           <Tooltip  title="Delete" color="red">
-          <button className="text-red-500 text-xl" onClick={()=>{handleDelete(items.userId)}}><DeleteOutlined /></button>
+          <button className="text-red-500 hover:text-gray-500 text-xl" onClick={()=>{handleDelete(items.userId)}}><DeleteOutlined /></button>
           </Tooltip>
           </div>
         }))} 

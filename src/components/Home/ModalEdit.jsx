@@ -40,8 +40,14 @@ const ModalEdit = (props) => {
                 onCancel={() => dispatch(CloseModaEditlAction)}
                 width={600}
                 footer={[]}
+                className='modalPr'
             >
-                <h3 className='text-center text-xl font-semibold mb-6'>Edit Project</h3>
+                <div className='flex justify-center'>
+                <h3 className='textFirst text-3xl font-semibold mb-6 text-blue-900'>Edit </h3>
+                <h3 className='text-3xl font-semibold mb-6 text-orange-600'>Project</h3>
+                </div>
+                <div style={{height:1, width:"100%", backgroundColor:"black" }}></div>
+                
                 <Formik
                     initialValues={{
                         id:projectDetailInfo?.id,
