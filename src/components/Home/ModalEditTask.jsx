@@ -207,7 +207,7 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                         }
                         <div>
                             <h3 className='text-gray-400  text-sm mt-5 mb-2'>Comments</h3>
-                            {/* Add new comments */}
+                            {/* Add new comments */} 
                             <div className='flex gap-2'>
                                 <div>
                                     <img width={30} className='rounded-full' src={infoUser?.avatar} alt={infoUser?.id} />
