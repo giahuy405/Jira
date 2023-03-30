@@ -43,7 +43,6 @@ export function* getUserByIdSaga() {
     yield takeLatest(actionTypes.GET_USERS_BY_ID_PROJECT, function* userById({ type, idProject }) {
         try {
             const res = yield call(() => usersService.getUserByIdProj(idProject));
-            console.log(res.data.content)
 
             yield put({
                 type: actionTypes.USERS_BY_ID_PROJ,

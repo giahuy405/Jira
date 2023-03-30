@@ -176,7 +176,7 @@ const handleSearchUser = (value)=>{
     });
   }
   return (
-    <div>
+    <div >
        <ProjectLayout>
       <div>
     
@@ -214,7 +214,7 @@ const handleSearchUser = (value)=>{
           </Tooltip>
           </div>
         }))} 
-        scroll={{ y: 490 }}
+        scroll={{ y:499 }}
         // pagination={false}
         locale={{
           emptyText: !listUser ? <div>

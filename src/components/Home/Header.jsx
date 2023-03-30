@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 
 const Header = () => {
     return (
-        <header className="bg-white shadow-md fixed top-0 w-full">
-            <div className="container flex justify-between md:px-10 px-3 py-2 mx-auto">
-                <a rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center p-2">
+        <header className="bg-white shadow-md fixed top-0 w-full dark:bg-primary-dark">
+            <div className="container flex justify-between md:px-16 px-3 py-2 mx-auto">
+                <a rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center p-2 dark:text-blue-400">
                     <svg width={157} height={24} viewBox="0 0 157 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_203_390)">
                             <rect width={157} height={24} fill="white" fillOpacity="0.01" />
@@ -42,7 +42,7 @@ const Header = () => {
                 </a>
                
                 <div className="items-center flex-shrink-0  flex">
-                    <NavLink to='/login' className="self-center px-4 py-1 font-semibold rounded md:mr-2 hover:text-blue-600">Login</NavLink>
+                    <NavLink to='/login' className="self-center px-4 py-1 font-semibold rounded md:mr-2 hover:text-blue-600 dark:text-white dark:hover:text-blue-500">Login</NavLink>
                     <NavLink to='/signup' className="self-center px-4 py-1 font-semibold rounded border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white duration-200">Sign up</NavLink>
                 </div>
             </div>

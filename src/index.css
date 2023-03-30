@@ -17,20 +17,22 @@ code {
 }
 
 h2 {
-  font-size: 24px;
-  line-height: 1.2;
-}
-
-h3 {
   font-size: 20px;
   line-height: 1.2;
 }
 
-h4 {
+h3 {
   font-size: 18px;
   line-height: 1.2;
 }
-p{
+
+h4 {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+p {
+  font-size: 15px;
   line-height: 1.2;
 }
 
@@ -242,6 +244,9 @@ p{
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content {
   background-color: #29314b;
   color: rgb(255, 255, 255);
+  background-color: #1E1E1E;
+  color: white;
+  border: 1px solid gray;
 }
 
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close {
@@ -254,7 +259,7 @@ p{
 
 /* TABLE */
 .dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table {
-  background-color: #393E46;
+  background-color: #1E1E1E;
   color: white;
   border-color: #0b5dd1;
 }
@@ -401,4 +406,103 @@ color: #1de4ff;
 };
 
  
-   
+
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popover .ant-popover-title {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+:where(.css-dev-only-do-not-override-mxhywb).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.assignMEM .assignMEMicon {
+  display: none;
+}
+
+.assignMEMicon {
+  left: -0.075px;
+  border-radius: 4px;
+}
+
+.assignMEM:hover .assignMEMicon {
+  display: block;
+}
+
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-dropdown .ant-table-filter-dropdown {
+  background-color: #2D2D2D;
+}
+
+.dark :where(.css-dev-only-do-not-override-mxhywb).ant-radio-button-wrapper {
+  background-color: #2D2D2D;
+  color: white;
+}
+
+/* sweet */
+.dark .swal2-popup.swal2-toast {
+  background: #2D2D2D;
+  color: white;
+  border: 1px solid gray;
+}
+
+.commentDots {
+  display: inline-block;
+  padding: 2px 0px;
+  color: rgb(94, 108, 132);
+  font-size: 14.5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.commentDots::before {
+  position: relative;
+  top: -3px;
+  right: 1px;
+  content: "·";
+  display: inline-block;
+}
+
+/* SCROLL BAR */
+:root {
+  --primary: white;
+  --secondary: #4492ff;
+}
+.dark:root {
+  --primary: black;
+  --secondary: #0b5dd1;
+}
+
+/* Scrollbar styles */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--secondary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+/*   background: repeating-linear-gradient(
+    45deg,
+    var(--secondary),
+    var(--secondary) 5px,
+    var(--primary) 5px,
+    var(--primary) 10px
+  ); */
+  border-radius: 20px;
+  border: 3px solid var(--primary);
+}
+
+ 

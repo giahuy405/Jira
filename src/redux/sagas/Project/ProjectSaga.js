@@ -108,7 +108,6 @@ export function* getProjectDetailSaga() {
     yield takeLatest(actionTypes.GET_PROJECT_DETAIL_API, function* projectDetail({ type, id }) {
         try {
             const res = yield call(() => projectService.getProjectDetail(id));
-            console.log(res.data.content)
             yield put({
                 type: actionTypes.PROJECT_DETAIL_INFO,
                 payload: res.data.content
@@ -288,6 +287,7 @@ export function* getTaskDetail() {
                 type: actionTypes.TASK_DETAIL,
                 payload: res.data.content
             })
+            console.log(res.data.content)
         } catch (err) {
             console.log(err)
         }

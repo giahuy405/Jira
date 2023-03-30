@@ -7,25 +7,25 @@ import { Button, LoadingPage } from "../components/Global";
 import AuthLayout from "../HOCs/AuthLayout";
 import { loginAction } from "../redux/actions/Auth/actions";
 import { signInSchema } from "../schema/SignInSchema";
-import {Input} from "antd"
+import { Input } from "antd"
 const Login = () => {
-    const Navigate = useNavigate();
-    const dispatch = useDispatch();
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            passWord: ''
-        },
-        validationSchema: signInSchema,
-       onSubmit: (values)=>{
-        dispatch(loginAction(values,Navigate))
-        
-       }
-    })
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      passWord: ''
+    },
+    validationSchema: signInSchema,
+    onSubmit: (values) => {
+      dispatch(loginAction(values, Navigate))
+
+    }
+  })
   return (
     <AuthLayout>
-      <div className="bg-gray-100 h-screen pt-6 md:bg-hero-pattern bg-cover bg-center relative w-screen">
-        <div className="flex flex-col md:w-[400px] w-full h-full md:h-fit  bg-white shadow-2xl p-6 sm:p-10 absolute z-10 top-1/2  left-1/2 -translate-x-1/2 -translate-y-1/2 rounded ">
+      <div className="bg-gray-100 h-screen pt-6 md:bg-hero-pattern bg-cover bg-center relative w-screen ">
+        <div className="flex flex-col md:w-[400px] w-full h-full md:h-fit  bg-white shadow-2xl p-6 sm:p-10 absolute z-10 top-1/2  left-1/2 -translate-x-1/2 -translate-y-1/2 rounded dark:bg-secondary-dark dark:text-white border border-gray-500 ">
           <div className="mb-3 text-center bg-[]">
             <div className="h-9">
               <svg
@@ -108,44 +108,44 @@ const Login = () => {
               </svg>
             </div>
             <h1 className="mb-0 mt-5 text-lg font-semibold">
-            Enter your account to continue
+              Enter your account to continue
             </h1>
             <p className="text-sm "></p>
           </div>
           <form className="" onSubmit={formik.handleSubmit} >
             <div className="space-y-4">
 
-                <Input
-                  name="email"
-                  id="email"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="Enter your Email"
-                  className="w-full px-3 py-2 border rounded-md font-semibold text-base"
-                />
-                {formik.touched.email && formik.errors.email && <span className="text-sm font-normal text-red-500">{formik.errors.email}</span>}
-                <Input.Password
-                  type="password"
-                  name="passWord"
-                  id="password"
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                  placeholder="Enter your Password"
-                  className="w-full px-3 py-2 border rounded-md font-semibold text-base"
-                />
-                  {formik.touched.passWord && formik.errors.passWord && <span className="text-sm font-normal text-red-500">{formik.errors.passWord}</span>}
-          
+              <Input
+                name="email"
+                id="email"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="Enter your Email"
+                className="w-full px-3 py-2 border rounded-md font-semibold text-base"
+              />
+              {formik.touched.email && formik.errors.email && <span className="text-sm font-normal text-red-500">{formik.errors.email}</span>}
+              <Input.Password
+                type="password"
+                name="passWord"
+                id="password"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                placeholder="Enter your Password"
+                className="w-full px-3 py-2 border rounded-md font-semibold text-base"
+              />
+              {formik.touched.passWord && formik.errors.passWord && <span className="text-sm font-normal text-red-500">{formik.errors.passWord}</span>}
+
             </div>
             <div className="mt-7">
               <div>
                 <Button
-                 type="submit"
+                  type="submit"
                   myClass="py-2 px-5 w-full"
                   text="Log In"
                 />
               </div>
               <p className="px-6 text-sm text-center mt-2.5">
-              Do not have an account ?
+                Do not have an account ?
                 <NavLink
                   to="/signup"
                   className="hover:underline font-semibold text-blue-600"
@@ -160,7 +160,8 @@ const Login = () => {
         </div>
         <div className="absolute inset-0 bg-black bg-opacity-80 "></div>
       </div>
-      <LoadingPage/>
+     
+      <LoadingPage />
     </AuthLayout>
   );
 };

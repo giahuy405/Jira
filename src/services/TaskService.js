@@ -12,7 +12,16 @@ export const taskService = {
             TokenCybersoft: TOKEN,
         },
     }),
- 
+    updateTaskDetail: (payload) => axios({
+        url: `${DOMAIN}/Project/updateTask`,
+        method: 'POST',
+        headers: {
+            TokenCybersoft: TOKEN,
+            Authorization: 'Bearer ' + localStorage.getItem(actionTypes.USER_TOKEN)
+        },
+        data: payload
+    }),
+
 }
 
 

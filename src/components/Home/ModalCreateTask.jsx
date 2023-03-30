@@ -43,14 +43,11 @@ const ModalCreateTask = (props) => {
     }, [escFunction]);
 
     useEffect(() => {
-        async function fetchData() {
-            dispatch(getAllPriorityAction())
-            dispatch(getUsersAction());
-            dispatch(getAllProjKeywordAction());
-            dispatch(getTaskTypeAction);
-            dispatch(getAllStatusAction)
-        }
-        fetchData();
+        dispatch(getAllPriorityAction())
+        dispatch(getUsersAction());
+        dispatch(getAllProjKeywordAction());
+        dispatch(getTaskTypeAction);
+        dispatch(getAllStatusAction)
     }, [])
     const optionSelect = usersByIdProj?.map(item => ({ label: item.name, value: item.userId, key: item.userId }));
     const { id } = useParams()
@@ -65,7 +62,6 @@ const ModalCreateTask = (props) => {
         dispatch(getProjectDetail(id))
         actions.resetForm();
         dispatch(CloseModalTaskAction);
-
     }
     return (
         <div >
@@ -252,7 +248,6 @@ const ModalCreateTask = (props) => {
                                             console.log(data, 'data')
                                             setFieldValue('description', data)
                                         }}
-
                                     />
                                     {errors.description && touched.description && (
                                         <div className="text-red-500 text-xs">{errors.description}</div>)}
