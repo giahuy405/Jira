@@ -32,7 +32,7 @@ const CreateProject = () => {
     }
     return (
         <ProjectLayout>
-            <div className='max-w-[600px] mx-auto mt-3 mb-20 dark:text-white'>
+            <div className='max-w-[600px] mx-auto mt-3 mb-20 dark:text-white h-screen'>
                 <BreadCrumd> Projects / Singularity 7.0 / Project Details</BreadCrumd>
                 <h3 className='text-2xl font-medium text-[#172A4D] dark:text-blue-500'>Create new project</h3>
                 <Formik

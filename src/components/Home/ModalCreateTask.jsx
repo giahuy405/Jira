@@ -256,7 +256,7 @@ const ModalCreateTask = (props) => {
                                     <div className='flex justify-end'>
                                         <button
                                             type='button'
-                                            className='py-1 mr-3 rounded text-gray-400 px-5 bg-white border border-gray-400 hover:text-blue-600 hover:border-blue-600 dark:bg-four-dark'
+                                            className='py-1 mr-3 rounded text-gray-400 px-5 bg-white border border-gray-400 hover:text-blue-600 hover:border-blue-600 dark:bg-secondary-dark'
                                             key="cancel"
                                             onClick={() => dispatch(CloseModalTaskAction)}>
                                             Cancel

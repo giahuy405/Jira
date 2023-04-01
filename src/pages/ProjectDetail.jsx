@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import BreadCrumd from '../components/Global/BreadCrumd'
 import ProjectLayout from '../HOCs/ProjectLayout'
-import { getProjectDetail, getTaskDetailAction } from '../redux/actions/Home/ProjectActions'
+import { OpenModalTaskAction, getProjectDetail, getTaskDetailAction } from '../redux/actions/Home/ProjectActions'
 import { openModalEditTaskAction } from '../redux/actions/Home/TaskAction'
 import ModalEditTask from '../components/Home/ModalEditTask'
 import { getUsersByIdProjAction } from '../redux/actions/Home/UsersAction'
@@ -65,10 +65,13 @@ const ProjectDetail = () => {
             <div className='h-screen'>
                 <h3 className='text-2xl font-medium text-[#172A4D]  dark:text-white mb-3'>Project detail - <span className='text-blue-600'>{projectDetailInfo?.projectName}</span></h3>
                 <div className='flex items-center gap-5'>
-                    <Input
-                        className='w-[160px]'
-                        prefix={<SearchOutlined />}
-                        placeholder="Search" />
+                    <button 
+                     onClick={() => {
+                        dispatch(OpenModalTaskAction)
+                    }}
+                    className='bg-blue-600 text-white py-1 px-5 rounded hover:bg-blue-700'>
+                        Create issue
+                    </button>
                     <div className='flex items-center'>
                         {projectDetailInfo?.members.map(item =>
                             <div className='coverImgMember' key={item.userId}>
