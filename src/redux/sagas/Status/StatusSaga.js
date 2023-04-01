@@ -27,7 +27,7 @@ export function* getAllStatusSaga() {
                 type: actionTypes.GET_PROJECT_DETAIL_API,
                 id: payload.id
             })
-            console.log(payload.id)
+            // console.log(payload.id)
         } catch (err) {
             console.log(err.response)
         }

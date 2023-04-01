@@ -99,7 +99,7 @@ export function* managerSaga() {
   //--------------DELETE USER----------------
   yield takeLatest(actionTypes.DELETE_USER,function * deleteUser ({type,payload,navigate}){
     try{
-        console.log(payload);
+        // console.log(payload);
         yield call(()=>managerService.deleteUser(payload)); 
         const Toast = Swal.mixin({
             toast: true,

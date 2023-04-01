@@ -1,4 +1,4 @@
-import axios from 'axios'
+
 import { call, delay, fork, put, take, takeEvery, takeLatest } from 'redux-saga/effects'
 import { commentService } from '../../../services/CommentService'
 import Swal from 'sweetalert2'
@@ -22,10 +22,10 @@ const Toast = Swal.mixin({
  */
 export function* getAllCommentSaga() {
     yield takeLatest(actionTypes.GET_ALL_CMT_API, function* getAllCmt({ type, taskId }) {
-        console.log(taskId);
+        // console.log(taskId);
         try {
             const res = yield call(() => commentService.getAllComments(taskId));
-            console.log(res.data.content);
+            // console.log(res.data.content);
             yield put({
                 type: actionTypes.ALL_CMT,
                 payload: res.data.content

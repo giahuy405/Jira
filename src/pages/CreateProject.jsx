@@ -15,10 +15,10 @@ const CreateProject = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const onSubmit = async (values, actions) => {
-        console.log('values', values)
+        // console.log('values', values)
         await new Promise((resolve, reject) => setTimeout(resolve, 1500))
         if (editorRef.current) {
-            console.log(editorRef.current.getContent());
+            // console.log(editorRef.current.getContent());
         }
         await dispatch(createProjectAction(values,navigate));
         actions.resetForm();
@@ -28,7 +28,7 @@ const CreateProject = () => {
     }, [])
     const { projectCategory } = useSelector(state => state.reducer);
     const handleChangeEditor = (content, editor) => {
-        console.log(content)
+        // console.log(content)
     }
     return (
         <ProjectLayout>

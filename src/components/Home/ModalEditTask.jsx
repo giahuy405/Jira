@@ -1,19 +1,14 @@
-import { AutoComplete, Input, InputNumber, Modal, Popconfirm, Popover, Select, Slider } from 'antd'
-import { Formik, Form } from 'formik'
-import React, { useRef, useEffect, useState, useCallback } from 'react'
+import { Input, InputNumber, Modal, Popconfirm, Popover, Select } from 'antd'
+import React, { useRef, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { CustomInput, CustomSelect, Button } from '../Global'
-import { BugOutlined, ClockCircleOutlined, FileTextOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons';
+import {  useParams } from 'react-router-dom'
+import { BugOutlined, ClockCircleOutlined, FileTextOutlined } from '@ant-design/icons';
 import { Editor} from '@tinymce/tinymce-react';
-import { createProjectSchema } from '../../schema/createProjectSchema'
-import { closeModalEditTaskAction, editInfoTaskDetailAction, getStatusID, openModalEditTaskAction } from '../../redux/actions/Home/TaskAction'
-import { getAllProjectAction, getProjectDetail, getTaskDetailAction } from '../../redux/actions/Home/ProjectActions'
-import { getTaskDetail } from '../../redux/sagas/Project/ProjectSaga'
+import { closeModalEditTaskAction, editInfoTaskDetailAction, openModalEditTaskAction } from '../../redux/actions/Home/TaskAction'
+import { getAllProjectAction, getProjectDetail } from '../../redux/actions/Home/ProjectActions'
 import { getUsersByIdProjAction } from '../../redux/actions/Home/UsersAction'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import { deleteCommentAction, getAllCommentAction } from '../../redux/actions/Home/Comments'
 import * as actionTypes from '../../redux/constants/constants';
 import FeatureComments from './FeatureComments'
 const { Option } = Select;
@@ -24,14 +19,16 @@ const ModalEditTask = ({ projectDetailInfo }) => {
     const dispatch = useDispatch()
     const editorRef = useRef(null);
     const { id } = useParams();
-    const searchRef = useRef(null)
-    const [searchTerm, setSearchTerm] = useState('');
-    const [valueCmt,setValueCmt]= useState('');
     const [displayEditor, setDisplayEditor] = useState('');
     const [historyContent, setHistoryContent] = useState('');
     const [contentEditor, setContentEditor] = useState(taskDetail?.description);
     const [isCmt, setIsCmt] = useState(false);
-    const {modalCmt} = useSelector(state=>state.commentReducer)
+    const formRef = useRef(null);
+    function handleReset() {
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+      }
     const log = async () => {
         const value= editorRef.current.getContent()
         const  data = {
@@ -42,7 +39,7 @@ const ModalEditTask = ({ projectDetailInfo }) => {
             type: actionTypes.POST_CMT_API,
             payload:data
         })
-        setValueCmt("");
+        handleReset();
       };
     useEffect(() => {
         function handleKeyDown(event) {
@@ -57,7 +54,6 @@ const ModalEditTask = ({ projectDetailInfo }) => {
     const handleEditor = (value)=>{
         if(value){
             setIsCmt(true);
-            setValueCmt(value);
         }else{
             setIsCmt(false);
         }
@@ -155,10 +151,10 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                     }}
                                     options={[
                                         {
-                                            label: <><FileTextOutlined className='mr-1 text-lime-500' />Task</>, value: 2
+                                            label: <><div className='flex items-center gap-1'><FileTextOutlined className=' text-lime-500' />Task</div></>, value: 2
                                         },
                                         {
-                                            label: <><BugOutlined className='mr-1 text-red-500' />Bug</>, value: 1
+                                            label: <> <div className='flex items-center gap-1'><BugOutlined className='mr-1 text-red-500' />Bug</div> </>, value: 1
                                         },
                                     ]}
                                 >
@@ -188,11 +184,11 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
                                             setContentEditor(data)
-                                            console.log(contentEditor)
+                                            // console.log(contentEditor)
                                         }}
                                         onBlur={(event, editor) => {
                                             const data = editor.getData();
-                                            console.log(data, 'data')
+                                            // console.log(data, 'data')
                                             setContentEditor(data)
                                         }}
                                     />
@@ -237,6 +233,7 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                     <img width={30} className='rounded-full' src={infoUser?.avatar} alt={infoUser?.id} />
                                 </div>
                                 <div>
+                                    <form    ref={formRef}>
                                     <Editor
                                         onEditorChange={handleEditor}
                                         name='comment'
@@ -260,31 +257,34 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                     // onChange={e=>console.log(e.target.value)}
                                     // onEditorChange={content => setFieldValue('description', content)}
                                     />
-                                    {isCmt ? <div className='mt-2'>
+                                      {isCmt ? <div className='mt-2'>
                                        
-                                        <button
-                                            onClick={() => {
-                                                setIsCmt(false)
-                                                setValueCmt("")
-                                            }}
-                                            className='px-5 py-1  hover:bg-gray-200 rounded text-gray-500 dark:hover:bg-third-dark'>
-                                            Cancel</button>
-                                        <button
-                                            className='px-5 py-1 bg-blue-600  ml-2 hover:bg-blue-700 text-white rounded'
-                                            onClick={
-                                                async () => {
-                                                log()
-                                                setDisplayEditor(false)
-                                                let value = contentEditor;
-                                                await dispatch(editInfoTaskDetailAction('description', value))
-                                                await dispatch({
-                                                    type: 'HANDLE_CHANGE_TASK_DETAIL'
-                                                })
-                                            }
-                                            }
-                                        >Save</button>
-                                    </div> : <p className='mt-1 text-sm  text-gray-400'><span className='font-bold'>Pro tip</span> : press <span className='px-1 bg-gray-200 rounded text-black'>M</span> to comment</p>
-                                    }
+                                       <button
+                                           onClick={() => {
+                                               setIsCmt(false);
+                                               handleReset();
+                                           }}
+                                           className='px-5 py-1  hover:bg-gray-200 rounded text-gray-500 dark:hover:bg-third-dark'>
+                                           Cancel</button>
+                                       <button
+                                           className='px-5 py-1 bg-blue-600  ml-2 hover:bg-blue-700 text-white rounded'
+                                           onClick={
+                                               async () => {
+                                               log()
+                                               setDisplayEditor(false)
+                                               // let value = contentEditor;
+                                               // await dispatch(editInfoTaskDetailAction('description', value))
+                                               // await dispatch({
+                                               //     type: 'HANDLE_CHANGE_TASK_DETAIL'
+                                               // })
+                                           }
+                                           }
+                                       >Save</button>
+                                   </div> : <p className='mt-1 text-sm  text-gray-400'><span className='font-bold'>Pro tip</span> : press <span className='px-1 bg-gray-200 rounded text-black'>M</span> to comment</p>
+                                   }
+                                    </form>
+                                   
+                                  
                                 </div>
 
                             </div>

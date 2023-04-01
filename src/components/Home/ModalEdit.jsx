@@ -14,7 +14,7 @@ const ModalEdit = (props) => {
     const editorRef = useRef(null);
     const navigate = useNavigate()
     const onSubmit = async (values, actions) => {
-        console.log(values)
+        // console.log(values)
         await new Promise((resolve, reject) => setTimeout(resolve, 1000))
         if (editorRef.current) {
             console.log(editorRef.current.getContent());
