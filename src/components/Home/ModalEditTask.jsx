@@ -14,7 +14,8 @@ import { getUsersByIdProjAction } from '../../redux/actions/Home/UsersAction'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { deleteCommentAction, getAllCommentAction } from '../../redux/actions/Home/Comments'
-import * as actionTypes from '../../redux/constants/constants'
+import * as actionTypes from '../../redux/constants/constants';
+import FeatureComments from './FeatureComments'
 const { Option } = Select;
 
 const ModalEditTask = ({ projectDetailInfo }) => {
@@ -30,7 +31,6 @@ const ModalEditTask = ({ projectDetailInfo }) => {
     const [historyContent, setHistoryContent] = useState('');
     const [contentEditor, setContentEditor] = useState(taskDetail?.description);
     const [isCmt, setIsCmt] = useState(false);
-    const [test123,setTesst123]= useState();
     const {modalCmt} = useSelector(state=>state.commentReducer)
     const log = async () => {
         const value= editorRef.current.getContent()
@@ -158,7 +158,7 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                             label: <><FileTextOutlined className='mr-1 text-lime-500' />Task</>, value: 2
                                         },
                                         {
-                                            label: <>   <BugOutlined className='mr-1 text-red-500' />Bug</>, value: 1
+                                            label: <><BugOutlined className='mr-1 text-red-500' />Bug</>, value: 1
                                         },
                                     ]}
                                 >
@@ -231,7 +231,7 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                         }
                         <div>
                             <h3 className='text-gray-400  text-sm mt-5 mb-2'>Comments</h3>
-                            {/* Add new comments */}
+                            {/* Add new comments */} 
                             <div className='flex gap-2'>
                                 <div>
                                     <img width={30} className='rounded-full' src={infoUser?.avatar} alt={infoUser?.id} />
@@ -243,7 +243,6 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                                         apiKey='an4j8gh14omc9ehdjjqq7byek89ohgr1tyjhurzeqb2k3s3p'
                                         onInit={(evt, editor) => editorRef.current = editor}
                                         initialValue=''
-                                        // value={values.description}
                                         init={{
                                             height: 150,
                                             menubar: false,
@@ -293,29 +292,7 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                             {/* All comments */}
                             <div className='mt-3'>
                                
-                                {allCmt?.map(item =>
-                                    <>
-                                      
-                                        <div key={item.id} className='flex gap-4 mb-4'>
-                                            <div>
-                                                <img width={30} className='rounded-full' src={item.user.avatar} alt={item.id} />
-                                            </div>
-                                            <div>
-                                                <p className='font-semibold mb-1 text-gray-400'>{item.user.name}</p>
-                                                <div className='text-sm'><div dangerouslySetInnerHTML={{ __html: `${item.contentComment}` }} /></div>
-                                                <div>{}</div>
-                                                <div className='text-gray-400 flex gap-2'>
-                                                    <div className='hover:underline cursor-pointer'>Edit</div>
-                                                    <div className='commentDots'></div>
-                                                    <div className='cursor-pointer hover:underline' onClick={()=>{
-                                                        dispatch(deleteCommentAction(item.id,item.taskId))
-                                                    }}>Delete</div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </>
-                                )}
+                                {allCmt?.map(item =><FeatureComments item={item} />)}
                             </div>
                         </div>
                     </div>

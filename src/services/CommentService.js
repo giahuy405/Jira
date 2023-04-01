@@ -22,4 +22,5 @@ export const commentService = {
     }),
 postComments: (taskId)=> axios.post(`${DOMAIN}/Comment/insertComment`,taskId,HEADERS),
 deleteComments: (Id)=> axios.delete(`${DOMAIN}/Comment/deleteComment?idComment=${Id}`,HEADERS),
+putComments: (Content,Id) => axios.put(`${DOMAIN}/Comment/updateComment?id=${Id}&contentComment=${Content}`,null,HEADERS)
 }

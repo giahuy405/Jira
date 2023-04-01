@@ -11,3 +11,8 @@ export const deleteCommentAction = (payload,taskId) => ({
     payload,
     taskId
 });
+export const putCommentAction = (payload,item)=>({
+    type:actionTypes.PUT_CMT_API,
+    payload,
+    item
+})

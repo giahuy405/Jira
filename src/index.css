@@ -110,34 +110,34 @@ p {
 }
 
 /* Skelekton table */
-.myTable :where(.css-dev-only-do-not-override-mxhywb).ant-skeleton .ant-skeleton-content .ant-skeleton-title {
+.myTable :where(.css-mxhywbb).ant-skeleton .ant-skeleton-content .ant-skeleton-title {
   width: 100% !important;
 }
 
-.dark .myTable :where(.css-dev-only-do-not-override-mxhywb).ant-skeleton .ant-skeleton-content .ant-skeleton-title {
+.dark .myTable :where(.css-mxhywbb).ant-skeleton .ant-skeleton-content .ant-skeleton-title {
   width: 100% !important;
 }
 
-.myTable :where(.css-dev-only-do-not-override-mxhywb).ant-skeleton .ant-skeleton-content .ant-skeleton-paragraph>li:last-child:not(:first-child):not(:nth-child(2)) {
+.myTable :where(.css-mxhywbb).ant-skeleton .ant-skeleton-content .ant-skeleton-paragraph>li:last-child:not(:first-child):not(:nth-child(2)) {
   width: 100% !important;
 }
 
-:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close-x {
+:where(.css-mxhywbb).ant-modal .ant-modal-close-x {
   line-height: 12px;
 }
 
-:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close {
+:where(.css-mxhywbb).ant-modal .ant-modal-close {
   border-radius: 50%;
   width: 27px;
   height: 27px;
 }
 
 /* Button antd */
-:where(.css-dev-only-do-not-override-mxhywb).ant-btn-primary {
+:where(.css-mxhywbb).ant-btn-primary {
   background-color: #1677ff !important;
 }
 
-:where(.css-dev-only-do-not-override-mxhywb).ant-btn-primary:hover {
+:where(.css-mxhywbb).ant-btn-primary:hover {
   background-color: #0a53ba !important;
 }
 
@@ -198,150 +198,159 @@ p {
 }
 
 /* select antd */
-:where(.css-dev-only-do-not-override-mxhywb).ant-select-multiple .ant-select-selection-item-remove {
+:where(.css-mxhywbb).ant-select-multiple .ant-select-selection-item-remove {
   line-height: 18px;
 }
 
-:where(.css-dev-only-do-not-override-mxhywb).ant-select .ant-select-clear {
+:where(.css-mxhywbb).ant-select .ant-select-clear {
   top: 43%;
 }
 
 /* slider antd */
-:where(.css-dev-only-do-not-override-mxhywb).ant-slider .ant-slider-track {
+:where(.css-mxhywbb).ant-slider .ant-slider-track {
   background-color: #0b5dd1;
 }
 
-:where(.css-dev-only-do-not-override-mxhywb).ant-slider .ant-slider-rail {
+:where(.css-mxhywbb).ant-slider .ant-slider-rail {
   background-color: rgb(200, 200, 200);
 }
 
-.timeTrackingSlider:where(.css-dev-only-do-not-override-mxhywb).ant-slider.ant-slider-disabled {
+.timeTrackingSlider:where(.css-mxhywbb).ant-slider.ant-slider-disabled {
   cursor: pointer;
 }
 
-.timeTrackingSlider:where(.css-dev-only-do-not-override-mxhywb).ant-slider.ant-slider-disabled .ant-slider-track {
+.timeTrackingSlider:where(.css-mxhywbb).ant-slider.ant-slider-disabled .ant-slider-track {
   background-color: #0b5dd1 !important;
 }
 
-.timeTrackingSlider:where(.css-dev-only-do-not-override-mxhywb).ant-slider.ant-slider-disabled .ant-slider-handle::after {
+.timeTrackingSlider:where(.css-mxhywbb).ant-slider.ant-slider-disabled .ant-slider-handle::after {
   display: none;
 }
 
-:where(.css-dev-only-do-not-override-mxhywb).ant-slider .ant-slider-handle {
+:where(.css-mxhywbb).ant-slider .ant-slider-handle {
   display: none;
 }
 
 /* Modal create Task */
-.modalCreateTask:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content {
+.modalCreateTask:where(.css-mxhywbb).ant-modal .ant-modal-content {
   padding: 20px 50px !important;
 }
 
-:where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content {
+:where(.css-mxhywbb).ant-modal .ant-modal-content {
   padding: 20px 30px;
 
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-content {
+.dark :where(.css-mxhywbb).ant-modal .ant-modal-content {
   background-color: #29314b;
   color: rgb(255, 255, 255);
+}
+.dark :where(.css-mxhywbb).ant-modal .ant-modal-content {
   background-color: #1E1E1E;
   color: white;
   border: 1px solid gray;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close {
+.dark :where(.css-mxhywbb).ant-modal .ant-modal-close {
   color: white;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-modal .ant-modal-close:hover {
+.dark :where(.css-mxhywbb).ant-modal .ant-modal-close:hover {
   background-color: gray;
 }
 
 /* TABLE */
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table {
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table {
   background-color: #1E1E1E;
   color: white;
   border-color: #0b5dd1;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper td.ant-table-column-sort {
+.dark :where(.css-mxhywbb).ant-table-wrapper td.ant-table-column-sort {
   background-color: #29314b;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-row:hover>td,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr>td.ant-table-cell-row-hover {
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr.ant-table-row:hover>td,
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr>td.ant-table-cell-row-hover {
   background: #505050;
 }
 
-:where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-column-sorter-up.active,
-:where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-column-sorter-down.active {
+:where(.css-mxhywbb).ant-table-wrapper .ant-table-column-sorter-up.active,
+:where(.css-mxhywbb).ant-table-wrapper .ant-table-column-sorter-down.active {
   color: white;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-thead>tr>th,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-thead>tr>td {
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-thead>tr>th,
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-thead>tr>td {
   background-color: #101010;
   color: white;
 }
 
 /* TOOLTIP */
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popover .ant-popover-inner {
+.dark :where(.css-mxhywbb).ant-popover .ant-popover-inner {
   background-color: #505050;
   color: white !important;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-item-active a {
+.dark :where(.css-mxhywbb).ant-pagination .ant-pagination-item-active a {
   background: #393E46;
   border-radius: 4px;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popconfirm .ant-popconfirm-inner-content {
+.dark :where(.css-mxhywbb).ant-popconfirm .ant-popconfirm-inner-content {
   color: white !important;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popconfirm .ant-popconfirm-message {
+.dark :where(.css-mxhywbb).ant-popconfirm .ant-popconfirm-message {
   color: white;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popconfirm .ant-popconfirm-description {
+.dark :where(.css-mxhywbb).ant-popconfirm .ant-popconfirm-description {
   color: white;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-btn-default {
+.dark :where(.css-mxhywbb).ant-btn-default {
   color: white;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-filter-trigger {
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-filter-trigger {
   color: white;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-column-sorter {
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-column-sorter {
   color: gray;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr>th,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr>td {
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr>th,
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr>td {
   border-bottom: 1px solid #575757;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder:hover>th,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder:hover>td,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder {
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder:hover>th,
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder:hover>td,
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder
+{
   background-color: #242526;
 }
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-input-group >.ant-input:first-child,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-input-group .ant-input-group-addon:last-child {
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder:hover>th,
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder:hover>td,
+.dark :where(.css-mxhywbb).ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder {
+  background-color: #2D2D2D;
+}
+.dark :where(.css-mxhywbb).ant-input-group >.ant-input:first-child,
+.dark :where(.css-mxhywbb).ant-input-group .ant-input-group-addon:last-child
+ {
   background-color: #3a3b3c;
   color: #e4e6eb;
   border: transparent;
 }
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-input-group >.ant-input:first-child::placeholder{
+.dark :where(.css-mxhywbb).ant-input-group >.ant-input:first-child::placeholder{
   color: #e4e6eb;
 }
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-item a,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-next .ant-pagination-item-link,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-disabled .ant-pagination-item-link,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-prev .ant-pagination-item-link{
+.dark :where(.css-mxhywbb).ant-pagination .ant-pagination-item a,
+.dark :where(.css-mxhywbb).ant-pagination .ant-pagination-next .ant-pagination-item-link,
+.dark :where(.css-mxhywbb).ant-pagination .ant-pagination-disabled .ant-pagination-item-link,
+.dark :where(.css-mxhywbb).ant-pagination .ant-pagination-prev .ant-pagination-item-link{
   color: white;
 }
 .dark .modalCreate .form h2{
@@ -392,15 +401,15 @@ color: #1de4ff;
 .dark .tox .tox-collection__item-checkmark svg,
 .dark .tox .tox-statusbar__path-item,
 .dark .tox .tox-statusbar__wordcount,
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popover .ant-popover-title
+.dark :where(.css-mxhywbb).ant-popover .ant-popover-title
 {
   color:#e4e6eb ;
 }
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-pagination .ant-pagination-item-active{
+.dark :where(.css-mxhywbb).ant-pagination .ant-pagination-item-active{
   border-color: transparent;
   background-color: transparent;
 }
-.dark :where(.css-dev-only-do-not-override-mxhywb) a:hover {
+.dark :where(.css-mxhywbb) a:hover {
   background-color: #393E46;
   border-radius: 4px
 };
@@ -408,12 +417,12 @@ color: #1de4ff;
  
 
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-popover .ant-popover-title {
+.dark :where(.css-mxhywbb).ant-popover .ant-popover-title {
   color: white;
 }
 
-:where(.css-dev-only-do-not-override-mxhywb).ant-select-single.ant-select-show-arrow .ant-select-selection-item,
-:where(.css-dev-only-do-not-override-mxhywb).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+:where(.css-mxhywbb).ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+:where(.css-mxhywbb).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
   display: flex;
   justify-content: space-between;
 }
@@ -432,11 +441,11 @@ color: #1de4ff;
 }
 
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-dropdown .ant-table-filter-dropdown {
+.dark :where(.css-mxhywbb).ant-dropdown .ant-table-filter-dropdown {
   background-color: #2D2D2D;
 }
 
-.dark :where(.css-dev-only-do-not-override-mxhywb).ant-radio-button-wrapper {
+.dark :where(.css-mxhywbb).ant-radio-button-wrapper {
   background-color: #2D2D2D;
   color: white;
 }

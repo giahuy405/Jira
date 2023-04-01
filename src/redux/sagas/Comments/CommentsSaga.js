@@ -3,7 +3,6 @@ import { call, delay, fork, put, take, takeEvery, takeLatest } from 'redux-saga/
 import { commentService } from '../../../services/CommentService'
 import Swal from 'sweetalert2'
 import * as actionTypes from '../../constants/constants'
-import { getAllCommentAction } from '../../actions/Home/Comments'
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -33,10 +32,13 @@ export function* getAllCommentSaga() {
             })
         } catch (err) {
             console.log(err.response)
+            Toast.fire({
+                icon: 'error',
+                title: 'Unauthorized !'
+            })
         }
     });
     yield takeLatest(actionTypes.POST_CMT_API,function* postCmt ({type,payload}){
-        console.log(payload);
         try{
           
             yield call(()=>{commentService.postComments(payload)});
@@ -48,10 +50,13 @@ export function* getAllCommentSaga() {
             })
         }catch(err){
             console.log(err);
+            Toast.fire({
+                icon: 'error',
+                title: 'Unauthorized !'
+            })
         } 
     });
     yield takeLatest(actionTypes.DELETE_CMT_API, function* deleteCmt ({type,payload,taskId}){
-        console.log(taskId);
         try{
             yield call(()=>{commentService.deleteComments(payload)})
             yield delay(500)
@@ -60,8 +65,32 @@ export function* getAllCommentSaga() {
                 type: actionTypes.ALL_CMT,
                 payload: res.data.content
             })
+            Toast.fire({
+                icon: 'success',
+                title: 'Delete success !'
+            })
         }catch(err){
             console.log(err);
+            Toast.fire({
+                icon: 'error',
+                title: 'Unauthorized !'
+            })
+        }
+    });
+    yield takeLatest (actionTypes.PUT_CMT_API, function* putCmt({type,payload,item}){
+        try{
+            yield call(()=>commentService.putComments(payload,item.id))
+            const res = yield call(() => commentService.getAllComments(item.taskId));
+            yield put({
+                type: actionTypes.ALL_CMT,
+                payload: res.data.content
+            })
+        }catch(err){
+            console.log(err);
+            Toast.fire({
+                icon: 'error',
+                title: 'Unauthorized !'
+            })
         }
     })
 }

@@ -37,8 +37,6 @@ export const TASK_DETAIL_ASSIGN_API = 'TASK_DETAIL_ASSIGN_API';
 export const HANDLE_CHANGE_TASK_DETAIL = 'HANDLE_CHANGE_TASK_DETAIL';
 export const TEST_TOKEN = 'TEST_TOKEN';
 export const ALL_CMT = 'ALL_CMT';
-export const OPEN_MODAL_CMT = 'OPEN_MODAL_CMT';
-export const CLOSE_MODAL_CMT = 'CLOSE_MODAL_CMT';
 
 
  
@@ -76,5 +74,4 @@ export const GET_TASK_DETAIL_API = 'GET_TASK_DETAIL_API';
 export const GET_ALL_CMT_API = 'GET_ALL_CMT_API';
 export const POST_CMT_API = 'POST_CMT_API';
 export const DELETE_CMT_API = 'DELETE_CMT_API';
- 
-
+export const PUT_CMT_API = 'PUT_CMT_API';
