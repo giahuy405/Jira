@@ -101,6 +101,7 @@ const ModalCreateTask = (props) => {
                                             <Select
                                                 className='uppercase'
                                                 defaultValue={allProjectKeyword[0]?.projectName}
+                                                value={values?.projectId}
                                                 style={{
                                                     width: '100%',
                                                 }}
@@ -130,6 +131,7 @@ const ModalCreateTask = (props) => {
                                         <div className='w-1/2'>
                                             <label htmlFor="" className='cursor-pointer text-sm text-gray-400'>Task Name</label>
                                             <Input placeholder="Enter task name"
+                                                value={values?.taskName}
                                                 name='taskName'
                                                 onChange={(e) => {
                                                     setFieldValue('taskName', e.target.value)
@@ -238,6 +240,7 @@ const ModalCreateTask = (props) => {
                                 <div className='mt-3 dark:text-black'>
                                     <label className='cursor-pointer text-sm  text-gray-400' htmlFor="description">Description</label>
                                     <CKEditor
+                                        value={values?.description}
                                         editor={ClassicEditor}
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
