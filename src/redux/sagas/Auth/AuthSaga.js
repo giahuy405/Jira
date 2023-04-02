@@ -9,6 +9,17 @@ import * as actionTypes from '../../constants/constants'
  * authentication for login and sign up page
  * creator : Huy - 20/3/2023 -> TEST_TOKEN_API -> code bên server bị lỗi nên ko check dc token 
  */
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2600,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
 export function* authSaga() {
     //-------------------LOGIN ACCOUNT-------------
     yield takeLatest(actionTypes.LOGIN_API, function* login({ type, payload, navigate }) {
@@ -18,7 +29,7 @@ export function* authSaga() {
             });
             // call api below
             const res = yield call(() => authService.login(payload));
-            console.log(res.data.content, 'info')
+            // console.log(res.data.content, 'info')
             yield put({
                 type: actionTypes.LOGIN_INFO,
                 payload: res.data.content
@@ -123,6 +134,19 @@ export function* authSaga() {
             })
         }
     });
+    yield takeLatest(actionTypes.LOG_OUT_USER,function* logOut({type,navigate}){
+        yield localStorage.removeItem("USER_TOKEN")
+        yield localStorage.removeItem("USER_INFO")
+        yield put({
+            type: actionTypes.LOGIN_INFO,
+            payload: null
+        })
+        yield navigate('/')
+        Toast.fire({
+            icon: 'success',
+            title:'LogOut success !'
+        })
+    })
     // yield takeLatest(actionTypes.TEST_TOKEN_API, function* signUp({ type, payload, navigate }) {
     //     try {
     //         const { data, status } = yield authService.testTokenAPI();

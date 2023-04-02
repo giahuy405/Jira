@@ -32,5 +32,9 @@ export const searchUser = (payload)=>({
     type: actionTypes.SEARCH_USER_LIST,
     payload
 })
+export const updateUserAction = (payload)=>({
+    type:actionTypes.UPDATE_INFO_USER,
+    payload
+})
    
 

@@ -1,4 +1,5 @@
 import { Home, Login, Signup, Board, Settings, Users, ProjectManagement, ProjectDetail } from "../pages";
+import Profile from "../pages/Profile";
 
 export const routes = [
     { path: '/', component: Home },
@@ -9,4 +10,5 @@ export const routes = [
     { path: '/project/users', component: Users, isAdmin: true, redirectPath: '/login' },
     { path: '/project/management', component: ProjectManagement, isAdmin: true, redirectPath: '/login' },
     { path: '/project/detail/:id', component: ProjectDetail, isAdmin: true, redirectPath: '/login' },
+    { path: '/project/profile', component: Profile, isAdmin: true, redirectPath: '/login' },
 ]

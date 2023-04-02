@@ -1,6 +1,8 @@
 import { GithubOutlined, LogoutOutlined, PlusOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
 import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logOutUser } from '../../redux/actions/Auth/actions';
 import { getAllProjKeywordAction, OpenModalTaskAction } from '../../redux/actions/Home/ProjectActions';
 import { getUsersAction } from '../../redux/actions/Home/UsersAction';
 import Button from './Button'
@@ -9,6 +11,7 @@ import Button from './Button'
 const SideBar = () => {
     const wrapperRef = useRef(null);
     const dispatch = useDispatch()
+    const  Navigate = useNavigate()
     useOutsideAlerter(wrapperRef);
     const [isVisible, setIsVisible] = useState(false);
     function useOutsideAlerter(ref) {
@@ -51,7 +54,7 @@ const SideBar = () => {
                         CREATE ISSUE
                     </div>
                 </div>
-                <div className='absolute bottom-20 w-full'>
+                <div className='absolute bottom-20 w-full' onClick={()=>{Navigate('/project/profile')}}>
                     <div className='sideBar-link'
                     >
                         <div className="sideBar-linkInside ">
@@ -62,7 +65,7 @@ const SideBar = () => {
                         </div>
                     </div>
                 </div>
-                <div className='absolute bottom-9 w-full'>
+                <div className='absolute bottom-9 w-full' onClick={()=>{dispatch(logOutUser(Navigate))}}>
                     <div className='sideBar-link'
                     // onClick={() => setIsVisible(true)}
                     >

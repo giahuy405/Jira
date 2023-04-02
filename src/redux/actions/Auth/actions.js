@@ -15,5 +15,9 @@ export const signUpAction = (payload, navigate) => {
         navigate
     }
 }
+export const logOutUser = (navigate) =>({
+    type: actionTypes.LOG_OUT_USER,
+    navigate
+})
 
 export const testTokenAction = { type: actionTypes.TEST_TOKEN_API }

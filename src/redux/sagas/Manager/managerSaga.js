@@ -9,6 +9,7 @@ import {
 } from "redux-saga/effects";
 import { managerService } from "../../../services/ManagerService";
 import * as actionTypes from "../../constants/constants";
+import { authService } from "../../../services/AuthService";
 import Swal from "sweetalert2";
 const Toast = Swal.mixin({
   toast: true,
@@ -162,5 +163,29 @@ yield takeLatest (actionTypes.SEARCH_USER_LIST, function * ({type, payload,navig
     type: actionTypes.USER_LIST_INFO,
     payload: res.data.content,
   });
+});
+//--------------------UPDATE INFO USER---------------
+yield takeLatest(actionTypes.UPDATE_INFO_USER, function * updateUser({type,payload}){
+  try{
+    yield call(()=>managerService.editUser(payload))
+    const data = {
+      email: payload.email,
+      passWord: payload.passWord
+    } 
+    const res = yield call(()=>authService.login(data))
+    localStorage.setItem(actionTypes.USER_TOKEN, res.data.content.accessToken);
+    localStorage.setItem('USER_INFO', JSON.stringify(res.data.content));
+    yield put({
+      type: actionTypes.LOGIN_INFO,
+      payload: res.data.content
+  })
+    Toast.fire({
+      icon: 'success',
+      title: 'Update success !'
+  })
+  }catch(err){
+    console.log(err);
+  }
+ 
 })
 }

@@ -178,20 +178,18 @@ const Users = () => {
   return (
     <div >
       <ProjectLayout>
-        <div className="">
-          <div className="">
-
-            <Alerts />
-
-
-            <button className="bg-blue-500 text-white font-medium px-3 py-1 rounded-md hover:bg-blue-700" onClick={() => { handleCreate() }}>
+        <div className="h-screen">
+        <Alerts />
+          <div className="flex  items-center">
+            <button className="bg-blue-500 text-white font-medium px-3 py-1 rounded-md hover:bg-blue-700 mr-5" onClick={() => { handleCreate() }}>
               Create User
             </button>
             <Input
+              style={{width:400}}
               onChange={handleSearchUser}
               addonAfter={<SearchOutlined />}
               className="my-5"
-              placeholder="Search"
+              placeholder="Search user"
             />
           </div>
 
