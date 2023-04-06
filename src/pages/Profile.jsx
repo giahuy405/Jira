@@ -181,13 +181,13 @@ const Profile = () => {
               },
               {
                 key: "2",
-                label: <><h2 className="pb-1 myStyle_tabs text-base text-black font-medium">change password</h2></>,
+                label: <><h2 className="pb-1 myStyle_tabs text-base text-black font-medium">Change Password</h2></>,
                 children: (
                   <>
                     <form className="w-80" onSubmit={tab2.handleSubmit}  >
                       <div className="pb-4">
                         <h2 className="pb-1 myStyle_update text-sm text-sky-900 font-medium">
-                          Old PassWord :
+                          Old Password :
                         </h2>
                         <Input.Password
                           placeholder="Old Password"
@@ -198,7 +198,7 @@ const Profile = () => {
                       </div>
                       <div className="pb-4">
                         <h2 className="pb-1 myStyle_update text-sm text-sky-900 font-medium">
-                          New PassWord :
+                          New Password :
                         </h2>
                         <Input.Password
                           placeholder="New Password"
