@@ -426,7 +426,12 @@ color: #1de4ff;
   display: flex;
   justify-content: space-between;
 }
-
+:where(.css-mxhywb).ant-tabs .ant-tabs-ink-bar{
+  background-color: black;
+}
+.dark :where(.css-mxhywb).ant-tabs .ant-tabs-ink-bar{
+  background-color: #1677ff;
+}
 .assignMEM .assignMEMicon {
   display: none;
 }
@@ -439,7 +444,9 @@ color: #1de4ff;
 .assignMEM:hover .assignMEMicon {
   display: block;
 }
-
+.dark .myStyle_tabs{
+  color: #1677ff;
+}
 .dark .myStyle_update{
   color: white;
 }

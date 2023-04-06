@@ -13,7 +13,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 const CreateProject = () => {
     const editorRef = useRef(null);
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const onSubmit = async (values, actions) => {
         // console.log('values', values)
         await new Promise((resolve, reject) => setTimeout(resolve, 1500))

@@ -18,7 +18,8 @@ const Login = () => {
     },
     validationSchema: signInSchema,
     onSubmit: (values) => {
-      dispatch(loginAction(values, Navigate))
+      dispatch(loginAction(values, Navigate));
+      localStorage.setItem('pw',values.passWord);
 
     }
   })

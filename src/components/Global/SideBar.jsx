@@ -4,8 +4,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logOutUser } from '../../redux/actions/Auth/actions';
 import { getAllProjKeywordAction, OpenModalTaskAction } from '../../redux/actions/Home/ProjectActions';
-import { getUsersAction } from '../../redux/actions/Home/UsersAction';
-import Button from './Button'
+import { Modal  } from 'antd';
+import {WarningOutlined} from '@ant-design/icons'
+
 
 
 const SideBar = () => {
@@ -13,7 +14,11 @@ const SideBar = () => {
     const dispatch = useDispatch()
     const  Navigate = useNavigate()
     useOutsideAlerter(wrapperRef);
+    const [open,setOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    const handleCancel=()=>{
+        setOpen(false)
+    }
     function useOutsideAlerter(ref) {
         useEffect(() => {
             function handleClickOutside(event) {
@@ -65,7 +70,7 @@ const SideBar = () => {
                         </div>
                     </div>
                 </div>
-                <div className='absolute bottom-9 w-full' onClick={()=>{dispatch(logOutUser(Navigate))}}>
+                <div className='absolute bottom-9 w-full' onClick={()=>{setOpen(true)}}>
                     <div className='sideBar-link'
                     // onClick={() => setIsVisible(true)}
                     >
@@ -78,6 +83,21 @@ const SideBar = () => {
                     </div>
                 </div>
             </div>
+            <Modal open={open}  onCancel={handleCancel} footer={null}>
+        <div className="flex items-center">
+        <WarningOutlined className="text-red-500 text-3xl pr-3 mb-2" />
+        <h2 >Log Out </h2>
+        </div>
+        <h2 className="py-5">Do you want to log out ?</h2>
+        <div className="flex gap-2 justify-end">
+            <button className="text-white bg-red-500 p-1 rounded-md px-2 hover:bg-red-600 duration-500" onClick={()=>{
+                 dispatch(logOutUser(Navigate));
+                 setOpen(false)
+            }}>Log Out</button>
+            <button className="hover:bg-gray-300 p-1 px-2 rounded-md duration-500" onClick={()=>{setOpen(false)}}>Cancel</button>
+        </div>
+      
+      </Modal>
 
         </>
     )

@@ -137,6 +137,7 @@ export function* authSaga() {
     yield takeLatest(actionTypes.LOG_OUT_USER,function* logOut({type,navigate}){
         yield localStorage.removeItem("USER_TOKEN")
         yield localStorage.removeItem("USER_INFO")
+        yield localStorage.removeItem('pw')
         yield put({
             type: actionTypes.LOGIN_INFO,
             payload: null

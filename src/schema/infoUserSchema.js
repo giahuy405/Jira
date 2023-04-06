@@ -11,18 +11,18 @@ export const infoUserSchema = yup.object().shape({
       message: "The username must contain 4-6 digits ",
     })
     .required("* Please enter your username"),
-    passWord: yup
-    .string()
-    .min(6, "* Password must be 4-6 characters and numbers")
-    .matches(passwordRegex, {
-      message: "* Minimum eight characters, at least one number "
-    })
-    .required("* Please enter a new password"),
-    confirmPassword: yup
-    .string()
-    .required('Please confirm your password')
-    .oneOf([yup.ref('passWord'), null], `Password doesn't match`)
-    .required("* Please enter a new password"),
+    // passWord: yup
+    // .string()
+    // .min(6, "* Password must be 4-6 characters and numbers")
+    // .matches(passwordRegex, {
+    //   message: "* Minimum eight characters, at least one number "
+    // })
+    // .required("* Please enter a new password"),
+    // confirmPassword: yup
+    // .string()
+    // .required('Please confirm your password')
+    // .oneOf([yup.ref('passWord'), null], `Password doesn't match`)
+    // .required("* Please enter a new password"),
   email: yup
     .string()
     .email("* Email is not valid")

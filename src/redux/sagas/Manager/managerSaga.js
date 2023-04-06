@@ -173,6 +173,7 @@ yield takeLatest(actionTypes.UPDATE_INFO_USER, function * updateUser({type,paylo
       passWord: payload.passWord
     } 
     const res = yield call(()=>authService.login(data))
+    localStorage.setItem('pw',payload.passWord)
     localStorage.setItem(actionTypes.USER_TOKEN, res.data.content.accessToken);
     localStorage.setItem('USER_INFO', JSON.stringify(res.data.content));
     yield put({
