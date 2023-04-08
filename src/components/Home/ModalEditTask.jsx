@@ -59,16 +59,18 @@ const ModalEditTask = ({ projectDetailInfo }) => {
     });
     handleReset();
   };
-//   useEffect(() => {
-//     function handleKeyDown(event) {
-//       if (event.key === "m") {
-//         editorRef.current.focus();
-//         setIsCmt(true);
-//       }
-//     }
-//     window.addEventListener("keydown", handleKeyDown);
-//     return () => window.removeEventListener("keydown", handleKeyDown);
-//   }, []);
+  useEffect(() => {
+    if(!displayEditor){
+        function handleKeyDown(event) {
+            if (event.key === "m") {
+              editorRef.current.focus();
+              setIsCmt(true);
+            }
+          }
+          window.addEventListener("keydown", handleKeyDown);
+          return () => window.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [displayEditor]);
   const handleEditor = (value) => {
     if (value) {
       setIsCmt(true);
@@ -373,14 +375,14 @@ const ModalEditTask = ({ projectDetailInfo }) => {
                         </button>
                       </div>
                     ) : (
-                        ''
-                    //   <p className="mt-1 text-sm  text-gray-400">
-                    //     <span className="font-bold">Pro tip</span> : press{" "}
-                    //     <span className="px-1 bg-gray-200 rounded text-black">
-                    //       M
-                    //     </span>{" "}
-                    //     to comment
-                    //   </p>
+                        
+                      <p className="mt-1 text-sm  text-gray-400">
+                        <span className="font-bold">Pro tip</span> : press{" "}
+                        <span className="px-1 bg-gray-200 rounded text-black">
+                          M
+                        </span>{" "}
+                        to comment
+                      </p>
                     )}
                   </form>
                 </div>
