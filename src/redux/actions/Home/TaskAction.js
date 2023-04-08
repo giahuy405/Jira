@@ -9,3 +9,8 @@ export const editInfoTaskDetailAction = (name, value) => ({
 })
 /* API */
 export const getTaskTypeAction = { type: actionTypes.GET_ALL_TASK_TYPE }
+export const deleteTaskIdAction = (taskId,id)=>({
+type:actionTypes.DELETE_TASK_id,
+taskId,
+id
+})

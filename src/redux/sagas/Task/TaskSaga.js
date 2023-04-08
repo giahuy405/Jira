@@ -2,7 +2,8 @@ import axios from 'axios'
 import { call, delay, fork, put, select, take, takeEvery, takeLatest } from 'redux-saga/effects'
 import { taskService } from '../../../services/TaskService'
 import Swal from 'sweetalert2'
-import * as actionTypes from '../../constants/constants'
+import * as actionTypes from '../../constants/constants';
+import { projectService } from '../../../services/ProjectService';
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -92,6 +93,30 @@ export function* editTaskDetailSga() {
             })
         } catch (err) {
             console.log(err.response)
+        }
+    })
+
+    yield takeLatest (actionTypes.DELETE_TASK_id, function* deleteTask({type,taskId,id}){
+        try{
+            yield call(()=>taskService.deleteTaskDetail(taskId));
+            const res = yield call(() => projectService.getProjectDetail(id));
+            yield put({
+                type: actionTypes.PROJECT_DETAIL_INFO,
+                payload: res.data.content
+            })
+            yield put ({
+                type:actionTypes.CLOSE_MODAL_EDIT_TASK
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Delete success !'
+            })
+        }catch(err){
+        console.log(err);
+        Toast.fire({
+            icon: 'error',
+            title: 'Unauthorized !'
+        })
         }
     })
 }

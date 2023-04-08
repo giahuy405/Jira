@@ -77,3 +77,4 @@ export const POST_CMT_API = 'POST_CMT_API';
 export const DELETE_CMT_API = 'DELETE_CMT_API';
 export const PUT_CMT_API = 'PUT_CMT_API';
 export const UPDATE_INFO_USER = 'UPDATE_INFO_USER';
+export const DELETE_TASK_id = 'DELETE_TASK_id'

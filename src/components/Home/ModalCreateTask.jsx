@@ -52,13 +52,13 @@ const ModalCreateTask = (props) => {
     const optionSelect = usersByIdProj?.map(item => ({ label: item.name, value: item.userId, key: item.userId }));
     const { id } = useParams()
     const onSubmit = async (values, actions) => {
-        console.log(values, 'fomrik')
+        // console.log(values, 'fomrik')
         await new Promise((resolve, reject) => setTimeout(resolve, 1000))
         if (editorRef.current) {
-            console.log(editorRef.current.getContent());
+            // console.log(editorRef.current.getContent());
         }
         await dispatch(createTaskAction(values));
-        console.log(id, 'iddd')
+        // console.log(id, 'iddd')
         dispatch(getProjectDetail(id))
         actions.resetForm();
         dispatch(CloseModalTaskAction);
@@ -248,7 +248,7 @@ const ModalCreateTask = (props) => {
                                         }}
                                         onBlur={(event, editor) => {
                                             const data = editor.getData();
-                                            console.log(data, 'data')
+                                            // console.log(data, 'data')
                                             setFieldValue('description', data)
                                         }}
                                     />

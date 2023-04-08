@@ -170,7 +170,7 @@ const Profile = () => {
                       <div className="text-end">
                         <button
                           type="submit"
-                          className="bg-sky-500 hover:bg-sky-600 duration-500 text-white px-3 text-lg rounded-md "
+                          className="bg-blue-600 hover:bg-blue-800 duration-500 text-white px-3 text-lg rounded-md "
                         >
                           Update
                         </button>
@@ -234,7 +234,7 @@ const Profile = () => {
                       <div className="text-end">
                         <button 
                         type="submit"
-                        className="bg-sky-500 hover:bg-sky-600 duration-500 text-white px-3 text-lg rounded-md ">
+                        className="bg-blue-600 hover:bg-blue-800 duration-500 text-white px-3 text-lg rounded-md ">
                           Update
                         </button>
                       </div>
