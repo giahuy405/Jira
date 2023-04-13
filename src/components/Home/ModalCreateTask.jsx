@@ -57,12 +57,14 @@ const ModalCreateTask = (props) => {
         if (editorRef.current) {
             // console.log(editorRef.current.getContent());
         }
-        await dispatch(createTaskAction(values));
+        const res = await dispatch(createTaskAction(values));
         // console.log(id, 'iddd')
-        dispatch(getProjectDetail(id))
+
+       res && await dispatch(getProjectDetail(id))
         actions.resetForm();
         dispatch(CloseModalTaskAction);
     }
+ 
     return (
         <div >
             {allProjectKeyword &&
@@ -240,7 +242,7 @@ const ModalCreateTask = (props) => {
                                 <div className='mt-3 dark:text-black'>
                                     <label className='cursor-pointer text-sm  text-gray-400' htmlFor="description">Description</label>
                                     <CKEditor
-                                        value={values?.description}
+                                        value={values.description}
                                         editor={ClassicEditor}
                                         onChange={(event, editor) => {
                                             const data = editor.getData();

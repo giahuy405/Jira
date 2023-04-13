@@ -255,21 +255,24 @@ export function* createTaskSaga() {
     yield takeLatest(actionTypes.CREATE_TASK_API, function* createTask({ type, payload }) {
         try {
             const res = yield call(() => projectService.createTaskProj(payload));
+         
+            Toast.fire({
+                icon: 'success',
+                title: 'Successfully created !'
+            });
             const allProject = yield call(() => projectService.getAllProject())
             yield put({
                 type: actionTypes.ALL_PROJECT,
                 payload: allProject.data.content
             })
-            Toast.fire({
-                icon: 'success',
-                title: 'Successfully created !'
-            });
+            return true
         } catch (err) {
             Toast.fire({
                 icon: 'error',
                 title: `${err.response.data.content}`
             })
             console.log(err)
+            return false
         }
     });
 }

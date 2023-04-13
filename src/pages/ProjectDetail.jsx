@@ -1,4 +1,4 @@
-import { ArrowDownOutlined, ArrowUpOutlined, BugOutlined, FileTextOutlined, SearchOutlined } from '@ant-design/icons'
+import { ArrowDownOutlined, ArrowUpOutlined, BugOutlined, FileTextOutlined, PlusOutlined, SearchOutlined } from '@ant-design/icons'
 import { Input } from 'antd'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -58,28 +58,27 @@ const ProjectDetail = () => {
         }
         dispatch(updateStatusDragAction(payload));
     }
- 
+
     return (
         <ProjectLayout >
             <BreadCrumd> Projects / Singularity 7.0 / Project Detail</BreadCrumd>
             <div className='h-screen'>
                 <h3 className='text-2xl font-medium text-[#172A4D]  dark:text-white mb-3'>Project detail - <span className='text-blue-600'>{projectDetailInfo?.projectName}</span></h3>
                 <div className='flex items-center gap-5'>
-                    <button 
-                     onClick={() => {
-                        dispatch(OpenModalTaskAction)
-                    }}
-                    className='bg-blue-600 text-white py-1 px-5 rounded hover:bg-blue-700'>
-                        Create issue
-                    </button>
-                    <div className='flex items-center'>
+                    <div className='flex items-center gap-2 dark:text-white'>
+                        <p>To create new task please click on icon</p> <PlusOutlined className='bg-blue-500 text-white p-2 rounded dark:bg-primary-dark' /> <p>in the sidebar (remember to select the correct project)</p>
+                    </div>
+                </div>
+                <div className='flex items-center '>
+                    <div className='mr-3 dark:text-white'>
+                        Members :
+                    </div>
                         {projectDetailInfo?.members.map(item =>
                             <div className='coverImgMember' key={item.userId}>
                                 <img width={30} src={item.avatar} className='rounded-full imgMember borderForImg' alt={item.userId} />
                             </div>
                         )}
                     </div>
-                </div>
                 {/* Kanban */}
                 <div className="grid grid-cols-4 mt-5 gap-2">
                     <DragDropContext onDragEnd={handleDragEnd}>
