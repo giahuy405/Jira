@@ -11,6 +11,10 @@ The web application was built using the following technologies:
 * Tailwind CSS and Ant Design for styling and UI components
 * Swagger for the back-end API documentation
 
+## Account For testing
+- pgiahuy653@gmail.com
+- huy123123
+
 ## Landing Page
 * The landing page provides an introduction to the app and includes information about its features. It also includes a call-to-action button for users to sign up or login.
 
