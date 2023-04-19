@@ -16,15 +16,24 @@ A kanban board is an agile project management tool designed to help visualize wo
 | *Kanban board dark mode* |
 
 Create task in your own project. Easy to manage your team work progess.
-| ![Modal create task](https://github.com/giahuy405/Jira/blob/main/web-img/modal-create-task.png) | 
-|:--:| 
-| *Modal create task* |
+Modal create task        |  Modal edit task
+:-------------------------:|:-------------------------:
+![Login](https://github.com/giahuy405/Jira/blob/main/web-img/modal-create-task.png)  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/edit-task.png)
+
 
 Beside, above feature i also add CRUD for project, task, user, userProfile,... 
 Project management         |  Project management dark mode
 :-------------------------:|:-------------------------:
 ![Login](https://github.com/giahuy405/Jira/blob/main/web-img/project-manager.png)  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/project-manager-darkmode.png)
 
+Manage your profile
+User profile               |  Change password
+:-------------------------:|:-------------------------:
+![Login](https://github.com/giahuy405/Jira/blob/main/web-img/user-profile.png)  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/user-profile-2.png)
+
+Create user         |  Edit user
+:-------------------------:|:-------------------------:
+![Login](https://github.com/giahuy405/Jira/blob/main/web-img/create-user.png)  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/edit-user.png)
 
 ### Technologies
 The web application was built using the following technologies:
@@ -44,7 +53,7 @@ Login                      |  Sign up
 :-------------------------:|:-------------------------:
 ![Login](https://github.com/giahuy405/Jira/blob/main/web-img/login.png)  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/signup.png)
 
- 
+
 ## Landing Page
 * The landing page provides an introduction to the app and includes information about its features. It also includes a call-to-action button for users to sign up or login.
 
