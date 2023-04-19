@@ -23,10 +23,10 @@ The web application was built using the following technologies:
 
 Login                      |  Sign up
 :-------------------------:|:-------------------------:
-![Login]([https://...Dark.png](https://github.com/giahuy405/Jira/blob/main/web-img/login.png))  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/signup.png)
+![Login]((https://github.com/giahuy405/Jira/blob/main/web-img/login.png))  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/signup.png)
 
 
-![Jira Website](https://github.com/giahuy405/Jira/blob/main/web-img/side-bar.png)
+ 
 > Sidebar to create issue/task, profile user, log out 
 ## Landing Page
 * The landing page provides an introduction to the app and includes information about its features. It also includes a call-to-action button for users to sign up or login.
