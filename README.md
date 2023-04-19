@@ -1,6 +1,6 @@
 # Jira Clone
 This project is a clone of the popular project management tool, Jira. The project consists of a landing page, a login/signup feature, and a page with a Kanban board for managing tasks. Users can perform CRUD (Create, Read, Update, and Delete) operations for tasks, projects, and users. The project also includes a dark mode feature.
-
+![Nextjs Portfolio Website](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code/blob/main/website%20images/home-light-desktop.png)
 ### Technologies
 The web application was built using the following technologies:
 * HTML, CSS and JavaScript for the front-end
