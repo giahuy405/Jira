@@ -4,8 +4,27 @@ This project is a clone of the popular project management tool, Jira. The projec
 |:--:| 
 | *home page* |
 
-![Jira Website](https://github.com/giahuy405/Jira/blob/main/web-img/kanban-board.png)
-> kanban board to control task in the project
+
+ 
+A kanban board is an agile project management tool designed to help visualize work, limit work-in-progress, and maximize efficiency (or flow). 
+| ![Kanban board](https://github.com/giahuy405/Jira/blob/main/web-img/kanban-board.png) | 
+|:--:| 
+| *Kanban board* |
+
+| ![Kanban board dark mode](https://github.com/giahuy405/Jira/blob/main/web-img/kanban-board-darkmode.png) | 
+|:--:| 
+| *Kanban board dark mode* |
+
+Create task in your own project. Easy to manage your team work progess.
+| ![Modal create task](https://github.com/giahuy405/Jira/blob/main/web-img/modal-create-task.png) | 
+|:--:| 
+| *Modal create task* |
+
+Beside, above feature i also add CRUD for project, task, user, userProfile,... 
+Project management         |  Project management dark mode
+:-------------------------:|:-------------------------:
+![Login](https://github.com/giahuy405/Jira/blob/main/web-img/project-manager.png)  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/project-manager-darkmode.png)
+
 
 ### Technologies
 The web application was built using the following technologies:
@@ -23,11 +42,9 @@ The web application was built using the following technologies:
 
 Login                      |  Sign up
 :-------------------------:|:-------------------------:
-![Login]((https://github.com/giahuy405/Jira/blob/main/web-img/login.png))  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/signup.png)
-
+![Login](https://github.com/giahuy405/Jira/blob/main/web-img/login.png)  |  ![Signup](https://github.com/giahuy405/Jira/blob/main/web-img/signup.png)
 
  
-> Sidebar to create issue/task, profile user, log out 
 ## Landing Page
 * The landing page provides an introduction to the app and includes information about its features. It also includes a call-to-action button for users to sign up or login.
 
