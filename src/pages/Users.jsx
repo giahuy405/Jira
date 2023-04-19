@@ -175,6 +175,16 @@ const Users = () => {
       ),
     });
   }
+   // reverse array 
+   const [reverseData, setReverseData] = useState([]);
+   // using useEffect and waiting for allProject 
+   useEffect(() => {
+       if (listUser) {
+           const reversedData = [...listUser].reverse();
+           setReverseData(reversedData);
+       }
+   }, [listUser]);
+  
   return (
     <div >
       <ProjectLayout>
@@ -195,7 +205,7 @@ const Users = () => {
 
           {/* <Skeleton/> */}
           <Table columns={columns} dataSource={
-            listUser?.map((items) => ({
+            reverseData.map((items) => ({
               key: items.userId,
               avatar: <div className="flex items-center justify-center" ><img src={items.avatar} alt="#"
                 className="w-10"

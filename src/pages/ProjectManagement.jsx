@@ -280,11 +280,11 @@ const ProjectManagement = () => {
                                                                 cancelText="No"
                                                             >
                                                                 <Tooltip title='Delete' color='red'>
-                                                                <button
-                                                                className='text-red-500 hover:text-gray-600 text-lg leading-3 mx-auto block'
-                                                                ><DeleteOutlined /></button>
+                                                                    <button
+                                                                        className='text-red-500 hover:text-gray-600 text-lg leading-3 mx-auto block'
+                                                                    ><DeleteOutlined /></button>
                                                                 </Tooltip>
-                                                               
+
                                                             </Popconfirm>
                                                         </td>
                                                     </tr>
@@ -381,9 +381,17 @@ const ProjectManagement = () => {
         dispatch(getAllProjectAction())
     }, []);
 
-    const { allProject } = useSelector(state => state.projectReducer);
-
-    const data = allProject
+    let { allProject } = useSelector(state => state.projectReducer);
+    // reverse array 
+    const [reverseData, setReverseData] = useState([]);
+    // using useEffect and waiting for allProject 
+    useEffect(() => {
+        if (allProject) {
+            const reversedData = [...allProject].reverse();
+            setReverseData(reversedData);
+        }
+    }, [allProject]);
+    let data = reverseData;
     return (
         <ProjectLayout>
             <BreadCrumd> Projects / Singularity 7.0 / Project Management</BreadCrumd>
