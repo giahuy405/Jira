@@ -1,6 +1,10 @@
 # Jira Clone
 This project is a clone of the popular project management tool, Jira. The project consists of a landing page, a login/signup feature, and a page with a Kanban board for managing tasks. Users can perform CRUD (Create, Read, Update, and Delete) operations for tasks, projects, and users. The project also includes a dark mode feature.
 ![Jira Website](https://github.com/giahuy405/Jira/blob/main/web-img/home.png)
+*Home page*
+![Jira Website](https://github.com/giahuy405/Jira/blob/main/web-img/kanban-board.png)
+> kanban board to control task in the project
+
 ### Technologies
 The web application was built using the following technologies:
 * HTML, CSS and JavaScript for the front-end
@@ -14,11 +18,10 @@ The web application was built using the following technologies:
 ## Account For testing
 - pgiahuy653@gmail.com
 - huy123123
-![Jira Website](https://github.com/giahuy405/Jira/blob/main/web-img/home.png)
-> Home page
+![Jira Website](https://github.com/giahuy405/Jira/blob/main/web-img/login.png)
+> Login
 
-![Jira Website](https://github.com/giahuy405/Jira/blob/main/web-img/kanban-board.png)
-> kanban board to control task in the project
+
 
 ![Jira Website](https://github.com/giahuy405/Jira/blob/main/web-img/side-bar.png)
 > Sidebar to create issue/task, profile user, log out 
