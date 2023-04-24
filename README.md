@@ -37,13 +37,12 @@ Create user         |  Edit user
 
 ### Technologies
 The web application was built using the following technologies:
-* HTML, CSS and JavaScript for the front-end
-* React.js for building the UI
-* JWT for authentication
+* React 
+* Redux saga
 * Lodash for utility functions
 * Vercel for deployment and hosting
-* Tailwind CSS and Ant Design for styling and UI components
-* Swagger for the back-end API documentation
+* Tailwind CSS and Ant Design 
+ 
 
 ## Account For testing
 - pgiahuy653@gmail.com
